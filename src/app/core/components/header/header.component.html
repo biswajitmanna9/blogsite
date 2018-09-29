@@ -1,0 +1,48 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark derk-color fixed-top">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']"><img src="assets/images/logo.png" alt=""> </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [routerLink]="['/blog']">
+            Blog
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" [routerLink]="['/blog',1]">Blog 1</a>
+            <a class="dropdown-item" [routerLink]="['/blog',2]">Blog 2</a>
+            <a class="dropdown-item" [routerLink]="['/blog',3]">Blog 3</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [routerLink]="['/coupon']">
+            Coupon
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" [routerLink]="['/coupon',1]">Coupon 1</a>
+            <a class="dropdown-item" [routerLink]="['/coupon',2]">Coupon 2</a>
+            <a class="dropdown-item" [routerLink]="['/coupon',3]">Coupon 3</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
+        </li>
+        <li class="nav-item" *ngIf="!loggedIn">
+          <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn">
+          <a class="nav-link" [routerLink]="['.']" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
