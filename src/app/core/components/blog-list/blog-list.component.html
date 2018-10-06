@@ -1,0 +1,51 @@
+<header *ngIf="blogList.length > 0">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active" style="background-image: url('assets/images/blog-banner.jpg')">
+        <div class="container headline-blog pt-4">
+          <h1>Recent {{categoryName}}</h1>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " *ngFor="let blog of blogList; let i = index">
+              <div class="hovereffect">
+                <img class="img-responsive" [src]="imageBaseUrl + blog.blog_large_image" alt="">
+                <div class="overlay">
+                  <h2>{{blog.blog_title}}</h2>
+                  <p>
+                    <a (click)="goToDetails(blog.blog_url)">View</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<section class="full-bg-grey">
+  <div class="container">
+    <h2 class="head-line-line mb-3 mt-3">{{categoryName}} List</h2>
+    <div class="list-sec" *ngIf="blogList.length > 0">
+      <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index">
+        <div class="col-md-2">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
+          </a>
+        </div>
+        <div class="col-md-8">
+          <span>{{blog.category_name}}</span>
+          <h3>{{blog.blog_title}}</h3>
+          <p>{{blog.blog_excerpt}}</p>
+        </div>
+        <div class="col-md-2">
+          <a class="btn derk-color text-white" (click)="goToDetails(blog.blog_url)">View</a>
+        </div>
+      </div>
+    </div>
+    <div class="list-sec" *ngIf="blogList.length == 0">
+      <h3>Post Not Found Under {{categoryName}}</h3>
+    </div>
+  </div>
+</section>

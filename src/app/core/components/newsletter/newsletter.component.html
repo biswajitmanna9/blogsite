@@ -8,13 +8,20 @@
       <span>Get a newsletter with points strategies, deal
         <br>alerts, and more.</span>
       <div class="single">
-
-        <div class="input-group">
-          <input type="email" class="form-control" placeholder="Enter your email">
-          <span class="input-group-btn">
-            <button class="btn btn-theme" type="submit">Subscribe</button>
-          </span>
-        </div>
+        <form role="form" [formGroup]="form" novalidate>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss('email')">
+            <div class="invalid-feedback" *ngIf="form.controls['email'].hasError('pattern') && !form.controls['email'].hasError('required')">
+              Please enter a valid email address
+            </div>
+            <div class="invalid-feedback" *ngIf="form.controls['email'].hasError('required')">
+              Email is required
+            </div>
+            <span class="input-group-btn">
+              <button class="btn btn-theme" type="submit" (click)="subscribe()">Subscribe</button>
+            </span>
+          </div>
+        </form>
       </div>
 
     </div>

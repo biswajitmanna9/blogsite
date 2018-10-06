@@ -240,8 +240,7 @@ h4.delay-1 {
 }
 
 .full-mail-sec {
-  /* background: url(image/massagesec.jpg) no-repeat 0 0; */
-  background: #001670;
+  background: url(../images/massagesec.jpg) no-repeat 0 0;
   position: relative;
   padding-top: 62px;
 }
@@ -863,7 +862,17 @@ h4 {
   color: rgba(255, 255, 255, 0.75);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown-menu ul {
+  list-style: none;
+}
+
+.dropdown-menu .dropdown-menu {
+  right: auto;
+  left: 99%;
+  top: 0;
+}
+
+.dropdown:hover>.dropdown-menu {
   display: block;
 }
 
@@ -871,5 +880,4 @@ h4 {
 
 .cdk-overlay-container {
   z-index: 99999;
-  ;
 }

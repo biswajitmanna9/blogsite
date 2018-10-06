@@ -13,9 +13,8 @@ import { CouponComponent } from './coupon/coupon.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
-import { CouponDetailsComponent } from './coupon-details/coupon-details.component';
-import { BlogCategoryDetailsComponent } from './blog-category-details/blog-category-details.component';
-import { CouponCategoryDetailsComponent } from './coupon-category-details/coupon-category-details.component';
+import { ErrorComponent } from './error/error.component';
+
 
 @NgModule({
   imports: [
@@ -23,6 +22,6 @@ import { CouponCategoryDetailsComponent } from './coupon-category-details/coupon
     LayoutRoutingModule,
     CoreModule
   ],
-  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, CouponDetailsComponent, BlogCategoryDetailsComponent, CouponCategoryDetailsComponent]
+  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent]
 })
 export class LayoutModule { }

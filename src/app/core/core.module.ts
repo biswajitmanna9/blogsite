@@ -31,6 +31,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // services
 import { AuthService } from './services/auth.service';
+import { BlogService } from './services/blog.service';
+import { NewsletterService } from './services/newsletter.service';
 
 // guard
 import { AuthGuard } from './guard/auth.guard';
@@ -51,6 +53,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './components/login/login.component';
+import { BlogListComponent } from './components/blog-list/blog-list.component';
+import { CardListComponent } from './components/card-list/card-list.component';
 
 @NgModule({
   imports: [
@@ -80,7 +84,9 @@ import { LoginComponent } from './components/login/login.component';
     FooterComponent,
     NewsletterComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    BlogListComponent,
+    CardListComponent
   ],
   exports: [
     NgbModule,
@@ -102,7 +108,9 @@ import { LoginComponent } from './components/login/login.component';
     HeaderComponent,
     FooterComponent,
     NewsletterComponent,
-    TestComponent
+    TestComponent,
+    BlogListComponent,
+    CardListComponent
   ],
   entryComponents: [
     LoginComponent
@@ -118,7 +126,9 @@ export class CoreModule {
         {
           provide: AuthServiceConfig,
           useFactory: provideConfig
-        }
+        },
+        BlogService,
+        NewsletterService
       ]
     };
   }
