@@ -11,25 +11,17 @@
           <a class="nav-link" [routerLink]="['/home']">Home</a>
         </li>
         <li class="nav-item " *ngFor="let cat of categoryList" [ngClass]="displayDropdownCss(cat)">
-          <a class="nav-link dropdown-toggle" [routerLink]="['/', cat.parent_cat_slug]">
-            {{cat.parent_cat_name}}
+          <a class="nav-link" [routerLink]="['/', cat.category_slug]" [ngClass]="displayDropdownToggleCss(cat)">
+            {{cat.category_name}}
           </a>
-          <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.category_details != undefined">
-            <ul *ngIf="cat.category_details.length > 0">
-              <li *ngFor="let sub_cat of cat.category_details" class="nav-item">
-                <a class="dropdown-item" [routerLink]="['/', cat.parent_cat_slug, sub_cat.category_slug]">{{sub_cat.category_name}}</a>
-              </li>
-            </ul>
-
-          </div>
           <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.sub_category_details != undefined">
             <ul *ngIf="cat.sub_category_details.length > 0">
               <li *ngFor="let sub_cat of cat.sub_category_details" class="nav-item" [ngClass]="displayDropdownCss(sub_cat)">
-                <a class="dropdown-item" [routerLink]="['/', cat.parent_cat_slug, sub_cat.sub_category_slug]">{{sub_cat.sub_parent_cat_name}}</a>
-                <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.category_details != undefined">
+                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]">{{sub_cat.category_name}}</a>
+                <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.sub_sub_category_details != undefined">
                   <ul>
-                    <li *ngFor="let sub_child_cat of sub_cat.category_details" class="nav-item">
-                      <a class="dropdown-item" [routerLink]="['/', cat.parent_cat_slug,sub_cat.sub_category_slug, sub_child_cat.category_slug]">{{sub_child_cat.category_name}}</a>
+                    <li *ngFor="let sub_child_cat of sub_cat.sub_sub_category_details" class="nav-item">
+                      <a class="dropdown-item" [routerLink]="['/', cat.category_slug,sub_cat.category_slug, sub_child_cat.category_slug]">{{sub_child_cat.category_name}}</a>
                     </li>
                   </ul>
                 </div>

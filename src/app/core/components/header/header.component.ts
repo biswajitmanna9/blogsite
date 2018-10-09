@@ -61,15 +61,18 @@ export class HeaderComponent implements OnInit {
     )
   }
 
-  displayDropdownCss(category: any) {
-    if (category.category_details != undefined) {
-      if (category.category_details.length > 0) {
+  displayDropdownCss(category: any) {    
+    if (category.sub_category_details != undefined) {
+      if (category.sub_category_details.length > 0) {
         return 'dropdown'
       }
     }
-    else if (category.sub_category_details != undefined) {
+  }
+
+  displayDropdownToggleCss(category: any) {    
+    if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
-        return 'dropdown'
+        return 'dropdown-toggle'
       }
     }
   }

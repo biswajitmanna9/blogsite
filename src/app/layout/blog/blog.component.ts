@@ -60,7 +60,7 @@ export class BlogComponent implements OnInit {
         this.blogCategoryId = res['result']['id']
         this.categoryName = res['result']['title']
         this.isVisible = true;
-        if (this.blogCategorySlug == "card") {
+        if (this.blogCategorySlug == "cards") {
           this.isCard = true;
         }
       },
