@@ -25,6 +25,10 @@ a:hover {
     text-decoration: none;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
 .carousel-item {
     height: 65vh;
     min-height: 300px;
@@ -43,7 +47,8 @@ a:hover {
 /*my-css*/
 
 .derk-color {
-    background: #001670;
+    background: #4267b2;
+    border-bottom: 2px solid #29487d;
 }
 
 .carousel-caption-bnr {
@@ -147,7 +152,7 @@ h4.delay-1 {
     -moz-transition: all 0.3s ease-in;
     -ms-transition: all 0.3s ease-in;
     background: rgb(2, 0, 36);
-    background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(13, 13, 121, 0.6194852941176471) 35%, rgba(0, 212, 255, 0) 100%);
+    background: linear-gradient(0deg, #0d1c3a 0%, rgba(0, 18, 54, 0.31) 35%, rgba(0, 212, 255, 0) 100%);
 }
 
 .photo-block .bg-img {
@@ -195,6 +200,13 @@ h4.delay-1 {
 
 .list-sec h3 {
     font-size: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.list-sec small {
+    font-weight: 500;
+    color: #cacaca;
 }
 
 .list-sec p {
@@ -1336,6 +1348,122 @@ h4 {
 }
 
 .share-tooltip {}
+
+.busness-card-tabs {
+    background: #ffffff9e;
+}
+
+.busness-card-tabs .nav-tabs .nav-link {
+    border-radius: 0;
+    border: 1px solid #fff;
+    text-transform: uppercase;
+    padding: 0.8rem 1rem;
+    font-weight: 500;
+}
+
+.busness-card-tabs .nav-tabs {}
+
+.busness-card-tabs ul {
+    border: 1px solid #fff;
+    padding: 25px;
+}
+
+.busness-card-tabs ul li a {
+    color: #040d33;
+}
+
+.busness-card-tabs ul li {
+    padding-bottom: 10px;
+    background: url(../images/plus-button.png) no-repeat 0 5px;
+    background-size: 12px;
+    padding-left: 20px;
+    transition: all .40s ease-out
+}
+
+.busness-card-tabs ul li:hover {
+    padding-bottom: 10px;
+    background: url(../images/plus-button.png) no-repeat 3px 5px;
+    background-size: 12px;
+    padding-left: 20px;
+    transition: all .40s ease-in;
+}
+
+.card-banner-height {
+    min-height: 470px;
+}
+
+.card-sample img {
+    background: #fff;
+    padding: 9px 20px;
+}
+
+.card-head-full {
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 13px 0;
+}
+
+.card-head-full h4 {
+    font-size: 15px;
+    color: #302f2f;
+}
+
+.card-head-full h4 span {
+    font-size: 12px;
+    display: block;
+    color: #b8b6b6;
+}
+
+.product-details-list {}
+
+.product-details-list .glance {
+    width: 286px;
+    color: #302f2f;
+    text-align: center;
+}
+
+.product-details-list .glance h4 {
+    font-size: 17px;
+}
+
+.list-sec li {
+    list-style: round;
+    position: relative;
+    padding-left: 18px;
+}
+
+.list-sec li::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    background: #7c7c7c;
+    position: absolute;
+    left: -1px;
+    border-radius: 50%;
+    top: 5px;
+}
+
+.text-decline small {
+    font-size: 10px;
+    display: block;
+    padding-top: 11px
+}
+
+.trfarent-bg {
+    position: relative;
+}
+
+.trfarent-bg::before {
+    content: "";
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 35%, rgba(45, 81, 253, 0) 100%);
+    height: 200px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+}
 
 
 /** =====================
