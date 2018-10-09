@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
+      console.log(result)
       if (result) {
         this.user = result;
         this.loggedIn = (result != null);
@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.signOut();
+    localStorage.clear();
   }
 
   getCategoryList() {
@@ -67,11 +68,21 @@ export class HeaderComponent implements OnInit {
         return 'dropdown'
       }
     }
+    else  if (category.sub_sub_category_details != undefined) {
+      if (category.sub_sub_category_details.length > 0) {
+        return 'dropdown'
+      }
+    }
   }
 
   displayDropdownToggleCss(category: any) {    
     if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
+        return 'dropdown-toggle'
+      }
+    }
+    else if (category.sub_sub_category_details != undefined) {
+      if (category.sub_sub_category_details.length > 0) {
         return 'dropdown-toggle'
       }
     }

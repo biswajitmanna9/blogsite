@@ -33,6 +33,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './services/auth.service';
 import { BlogService } from './services/blog.service';
 import { NewsletterService } from './services/newsletter.service';
+import { LoginService } from './services/login.service';
 
 // guard
 import { AuthGuard } from './guard/auth.guard';
@@ -128,7 +129,8 @@ export class CoreModule {
           useFactory: provideConfig
         },
         BlogService,
-        NewsletterService
+        NewsletterService,
+        LoginService
       ]
     };
   }

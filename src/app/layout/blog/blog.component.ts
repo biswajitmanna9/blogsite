@@ -59,10 +59,29 @@ export class BlogComponent implements OnInit {
       res => {
         this.blogCategoryId = res['result']['id']
         this.categoryName = res['result']['title']
-        this.isVisible = true;
+        var parent_Slug;
+        var grand_parent_slug;
+        
+        if (res['result']['parent'] != undefined) {
+          parent_Slug = res['result']['parent'][0]['slug'];
+          if (res['result']['parent'][0]['grand_parent'] != undefined) {
+            grand_parent_slug = res['result']['parent'][0]['grand_parent'][0]['slug'];
+          }
+        }
+        
+        if (grand_parent_slug != undefined && this.blogCategorySlug != undefined && grand_parent_slug == this.blogCategorySlug) {
+          if (parent_Slug != undefined && this.blogSubCategorySlug != undefined && parent_Slug != this.blogSubCategorySlug) {
+            this.router.navigateByUrl('/404');
+          }
+        }
+        else if (parent_Slug != undefined && this.blogCategorySlug != undefined && parent_Slug != this.blogCategorySlug) {
+          this.router.navigateByUrl('/404');
+        }
+
         if (this.blogCategorySlug == "cards") {
           this.isCard = true;
         }
+        this.isVisible = true;
       },
       error => {
         this.router.navigateByUrl('/404');

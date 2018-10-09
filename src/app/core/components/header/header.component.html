@@ -17,7 +17,7 @@
           <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.sub_category_details != undefined">
             <ul *ngIf="cat.sub_category_details.length > 0">
               <li *ngFor="let sub_cat of cat.sub_category_details" class="nav-item" [ngClass]="displayDropdownCss(sub_cat)">
-                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]">{{sub_cat.category_name}}</a>
+                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]" [ngClass]="displayDropdownToggleCss(sub_cat)">{{sub_cat.category_name}}</a>
                 <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.sub_sub_category_details != undefined">
                   <ul>
                     <li *ngFor="let sub_child_cat of sub_cat.sub_sub_category_details" class="nav-item">
