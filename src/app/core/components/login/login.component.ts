@@ -86,6 +86,9 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res)
           this.dialogRef.close(res)
+          localStorage.setItem('userId', res['result']['id']);
+          localStorage.setItem('userName', res['result']['name']);
+          localStorage.setItem('userEmail', res['result']['email']);
           this.toastr.success('Login successfully', '', {
             timeOut: 3000,
           });
@@ -108,6 +111,9 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res)
           this.dialogRef.close(res)
+          localStorage.setItem('userId', res['result']['id']);
+          localStorage.setItem('userName', res['result']['name']);
+          localStorage.setItem('userEmail', res['result']['email']);
           this.toastr.success('Register successfully', '', {
             timeOut: 3000,
           });

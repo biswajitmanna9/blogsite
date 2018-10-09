@@ -21,12 +21,15 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      console.log(user)
-      this.loggedIn = (user != null);
-      localStorage.setItem('isLoggedin', 'true');
-    });
+    // this.authService.authState.subscribe((user) => {
+    //   this.user = user;
+    //   console.log(user)
+    //   this.loggedIn = (user != null);
+    //   localStorage.setItem('isLoggedin', 'true');
+    // });
+    if (localStorage.getItem('isLoggedin')) {
+      this.loggedIn = true;
+    }
     this.getCategoryList();
   }
 
@@ -46,8 +49,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.signOut();
+    // this.authService.signOut();
     localStorage.clear();
+    this.loggedIn = false;
   }
 
   getCategoryList() {
@@ -62,20 +66,20 @@ export class HeaderComponent implements OnInit {
     )
   }
 
-  displayDropdownCss(category: any) {    
+  displayDropdownCss(category: any) {
     if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
         return 'dropdown'
       }
     }
-    else  if (category.sub_sub_category_details != undefined) {
+    else if (category.sub_sub_category_details != undefined) {
       if (category.sub_sub_category_details.length > 0) {
         return 'dropdown'
       }
     }
   }
 
-  displayDropdownToggleCss(category: any) {    
+  displayDropdownToggleCss(category: any) {
     if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
         return 'dropdown-toggle'
