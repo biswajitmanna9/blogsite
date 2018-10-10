@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { AuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
 import { BlogService } from '../../services/blog.service';
+import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,10 +20,19 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog,
     private authService: AuthService,
     private blogService: BlogService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private loginService: LoginService
+  ) {
+    loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
+  }
 
   ngOnInit() {
+    this.loadUser();
+    this.getCategoryList();
+  }
+
+
+  loadUser() {
     if (localStorage.getItem('isLoggedin')) {
       this.loggedIn = true;
     }
@@ -31,12 +41,17 @@ export class HeaderComponent implements OnInit {
         this.user = user;
         console.log(user)
         this.loggedIn = (user != null);
-        if(this.loggedIn){
+        if (this.loggedIn) {
           localStorage.setItem('isLoggedin', 'true');
-        }        
+        }
       });
     }
-    this.getCategoryList();
+  }
+
+  private changeStatus(status: boolean) {
+    if (status) {
+      this.loadUser();
+    }
   }
 
   login() {

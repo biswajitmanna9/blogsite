@@ -84,14 +84,15 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value)
       this.loginService.userLogin(this.loginForm.value).subscribe(
         res => {
-          console.log(res)
-          this.dialogRef.close(res)
+          console.log(res)          
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);
           this.toastr.success('Login successfully', '', {
             timeOut: 3000,
           });
+          this.dialogRef.close(res)
+          // this.loginService.loginStatus(true);
         },
         error => {
           console.log(error)
@@ -109,14 +110,14 @@ export class LoginComponent implements OnInit {
     if (this.signupForm.valid) {
       this.loginService.userSignup(this.signupForm.value).subscribe(
         res => {
-          console.log(res)
-          this.dialogRef.close(res)
+          console.log(res)          
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);
           this.toastr.success('Register successfully', '', {
             timeOut: 3000,
           });
+          this.dialogRef.close(res)
         },
         error => {
           console.log(error)
