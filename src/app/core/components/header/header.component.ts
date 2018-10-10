@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { AuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
 import { BlogService } from '../../services/blog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,18 +18,23 @@ export class HeaderComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    // this.authService.authState.subscribe((user) => {
-    //   this.user = user;
-    //   console.log(user)
-    //   this.loggedIn = (user != null);
-    //   localStorage.setItem('isLoggedin', 'true');
-    // });
     if (localStorage.getItem('isLoggedin')) {
       this.loggedIn = true;
+    }
+    else {
+      this.authService.authState.subscribe((user) => {
+        this.user = user;
+        console.log(user)
+        this.loggedIn = (user != null);
+        if(this.loggedIn){
+          localStorage.setItem('isLoggedin', 'true');
+        }        
+      });
     }
     this.getCategoryList();
   }
@@ -52,6 +58,7 @@ export class HeaderComponent implements OnInit {
     // this.authService.signOut();
     localStorage.clear();
     this.loggedIn = false;
+    this.router.navigate(['/']);
   }
 
   getCategoryList() {

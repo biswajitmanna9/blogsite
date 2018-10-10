@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -14,7 +13,6 @@ export class TestComponent implements OnInit {
   @Input() twitterurl = location.href;
   @Input() twittertext = '';
   constructor(
-    private authService: AuthService,
     private router: Router
   ) {
     if (!window['fbAsyncInit']) {
@@ -64,30 +62,6 @@ export class TestComponent implements OnInit {
     window['gapi'] && window['gapi'].plusone.go();
     // render tweet button
     window['twttr'] && window['twttr'].widgets.load();
-  }
-
-  signInWithFacebook() {
-    this.authService.signInWithFacebook()
-      .then((res) => {
-        this.router.navigate(['/home'])
-      })
-      .catch((err) => console.log(err));
-  }
-
-  signInWithTwitter() {
-    this.authService.signInWithTwitter()
-      .then((res) => {
-        this.router.navigate(['/home'])
-      })
-      .catch((err) => console.log(err));
-  }
-
-  signInWithGoogle() {
-    this.authService.signInWithGoogle()
-      .then((res) => {
-        this.router.navigate(['/home'])
-      })
-      .catch((err) => console.log(err));
-  }
+  } 
 
 }
