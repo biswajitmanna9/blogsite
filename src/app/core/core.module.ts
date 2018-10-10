@@ -23,14 +23,10 @@ let config = new AuthServiceConfig([
 export function provideConfig() {
   return config;
 }
-// firebase auth
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 
 // services
-import { AuthService } from './services/auth.service';
 import { BlogService } from './services/blog.service';
 import { NewsletterService } from './services/newsletter.service';
 import { LoginService } from './services/login.service';
@@ -66,8 +62,6 @@ import { CardListComponent } from './components/card-list/card-list.component';
     FormsModule,
     ReactiveFormsModule,
     JwSocialButtonsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
-    AngularFireDatabaseModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,
     MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule,
@@ -77,7 +71,6 @@ import { CardListComponent } from './components/card-list/card-list.component';
     MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
     MatTabsModule, MatToolbarModule, MatTooltipModule,
     //----------------Material----------------//
-    AngularFireAuthModule,
     SocialLoginModule,
   ],
   declarations: [
@@ -94,7 +87,6 @@ import { CardListComponent } from './components/card-list/card-list.component';
     FormsModule,
     ReactiveFormsModule,
     JwSocialButtonsModule,
-    AngularFireDatabaseModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,
     MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule,
@@ -104,7 +96,6 @@ import { CardListComponent } from './components/card-list/card-list.component';
     MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
     MatTabsModule, MatToolbarModule, MatTooltipModule,
     //----------------Material----------------//
-    AngularFireAuthModule,
     SocialLoginModule,
     HeaderComponent,
     FooterComponent,
@@ -123,7 +114,6 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         AuthGuard,
-        AuthService,
         {
           provide: AuthServiceConfig,
           useFactory: provideConfig

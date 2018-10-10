@@ -4,6 +4,8 @@ import { LoginComponent } from '../login/login.component';
 import { AuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
 import { BlogService } from '../../services/blog.service';
+import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,17 +19,39 @@ export class HeaderComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private blogService: BlogService
-  ) { }
+    private blogService: BlogService,
+    private router: Router,
+    private loginService: LoginService
+  ) {
+    loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
+  }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      console.log(user)
-      this.loggedIn = (user != null);
-      localStorage.setItem('isLoggedin', 'true');
-    });
+    this.loadUser();
     this.getCategoryList();
+  }
+
+
+  loadUser() {
+    if (localStorage.getItem('isLoggedin')) {
+      this.loggedIn = true;
+    }
+    else {
+      this.authService.authState.subscribe((user) => {
+        this.user = user;
+        console.log(user)
+        this.loggedIn = (user != null);
+        if (this.loggedIn) {
+          localStorage.setItem('isLoggedin', 'true');
+        }
+      });
+    }
+  }
+
+  private changeStatus(status: boolean) {
+    if (status) {
+      this.loadUser();
+    }
   }
 
   login() {
@@ -36,18 +60,15 @@ export class HeaderComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
-      if (result) {
-        this.user = result;
-        this.loggedIn = (result != null);
-        localStorage.setItem('isLoggedin', 'true');
-      }
+      // console.log(result)
     })
   }
 
   logout() {
-    this.authService.signOut();
+    // this.authService.signOut();
     localStorage.clear();
+    this.loggedIn = false;
+    this.router.navigate(['/']);
   }
 
   getCategoryList() {
@@ -62,20 +83,20 @@ export class HeaderComponent implements OnInit {
     )
   }
 
-  displayDropdownCss(category: any) {    
+  displayDropdownCss(category: any) {
     if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
         return 'dropdown'
       }
     }
-    else  if (category.sub_sub_category_details != undefined) {
+    else if (category.sub_sub_category_details != undefined) {
       if (category.sub_sub_category_details.length > 0) {
         return 'dropdown'
       }
     }
   }
 
-  displayDropdownToggleCss(category: any) {    
+  displayDropdownToggleCss(category: any) {
     if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
         return 'dropdown-toggle'
