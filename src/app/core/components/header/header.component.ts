@@ -27,12 +27,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadUser();
+    this.loadUserInfo();
     this.getCategoryList();
   }
 
 
-  loadUser() {
+  loadUserInfo() {
     if (localStorage.getItem('isLoggedin')) {
       this.loggedIn = true;
     }
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
 
   private changeStatus(status: boolean) {
     if (status) {
-      this.loadUser();
+      this.loadUserInfo();
     }
   }
 
