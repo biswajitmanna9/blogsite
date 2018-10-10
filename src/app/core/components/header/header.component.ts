@@ -60,12 +60,7 @@ export class HeaderComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
-      if (result) {
-        this.user = result;
-        this.loggedIn = (result != null);
-        localStorage.setItem('isLoggedin', 'true');
-      }
+      // console.log(result)
     })
   }
 

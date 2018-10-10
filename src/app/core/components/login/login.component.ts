@@ -81,21 +81,21 @@ export class LoginComponent implements OnInit {
 
   signIn() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value)
       this.loginService.userLogin(this.loginForm.value).subscribe(
         res => {
-          console.log(res)          
+          // console.log(res)
+          localStorage.setItem('isLoggedin', 'true');          
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);
           this.toastr.success('Login successfully', '', {
             timeOut: 3000,
           });
-          this.dialogRef.close(res)
-          // this.loginService.loginStatus(true);
+          this.loginService.loginStatus(true);
+          this.dialogRef.close(true);          
         },
         error => {
-          console.log(error)
+          // console.log(error)
           this.toastr.error(error.error.message, '', {
             timeOut: 3000,
           });
@@ -110,17 +110,19 @@ export class LoginComponent implements OnInit {
     if (this.signupForm.valid) {
       this.loginService.userSignup(this.signupForm.value).subscribe(
         res => {
-          console.log(res)          
+          // console.log(res)
+          localStorage.setItem('isLoggedin', 'true');          
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);
           this.toastr.success('Register successfully', '', {
             timeOut: 3000,
           });
-          this.dialogRef.close(res)
+          this.loginService.loginStatus(true);
+          this.dialogRef.close(true);
         },
         error => {
-          console.log(error)
+          // console.log(error)
           this.toastr.error(error.error.message, '', {
             timeOut: 3000,
           });
