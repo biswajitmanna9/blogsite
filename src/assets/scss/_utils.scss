@@ -1144,18 +1144,30 @@ h4 {
 
 .reply-list li:before {
     content: '';
-    width: 60px;
-    height: 2px;
+    width: 2px;
+    height: 36px;
     background: #c7cacb;
     position: absolute;
-    top: 25px;
-    left: -55px;
+    top: -30px;
+    left: 28px;
 }
 
 .comments-list li {
     margin-bottom: 15px;
     display: block;
     position: relative;
+}
+
+.main-comments .reply-list li:nth-child(2) {
+    margin-left: 10%;
+}
+
+.main-comments .reply-list li:nth-child(3) {
+    margin-left: 15%;
+}
+
+.main-comments .reply-list li:nth-child(4) {
+    margin-left: 20%;
 }
 
 .comments-list li:after {
@@ -1167,9 +1179,16 @@ h4 {
 }
 
 .reply-list {
-    padding-left: 88px;
     clear: both;
-    margin-top: 15px;
+    margin-top: 0px;
+    width: 685px;
+    background: #f3f3f3;
+    padding: 18px;
+    border-radius: 5px;
+}
+
+.main-comments ul {
+    margin-left: 86px;
 }
 
 
@@ -1248,7 +1267,7 @@ h4 {
 }
 
 .reply-list .comment-box {
-    width: 610px;
+    width: 90%;
 }
 
 .comment-box .comment-head {
