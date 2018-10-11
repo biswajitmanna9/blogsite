@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./reply-tree.component.scss']
 })
 export class ReplyTreeComponent implements OnInit {
-  @Input('data') data: Array<Object>;
+  @Input('data') data: any;
   @Input('userName') userName: string;
   @Input('userId') userId: number;
   @Input('userPic') userPic: string;
