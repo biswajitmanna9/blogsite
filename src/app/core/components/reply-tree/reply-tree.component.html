@@ -1,35 +1,38 @@
 <ul class="replies" *ngFor="let reply of data.reply">
-  <li class="cmmnt">
-    <div class="avatar"><a href="javascript:void(0);"><img src="assets/images/default.png" width="55" height="55" alt="Professor photo avatar"></a></div>
-    <div class="cmmnt-content">
-      <header><a href="javascript:void(0);" class="userlink">{{reply.user}}</a> - <span class="pubdate">{{reply.date_created
-          | date:'mediumDate'}}</span>
-        <a href="javascript:void(0);" (click)="toggleReplySec(reply.id)">Reply</a>
-      </header>
-      <p>{{reply.title}}</p>
-    </div>
-    <div class="comment-box-area" *ngIf="selectedToggleArea == reply.id">
-      <div class="avatar"><a href="javascript:void(0);"><img src="assets/images/default.png" width="55" height="55" alt="pikabob photo avatar"></a></div>
-      <div class="cmmnt-content">
-        <header *ngIf="!loggedIn"><span>Join the discussion</span> - <span class="pubdate">Now</span></header>
-        <header *ngIf="loggedIn"><a href="javascript:void(0);" class="userlink">{{userName}}</a> - <span class="pubdate">Now</span></header>
-        <div class="comment-box">
-          <form role="form" [formGroup]="replyForm" novalidate>
-            <div class="form-content">
-              <div class="form-group">
-                <textarea name="title" class="form-control input-underline input-lg" placeholder="Enter comment"
-                  formControlName="title" [ngClass]="displayFieldCss(replyForm,'title')"></textarea>
-                <div class="invalid-feedback text-left" *ngIf="isFieldValid(replyForm,'title')">
-                  Please enter comment
-                </div>
-              </div>
-            </div>
-            <a class="send-sec" href="javascript:void(0);" (click)="addReply(reply)"><i class="fa fa-paper-plane"
-                aria-hidden="true"></i></a>
-          </form>
+    <li class="cmmnt">
+        <div class="avatar">
+            <a href="javascript:void(0);"><img src="assets/images/default.png" width="40" height="40" alt="Professor photo avatar"></a>
         </div>
-      </div>
-    </div>
-    <app-reply-tree [data]="reply" [userName]="userName" [userId]="userId" [userPic]="userPic" [loggedIn]="loggedIn" [selectedToggleArea]="selectedToggleArea" [blogId]="blogId" [getSelectedToggleArea]="toggleSelectedToggleArea.bind(this)" (refreshData)='refreshAllData()'></app-reply-tree>
-  </li>
+        <div class="cmmnt-content">
+            <header><a href="javascript:void(0);" class="userlink">{{reply.user}}</a> - <span class="pubdate">{{reply.date_created
+          | date:'mediumDate'}}</span>
+                <a href="javascript:void(0);" (click)="toggleReplySec(reply.id)">Reply</a>
+            </header>
+            <p>{{reply.title}}</p>
+        </div>
+        <div class="comment-box-area" *ngIf="selectedToggleArea == reply.id">
+            <div class="avatar">
+                <a href="javascript:void(0);"><img src="assets/images/default.png" width="40" height="40" alt="pikabob photo avatar"></a>
+            </div>
+            <div class="cmmnt-content">
+                <header *ngIf="!loggedIn"><span>Join the discussion</span> - <span class="pubdate">Now</span></header>
+                <header *ngIf="loggedIn"><a href="javascript:void(0);" class="userlink">{{userName}}</a> - <span class="pubdate">Now</span></header>
+                <div class="comment-box">
+                    <form role="form" [formGroup]="replyForm" novalidate>
+                        <div class="form-content">
+                            <div class="form-group">
+                                <textarea name="title" class="form-control input-underline input-lg" placeholder="Enter comment" formControlName="title" [ngClass]="displayFieldCss(replyForm,'title')"></textarea>
+                                <div class="invalid-feedback text-left" *ngIf="isFieldValid(replyForm,'title')">
+                                    Please enter comment
+                                </div>
+                            </div>
+                        </div>
+                        <a class="send-sec" href="javascript:void(0);" (click)="addReply(reply)"><i class="fa fa-paper-plane"
+                aria-hidden="true"></i></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-reply-tree [data]="reply" [userName]="userName" [userId]="userId" [userPic]="userPic" [loggedIn]="loggedIn" [selectedToggleArea]="selectedToggleArea" [blogId]="blogId" [getSelectedToggleArea]="toggleSelectedToggleArea.bind(this)" (refreshData)='refreshAllData()'></app-reply-tree>
+    </li>
 </ul>
