@@ -1449,7 +1449,7 @@ h4 {
 }
 
 .text-decline small {
-    font-size: 10px;
+    font-size: 8px;
     display: block;
     padding-top: 11px
 }
@@ -1621,6 +1621,26 @@ ul ul .cmmnt {
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
+
+.side-nav {
+    height: 100%;
+    background: #cbcbcb;
+}
+
+.side-nav span {
+    padding: 10px 0;
+    text-align: center;
+    display: block;
+    background: #4267b2;
+    color: #fff;
+}
+
+.list-group-item {
+    background-color: #052e44;
+    color: #fff;
+}
+
+.side-nav .list-group-submenu .list-group-item {}
 
 
 /** =====================
