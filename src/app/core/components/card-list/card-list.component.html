@@ -7,13 +7,11 @@
             <div class="tab-content  px-sm-0" id="nav-tabContent">
               <div class="tab-pane  fade show active  " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="cover-full">
-                  <ul class="d-flex flex-wrap" *ngIf="tagList.length > 0">
+                  <ul class="d-flex flex-wrap">
                     <li class="col-md-2" *ngFor="let tag of tagList"><a href="javascript:void(0);">{{tag.name}}</a></li>
                   </ul>
-                  <p *ngIf="tagList.length == 0">No tags found</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -29,180 +27,178 @@
     </div>
   </div>
 </header>
-<div class="side-nav" id="MainMenu">
-  <span>Card Menu</span>
-  <div class="list-group panel">
-    <a href="#" class="list-group-item " data-parent="#MainMenu">Item 1</a>
-    <a href="#" class="list-group-item " data-parent="#MainMenu">Item 2</a>
-    <a href="#demo3" class="list-group-item " data-toggle="collapse" data-parent="#MainMenu">Item 3 <i class="fa fa-caret-down"></i></a>
-    <div class="collapse" id="demo3">
-      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i class="fa fa-caret-down"></i></a>
-      <div class="collapse list-group-submenu" id="SubMenu1">
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
-        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i
-            class="fa fa-caret-down"></i></a>
-        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
-          <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
-          <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
-        </div>
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
-      </div>
-      <a href="javascript:;" class="list-group-item">Subitem 2</a>
-      <a href="javascript:;" class="list-group-item">Subitem 3</a>
-    </div>
-    <a href="#demo4" class="list-group-item " data-toggle="collapse" data-parent="#MainMenu">Item 4 <i class="fa fa-caret-down"></i></a>
-    <div class="collapse" id="demo4">
-      <a href="" class="list-group-item">Subitem 1</a>
-      <a href="" class="list-group-item">Subitem 2</a>
-      <a href="" class="list-group-item">Subitem 3</a>
-    </div>
-  </div>
-</div>
 
-</div>
-<a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item
-  4 <i class="fa fa-caret-down"></i></a>
-<div class="collapse" id="demo4">
-  <a href="" class="list-group-item">Subitem 1</a>
-  <a href="" class="list-group-item">Subitem 2</a>
-  <a href="" class="list-group-item">Subitem 3</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-md-9">
-  <h2 class="head-line-line mb-3 mt-3">Portfolio Heading</h2>
-  <p>
-    Known for outstanding customer service and major rewards, our partner American Express has a card for
-    everyone. Check out the Blue Cash Preferred® card for everyday spending, or the Premier Rewards Gold card for
-    a luxury experience. AMEX has different
-    credit cards depending on your spending needs. See the best credit card offers from American Express below.
-  </p>
-  <div class="list-sec">
-    <div class="row bg-white-blog trfarent-bg">
-      <div class="col-md-2">
-        <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-md-8 ">
-        <span>Intro Bonus</span>
-        <h3>Project One</h3>
-        <small>August 27th, 2018</small>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-          laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-          perspiciatis atque eveniet unde.</p>
-      </div>
-      <div class="col-md-2 text-decline">
-        <a class="btn derk-color text-white" href="#">View Project</a>
-        <small>
-          Good to Excellent
-          Credit Recommended (670-850) ?
-        </small>
-      </div>
-      <div class="col-md-12">
-        <div class="d-flex justify-content-around card-head-full">
-          <div class="card-head">
-            <h4>At A Glance</h4>
-          </div>
-          <div class="card-head">
-            <h4>
-              <span>Intro Bonus</span> 60,000 points</h4>
-          </div>
-          <div class="card-head">
-            <h4>
-              <span>Annual Fee</span> $550
-            </h4>
-          </div>
-          <div class="card-head">
-            <h4>
-              <span>Regular APR</span> N/A
-            </h4>
-          </div>
-        </div>
-        <div class="d-flex product-details-list py-5 px-3">
-          <div class="glance">
-            <h4>At A Glance</h4>
-          </div>
-          <div class="flex-grow-1 list-sec ">
-            <ul>
-              <li>
-                <p>
-                  Discover will match all the cash back you've earned at the end of your first year,
-                  automatically. back you've earned at the end of your first year, automatically.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Discover will match all the cash back you've earned at the end of your first year,
-                  automatically. back you've earned at the end of your first year, automatically.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Discover will match all the cash back you've earned at the end of your first year,
-                  automatically. back you've earned at the end of your first year, automatically.
-                </p>
-              </li>
-            </ul>
+
+<section class="full-bg-grey">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-3">
+        <div id="MainMenu">
+          <div class="list-group panel">
+            <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 1</a>
+            <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 2</a>
+            <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item
+              3 <i class="fa fa-caret-down"></i></a>
+            <div class="collapse" id="demo3">
+              <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i
+                  class="fa fa-caret-down"></i></a>
+              <div class="collapse list-group-submenu" id="SubMenu1">
+                <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+                <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+                <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem
+                  3 c <i class="fa fa-caret-down"></i></a>
+                <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+                  <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+                  <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+                </div>
+                <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+              </div>
+              <a href="javascript:;" class="list-group-item">Subitem 2</a>
+              <a href="javascript:;" class="list-group-item">Subitem 3</a>
+            </div>
+            <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item
+              4 <i class="fa fa-caret-down"></i></a>
+            <div class="collapse" id="demo4">
+              <a href="" class="list-group-item">Subitem 1</a>
+              <a href="" class="list-group-item">Subitem 2</a>
+              <a href="" class="list-group-item">Subitem 3</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row bg-white-blog">
-      <div class="col-md-2">
-        <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-md-8">
-        <span>Intro Bonus</span>
-        <h3>Project One</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-          laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-          perspiciatis atque eveniet unde.</p>
-      </div>
-      <div class="col-md-2">
-        <a class="btn derk-color text-white" href="#">View Project</a>
-      </div>
-    </div>
-    <div class="row bg-white-blog">
-      <div class="col-md-2">
-        <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-md-8">
-        <span>Intro Bonus</span>
-        <h3>Project One</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-          laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-          perspiciatis atque eveniet unde.</p>
-      </div>
-      <div class="col-md-2">
-        <a class="btn derk-color text-white" href="#">View Project</a>
-      </div>
-    </div>
-    <div class="row bg-white-blog">
-      <div class="col-md-2">
-        <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-md-8">
-        <span>Intro Bonus</span>
-        <h3>Project One</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-          laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-          perspiciatis atque eveniet unde.</p>
-      </div>
-      <div class="col-md-2">
-        <a class="btn derk-color text-white" href="#">View Project</a>
+      <div class="col-md-9">
+        <h2 class="head-line-line mb-3 mt-3">Portfolio Heading</h2>
+        <p>
+          Known for outstanding customer service and major rewards, our partner American Express has a card for
+          everyone. Check out the Blue Cash Preferred® card for everyday spending, or the Premier Rewards Gold card for
+          a luxury experience. AMEX has different
+          credit cards depending on your spending needs. See the best credit card offers from American Express below.
+        </p>
+        <div class="list-sec">
+          <div class="row bg-white-blog trfarent-bg">
+            <div class="col-md-2">
+              <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
+              </a>
+            </div>
+            <div class="col-md-8 ">
+              <span>Intro Bonus</span>
+              <h3>Project One</h3>
+              <small>August 27th, 2018</small>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
+                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
+                perspiciatis atque eveniet unde.</p>
+            </div>
+            <div class="col-md-2 text-decline">
+              <a class="btn derk-color text-white" href="#">View Project</a>
+              <small>
+                Good to Excellent
+                Credit Recommended (670-850) ?
+              </small>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-around card-head-full">
+                <div class="card-head">
+                  <h4>At A Glance</h4>
+                </div>
+                <div class="card-head">
+                  <h4>
+                    <span>Intro Bonus</span> 60,000 points</h4>
+                </div>
+                <div class="card-head">
+                  <h4>
+                    <span>Annual Fee</span> $550
+                  </h4>
+                </div>
+                <div class="card-head">
+                  <h4>
+                    <span>Regular APR</span> N/A
+                  </h4>
+                </div>
+              </div>
+              <div class="d-flex product-details-list py-5 px-3">
+                <div class="glance">
+                  <h4>At A Glance</h4>
+                </div>
+                <div class="flex-grow-1 list-sec ">
+                  <ul>
+                    <li>
+                      <p>
+                        Discover will match all the cash back you've earned at the end of your first year,
+                        automatically. back you've earned at the end of your first year, automatically.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Discover will match all the cash back you've earned at the end of your first year,
+                        automatically. back you've earned at the end of your first year, automatically.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Discover will match all the cash back you've earned at the end of your first year,
+                        automatically. back you've earned at the end of your first year, automatically.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row bg-white-blog">
+            <div class="col-md-2">
+              <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
+              </a>
+            </div>
+            <div class="col-md-8">
+              <span>Intro Bonus</span>
+              <h3>Project One</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
+                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
+                perspiciatis atque eveniet unde.</p>
+            </div>
+            <div class="col-md-2">
+              <a class="btn derk-color text-white" href="#">View Project</a>
+            </div>
+          </div>
+          <div class="row bg-white-blog">
+            <div class="col-md-2">
+              <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
+              </a>
+            </div>
+            <div class="col-md-8">
+              <span>Intro Bonus</span>
+              <h3>Project One</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
+                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
+                perspiciatis atque eveniet unde.</p>
+            </div>
+            <div class="col-md-2">
+              <a class="btn derk-color text-white" href="#">View Project</a>
+            </div>
+          </div>
+          <div class="row bg-white-blog">
+            <div class="col-md-2">
+              <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
+              </a>
+            </div>
+            <div class="col-md-8">
+              <span>Intro Bonus</span>
+              <h3>Project One</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
+                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
+                perspiciatis atque eveniet unde.</p>
+            </div>
+            <div class="col-md-2">
+              <a class="btn derk-color text-white" href="#">View Project</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </section>

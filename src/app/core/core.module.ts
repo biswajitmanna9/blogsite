@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+// import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 import { environment } from '../../environments/environment';
 // social login
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
@@ -62,7 +62,7 @@ import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    JwSocialButtonsModule,
+    // JwSocialButtonsModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,
     MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule,
@@ -88,7 +88,7 @@ import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    JwSocialButtonsModule,
+    // JwSocialButtonsModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,
     MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule,
