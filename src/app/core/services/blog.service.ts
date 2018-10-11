@@ -31,9 +31,13 @@ export class BlogService {
     return this.http.post(environment.apiEndpoint + 'addcomment/', data)
   }
 
+  getTagListByCategory(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'taglistbycatid/' + id + '/')
+  }
+
+  getSubCategoryByCategory(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/')
+  }
+  
 }
 
-// {
-//   "title": "this is a test comment",
-//   "post_id": 1, "user_id": 1, comment_parent: 2
-// }
