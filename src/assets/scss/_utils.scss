@@ -1479,6 +1479,118 @@ h4 {
     border-radius: 5px;
 }
 
+.refar-code {
+    position: relative;
+}
+
+.send-mail-refar {
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 30px;
+    width: 41%;
+    -webkit-box-shadow: -4px 3px 49px -5px rgba(0, 0, 0, 0.34);
+    -moz-box-shadow: -4px 3px 49px -5px rgba(0, 0, 0, 0.34);
+    box-shadow: -4px 3px 49px -5px rgba(0, 0, 0, 0.34);
+    position: absolute;
+    right: 131px;
+    bottom: 0;
+    min-height: 270px;
+    z-index: 1;
+}
+
+.send-bg-refer {
+    background: #ffffff42;
+    border-radius: 10px 10px 0 0;
+    height: 271px;
+    position: absolute;
+    bottom: 0;
+    width: 46%;
+    right: 93px;
+}
+
+.send-mail-refar span {
+    text-align: center;
+    color: #9a9b9d;
+    font-size: 23px;
+    display: block;
+}
+
+// side-nav
+.column-menu .nav-stacked {
+    background: #fff;
+    -webkit-box-shadow: 0px 3px 38px -9px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 3px 38px -9px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 3px 38px -9px rgba(0, 0, 0, 0.4);
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+.margintop20 {
+    margin-top: 20px;
+}
+
+.nav-pills>li>a {
+    border-radius: 0px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #120f0f;
+}
+
+.nav-stacked>li {
+    margin-top: 0px;
+    margin-left: 0;
+    border-bottom: 1px solid #dadada;
+    padding: 7px 10px;
+    position: relative;
+}
+
+.active2 {
+    border-right: 4px solid #428bca;
+}
+
+.nav-stacked>li>ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    top: 0;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .40s ease-out;
+}
+
+.nav-stacked>li>ul>li>ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    top: 0;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .40s ease-out;
+}
+
+.nav-stacked>li:hover ul {
+    left: 95%;
+    opacity: 1;
+    visibility: visible;
+    transition: all .40s ease;
+    z-index: 1;
+}
+
+.nav-stacked>li ul li:hover ul {
+    left: 95%;
+    opacity: 1;
+    visibility: visible;
+    transition: all .40s ease;
+    z-index: 1;
+}
+
 
 /** =====================
  * Responsive
