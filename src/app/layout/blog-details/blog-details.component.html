@@ -1,181 +1,136 @@
 <header *ngIf="isVisible">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item d-flex justify-content-center text-white blog-detail" [style.background-image]="getBackground(blogDetails.blog_large_image)">
-                <h1>{{blogDetails.blog_title}}</h1>
-            </div>
-        </div>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item d-flex justify-content-center text-white blog-detail" [style.background-image]="getBackground(blogDetails.blog_large_image)">
+        <h1>{{blogDetails.blog_title}}</h1>
+      </div>
     </div>
-    <div class="bg-subjet pt-4 pb-4">
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-between text-item ">
-                        <img class="img-fluid" src="assets/images/gift-box.png" alt="">
-                        <h2>Current Card<br> Bonuses
-                        </h2>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-between text-item ">
-                        <img class="img-fluid" src="assets/images/gift-box.png" alt="">
-                        <h2>Current Card<br> Bonuses
-                        </h2>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-between text-item ">
-                        <img class="img-fluid" src="assets/images/gift-box.png" alt="">
-                        <h2>Current Card<br> Bonuses
-                        </h2>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-between text-item ">
-                        <img class="img-fluid" src="assets/images/gift-box.png" alt="">
-                        <h2>Current Card<br> Bonuses
-                        </h2>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div class="bg-subjet pt-4 pb-4">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between text-item ">
+            <img class="img-fluid" src="assets/images/gift-box.png" alt="">
+            <h2>Current Card<br> Bonuses
+            </h2>
+          </div>
         </div>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between text-item ">
+            <img class="img-fluid" src="assets/images/gift-box.png" alt="">
+            <h2>Current Card<br> Bonuses
+            </h2>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between text-item ">
+            <img class="img-fluid" src="assets/images/gift-box.png" alt="">
+            <h2>Current Card<br> Bonuses
+            </h2>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between text-item ">
+            <img class="img-fluid" src="assets/images/gift-box.png" alt="">
+            <h2>Current Card<br> Bonuses
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </header>
 <!--catagory-sec-->
 
 
 <!-- Page Content -->
 <section class="full-bg-grey" *ngIf="isVisible">
-    <div class="container">
-        <div class="row">
-            <div class="blog-detail-contant col-md-9">
-                <h2 class="head-line-line mb-3 mt-3">Description</h2>
-                <div [innerHTML]="blogDetails.blog_content"></div>
-            </div>
-            <div class="col-md-3">
-                <h2 class="head-line-line mb-3 mt-3">{{blogCategoryName}}</h2>
-                <div class="d-flex flex-column">
-                    <div class="recent-blog-list" *ngFor="let blog of blogList; let i = index">
-                        <img class="img-fluid" [src]="imageBaseUrl + blog.blog_large_image" alt="">
-                        <a (click)="goToDetails(blog.blog_url)" class="blog-detail-text">
-                            <span>{{blog.category_name}}</span>
-                            <h3>{{blog.blog_title}}</h3>
-                            <small>{{blog.date_created | date:'mediumDate'}}</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="blog-detail-contant col-md-9">
+        <h2 class="head-line-line mb-3 mt-3">Description</h2>
+        <div [innerHTML]="blogDetails.blog_content"></div>
+      </div>
+      <div class="col-md-3">
+        <h2 class="head-line-line mb-3 mt-3">{{blogCategoryName}}</h2>
+        <div class="d-flex flex-column">
+          <div class="recent-blog-list" *ngFor="let blog of blogList; let i = index">
+            <img class="img-fluid" [src]="imageBaseUrl + blog.blog_large_image" alt="">
+            <a (click)="goToDetails(blog.blog_url)" class="blog-detail-text">
+              <span>{{blog.category_name}}</span>
+              <h3>{{blog.blog_title}}</h3>
+              <small>{{blog.date_created | date:'mediumDate'}}</small>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
-<div class="container">
-    <div class="comments-container">
-        <h1>20 Comments </h1>
-
-        <ul id="comments-list" class="comments-list">
-
-            <li class="main-comments">
-                <div class="comment-main-level">
-                    <!-- Avatar -->
-                    <div class="comment-avatar"><img src="assets/images/no-image.jpg" alt=""></div>
-                    <!-- Contenedor del Comentario -->
-                    <div class="comment-box">
-                        <div class="comment-head">
-                            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Biswajit Manna</a></h6>
-                            <span>Now</span>
-                            <div class="share-tooltip">
-                                <i class="fa fa-reply reply-comment"></i>
-                                <i class="fa fa-facebook"></i>
-                                <i class="fa fa-google"></i>
-
-
-                            </div>
-                        </div>
-                        <textarea class="comment-content">
-  </textarea>
-                        <a class="send-sec" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-                    </div>
+<div class="container" *ngIf="isVisible">
+  <div class="comments-container">
+    <h1>{{blogDetails.comments_approved}} Comments </h1>
+    <ul id="comments">
+      <li class="cmmnt">
+        <div class="avatar"><a href="javascript:void(0);"><img src="assets/images/default.png" width="55" height="55"
+              alt="pikabob photo avatar"></a></div>
+        <div class="cmmnt-content">
+          <header *ngIf="!loggedIn"><span>Join the discussion</span> - <span class="pubdate">Now</span></header>
+          <header *ngIf="loggedIn"><a href="javascript:void(0);" class="userlink">{{userName}}</a> - <span class="pubdate">Now</span></header>
+          <div class="comment-box">
+            <form role="form" [formGroup]="commentForm" novalidate>
+              <div class="form-content">
+                <div class="form-group">
+                  <textarea name="title" class="form-control input-underline input-lg" placeholder="Enter comment"
+                    formControlName="title" [ngClass]="displayFieldCss(commentForm,'title')"></textarea>
+                  <div class="invalid-feedback text-left" *ngIf="isFieldValid(commentForm,'title')">
+                    Please enter comment
+                  </div>
                 </div>
+              </div>
+              <a class="send-sec" href="javascript:void(0);" (click)="comment()"><i class="fa fa-paper-plane"
+                  aria-hidden="true"></i></a>
+            </form>
+          </div>
 
+        </div>
+      </li>
 
-
-                <div class="comment-main-level">
-                    <!-- Avatar -->
-                    <div class="comment-avatar"><img src="https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-                    <!-- Contenedor del Comentario -->
-                    <div class="comment-box">
-                        <div class="comment-head">
-                            <h6 class="comment-name"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-                            <span>hace 20 minutos</span>
-                            <i class="fa fa-reply reply-comment"></i>
-                            <i class="fa fa-facebook"></i>
-                            <i class="fa fa-google"></i>
-                        </div>
-                        <div class="comment-content">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                        </div>
+      <li class="cmmnt" *ngFor="let comment of blogDetails.comments; let i = index">
+        <div class="avatar"><a href="javascript:void(0);"><img src="assets/images/default.png" width="55" height="55"
+              alt="default avatar"></a></div>
+        <div class="cmmnt-content">
+          <header><a href="javascript:void(0);" class="userlink">{{comment.user}}</a> - <span class="pubdate">{{comment.date_created
+              | date:'mediumDate'}}</span><a href="javascript:void(0);" (click)="toggleReplySec(comment.id)">Reply</a></header>
+          <p>{{comment.title}}</p>
+        </div>
+        <div class="comment-box-area" *ngIf="selectedToggleArea == comment.id">
+          <div class="avatar"><a href="javascript:void(0);"><img src="assets/images/default.png" width="55" height="55"
+                alt="pikabob photo avatar"></a></div>
+          <div class="cmmnt-content">
+            <header *ngIf="!loggedIn"><span>Join the discussion</span> - <span class="pubdate">Now</span></header>
+            <header *ngIf="loggedIn"><a href="javascript:void(0);" class="userlink">{{userName}}</a> - <span class="pubdate">Now</span></header>
+            <div class="comment-box">
+              <form role="form" [formGroup]="replyForm" novalidate>
+                <div class="form-content">
+                  <div class="form-group">
+                    <textarea name="title" class="form-control input-underline input-lg" placeholder="Enter comment"
+                      formControlName="title" [ngClass]="displayFieldCss(replyForm,'title')"></textarea>
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid(replyForm,'title')">
+                      Please enter comment
                     </div>
+                  </div>
                 </div>
-                <!-- Respuestas de los comentarios -->
-                <ul class="comments-list reply-list">
-                    <li>
-                        <!-- Avatar -->
-                        <div class="comment-avatar"><img src="https://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                        <!-- Contenedor del Comentario -->
-                        <div class="comment-box">
-                            <div class="comment-head">
-                                <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                <span>hace 10 minutos</span>
-                                <i class="fa fa-reply reply-comment"></i>
-                                <i class="fa fa-facebook"></i>
-                                <i class="fa fa-google"></i>
-                            </div>
-                            <div class="comment-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                            </div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <!-- Avatar -->
-                        <div class="comment-avatar"><img src="https://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-                        <!-- Contenedor del Comentario -->
-                        <div class="comment-box">
-                            <div class="comment-head">
-                                <h6 class="comment-name"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-                                <span>hace 10 minutos</span>
-                                <i class="fa fa-reply reply-comment"></i>
-                                <i class="fa fa-facebook"></i>
-                                <i class="fa fa-google"></i>
-                            </div>
-                            <textarea class="comment-content"> </textarea>
-                            <a class="send-sec" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-                        </div>
-                    </li>
-                </ul>
-
-
-            </li>
-
-            <li>
-                <div class="comment-main-level">
-                    <!-- Avatar -->
-                    <div class="comment-avatar"><img src="https://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                    <!-- Contenedor del Comentario -->
-                    <div class="comment-box">
-                        <div class="comment-head">
-                            <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                            <span>hace 10 minutos</span>
-                            <i class="fa fa-reply reply-comment"></i>
-                            <i class="fa fa-facebook"></i>
-                            <i class="fa fa-google"></i>
-                        </div>
-                        <div class="comment-content">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+                <a class="send-sec" href="javascript:void(0);" (click)="reply(comment)"><i class="fa fa-paper-plane"
+                    aria-hidden="true"></i></a>
+              </form>
+            </div>
+          </div>
+        </div>
+        <app-reply-tree [data]="comment" [userName]="userName" [userId]="userId" [userPic]="userPic" [loggedIn]="loggedIn" [selectedToggleArea]="selectedToggleArea" [blogId]="blogId" [getSelectedToggleArea]="toggleSelectedToggleArea.bind(this)" (refreshData)='refreshAllData()'></app-reply-tree>
+        
+      </li>
+    </ul>
+  </div>
 </div>

@@ -30,6 +30,7 @@ export class BlogDetailsComponent implements OnInit {
   userId: number;
   userPic: string;
   private loggedIn: boolean;
+  selectedToggleArea: number;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -132,7 +133,7 @@ export class BlogDetailsComponent implements OnInit {
     this.blogService.getSlugInfo(slug).subscribe(
       res => {
         // console.log(res)
-        this.blogId = res['result']['id']
+        this.blogId = +res['result']['id']
         this.getBlogDetails();
       },
       error => {
@@ -163,12 +164,45 @@ export class BlogDetailsComponent implements OnInit {
     this.router.navigateByUrl('/' + this.blogCategorySlug + '/details/' + blog_url);
   }
 
+
+  toggleReplySec(id) {
+    this.selectedToggleArea = id;
+    this.replyForm.reset();
+  }
+
+  toggleSelectedToggleArea(id) {
+    this.selectedToggleArea = id;
+    this.replyForm.reset();
+  }
+
+  refreshAllData(){
+    this.getBlogDetails()
+  }
+
   comment() {
     if (!this.loggedIn) {
       this.openLoginModal()
     }
     else {
+      this.commentForm.patchValue({
+        post_id: this.blogId,
+        user_id: this.userId,
+        comment_parent: ''
+      })
       if (this.commentForm.valid) {
+        this.blogService.addcomment(this.commentForm.value).subscribe(
+          res => {
+            // console.log(res);
+            this.toastr.success('Comment has been submitted', '', {
+              timeOut: 3000,
+            });
+            this.commentForm.reset();
+            this.getBlogDetails()
+          },
+          error => {
+            // console.log(error)
+          }
+        )
 
       } else {
         this.markFormGroupTouched(this.commentForm)
@@ -177,12 +211,36 @@ export class BlogDetailsComponent implements OnInit {
 
   }
 
-  reply() {
+  reply(comment) {
     if (!this.loggedIn) {
       this.openLoginModal()
     }
     else {
       if (this.replyForm.valid) {
+
+      } else {
+        this.markFormGroupTouched(this.replyForm)
+      }
+      this.replyForm.patchValue({
+        post_id: this.blogId,
+        user_id: this.userId,
+        comment_parent: +comment['id']
+      })
+      if (this.replyForm.valid) {
+        this.blogService.addcomment(this.replyForm.value).subscribe(
+          res => {
+            // console.log(res);
+            this.toastr.success('Comment has been submitted', '', {
+              timeOut: 3000,
+            });
+            this.replyForm.reset();
+            this.selectedToggleArea = null;
+            this.getBlogDetails()
+          },
+          error => {
+            // console.log(error)
+          }
+        )
 
       } else {
         this.markFormGroupTouched(this.replyForm)

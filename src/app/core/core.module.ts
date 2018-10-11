@@ -52,6 +52,7 @@ import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './components/login/login.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { CardListComponent } from './components/card-list/card-list.component';
+import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component';
 
 @NgModule({
   imports: [
@@ -71,7 +72,7 @@ import { CardListComponent } from './components/card-list/card-list.component';
     MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
     MatTabsModule, MatToolbarModule, MatTooltipModule,
     //----------------Material----------------//
-    SocialLoginModule,
+    SocialLoginModule
   ],
   declarations: [
     HeaderComponent,
@@ -80,7 +81,8 @@ import { CardListComponent } from './components/card-list/card-list.component';
     TestComponent,
     LoginComponent,
     BlogListComponent,
-    CardListComponent
+    CardListComponent,
+    ReplyTreeComponent
   ],
   exports: [
     NgbModule,
@@ -102,7 +104,8 @@ import { CardListComponent } from './components/card-list/card-list.component';
     NewsletterComponent,
     TestComponent,
     BlogListComponent,
-    CardListComponent
+    CardListComponent,
+    ReplyTreeComponent
   ],
   entryComponents: [
     LoginComponent
