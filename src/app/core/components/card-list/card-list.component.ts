@@ -17,7 +17,8 @@ export class CardListComponent implements OnInit {
   pageHeading: string;
   tagList: any = [];
   subCategoryList: any = [];
-
+  categoryDetails: any;
+  visibleKey: boolean;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -33,8 +34,10 @@ export class CardListComponent implements OnInit {
   getBlogListByCategory() {
     this.blogService.getBlogListByCategory(this.blogCategoryId).subscribe(
       res => {
-        // console.log(res)
-        this.blogList = res['result']['bloglist']
+        console.log(res)
+        this.categoryDetails = res['result']['category_details'];
+        this.blogList = res['result']['bloglist'];
+        this.visibleKey = true
       },
       error => {
         // console.log(error)
@@ -58,16 +61,29 @@ export class CardListComponent implements OnInit {
     )
   }
 
-  getSubCategoryByCategory(){
+  getSubCategoryByCategory() {
     this.blogService.getSubCategoryByCategory(this.blogCategoryId).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
         this.subCategoryList = res['result']
       },
       error => {
-        console.log(error)
+        // console.log(error)
       }
     )
+  }
+
+  displayRightPanelCss() {
+    return {
+      'col-md-9': this.subCategoryList.length > 0,
+      'col-md-12': this.subCategoryList.length == 0
+    };
+  }
+
+  displayTrfarentCss(blog) {
+    return {
+      'trfarent-bg': blog.blog_content != ""
+    };
   }
 
 }

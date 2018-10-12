@@ -6,7 +6,6 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class BlogService {
-
   constructor(
     private http: HttpClient
   ) { }
@@ -38,6 +37,5 @@ export class BlogService {
   getSubCategoryByCategory(id): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/')
   }
-  
-}
 
+}

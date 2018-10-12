@@ -42,10 +42,10 @@ export class BlogComponent implements OnInit {
   }
 
   loadData() {
-    if (this.blogSubChildCategorySlug != undefined) {
+    if (this.blogSubChildCategorySlug != undefined && this.blogSubCategorySlug != undefined && this.blogCategorySlug != undefined) {
       this.getCategorySlugInfo(this.blogSubChildCategorySlug)
     }
-    else if (this.blogSubCategorySlug != undefined) {
+    else if (this.blogSubCategorySlug != undefined && this.blogCategorySlug != undefined) {
       this.getCategorySlugInfo(this.blogSubCategorySlug)
     }
     else if (this.blogCategorySlug != undefined) {

@@ -1,0 +1,13 @@
+<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="goToCategoryPage(item.category_slug)" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+  {{item.category_name}}
+  <span fxFlex *ngIf="item.sub_category_details && item.sub_category_details.length">
+    <span fxFlex></span>
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'" (click)="itemToggle(item);$event.stopPropagation()">
+      expand_more
+    </mat-icon>
+  </span>
+</a>
+<div *ngIf="expanded">
+  <app-side-nav *ngFor="let child of item.sub_category_details" [item]="child" [depth]="depth+1">
+  </app-side-nav>
+</div>

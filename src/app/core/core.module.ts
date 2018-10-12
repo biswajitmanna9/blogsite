@@ -53,6 +53,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { CardListComponent } from './components/card-list/card-list.component';
 import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component
     LoginComponent,
     BlogListComponent,
     CardListComponent,
-    ReplyTreeComponent
+    ReplyTreeComponent,
+    SideNavComponent
   ],
   exports: [
     NgbModule,
@@ -105,7 +107,8 @@ import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component
     TestComponent,
     BlogListComponent,
     CardListComponent,
-    ReplyTreeComponent
+    ReplyTreeComponent,
+    SideNavComponent
   ],
   entryComponents: [
     LoginComponent
