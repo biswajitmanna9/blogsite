@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   currentLong: number;
   companylist: any = [];
   form: FormGroup;
+  userId: number;
   constructor(
     private formBuilder: FormBuilder,
     private referralService: ReferralService,
@@ -24,12 +25,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.currentLat = +localStorage.getItem('currentLat');
     this.currentLong = +localStorage.getItem('currentLong');
-    console.log(this.currentLat)
-    console.log(this.currentLong)
+    this.userId = +localStorage.getItem('userId');
     this.getCompanylist();
     this.form = this.formBuilder.group({
       referral_code: ["", Validators.required],
-      user_id: ["", Validators.required],
+      user_id: [this.userId, Validators.required],
       company: ["", Validators.required],
       currentLat: [""],
       currentLong: [""],
@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addReferral() {
+    console.log(this.form.value)
     if (this.form.valid) {
       if (this.currentLat == undefined && this.currentLong == undefined) {
         this.toastr.error("Please allow your location", '', {

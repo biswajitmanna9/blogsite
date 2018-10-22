@@ -1,83 +1,65 @@
 <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <!--    <ol class="carousel-indicators">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!--    <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol> -->
-        <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item  refar-code  active" style="background-image: url('assets/images/blog-banner.jpg')">
-                <div class="container  headline-blog pt-4">
-                    <div class="row">
-
-                        <div class="ad-text">
-                            <h3>Coupon <span> Codes </span> & Promo <span> Codes </span></h3>
-
-
-                            <ul>
-                                <li><i class="fa fa-bullseye" aria-hidden="true"></i> Get Double Cash
-                                </li>
-                                <li> <i class="fa fa-bullseye" aria-hidden="true"></i> Get Double Cash
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-
-
-
-                        <div class="send-mail-refar">
-                            <span>Share your referral code or link to start
-    saving money and earning points.</span>
-                            <hr>
-
-                            <div class="input-sec d-flex justify-content-between">
-                                <div class="form-group">
-                                    <label for="usr">Company:</label>
-
-
-                                    <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                      </select>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Code or Link:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-green">Submit</button>
-
-                            </div>
-
-                            <div class="devider-or">
-                                <h4>OR</h4>
-                            </div>
-                            <small class="discline">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> Don't see your company or program?
-                               <a href="#" > Click here to add one.</a>
-</small>
-                        </div>
-                        <div class="send-bg-refer"></div>
-
-
-
-                    </div>
-
-
-
-                </div>
-
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item  refar-code  active" style="background-image: url('assets/images/blog-banner.jpg')">
+        <div class="container  headline-blog pt-4">
+          <div class="row">
+            <div class="ad-text">
+              <h3>Coupon <span> Codes </span> & Promo <span> Codes </span></h3>
+              <ul>
+                <li><i class="fa fa-bullseye" aria-hidden="true"></i> Get Double Cash
+                </li>
+                <li> <i class="fa fa-bullseye" aria-hidden="true"></i> Get Double Cash
+                </li>
+              </ul>
             </div>
-
+            <div class="send-mail-refar">
+              <span>Share your referral code or link to start
+                saving money and earning points.</span>
+              <hr>
+              <form role="form" [formGroup]="form" novalidate>
+                <div class="input-sec d-flex justify-content-between">
+                  <div class="form-group">
+                    <label for="usr">Company:</label>
+                    <select class="form-control" formControlName="company" [ngClass]="displayFieldCss('company')">
+                      <option value="">Select Company</option>
+                      <option *ngFor="let company of companylist" [value]="company.id">{{company.name}}</option>
+                    </select>
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('company')">
+                      Please select company
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">Code or Link:</label>
+                    <input type="password" class="form-control" placeholder="Code or Link" formControlName="referral_code"
+                      [ngClass]="displayFieldCss('referral_code')">
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('referral_code')">
+                      Please enter code or link
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-green" (click)="addReferral()">Submit</button>
+                </div>
+              </form>
+              <div class="devider-or">
+                <h4>OR</h4>
+              </div>
+              <small class="discline">
+                <i class="fa fa-info-circle" aria-hidden="true"></i> Don't see your company or program?
+                <a href="#"> Click here to add one.</a>
+              </small>
+            </div>
+            <div class="send-bg-refer"></div>
+          </div>
         </div>
-
+      </div>
     </div>
+  </div>
 </header>
