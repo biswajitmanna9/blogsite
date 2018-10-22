@@ -16,7 +16,7 @@ export class ReferralService {
   }
 
   addReferral(data) {
-    return this.http.post(environment.apiEndpoint + 'addReferral/', data)
+    return this.http.post(environment.apiEndpoint + 'userreferral/', data)
   }
 
 }

@@ -28,11 +28,11 @@ export class DashboardComponent implements OnInit {
     this.userId = +localStorage.getItem('userId');
     this.getCompanylist();
     this.form = this.formBuilder.group({
-      referral_code: ["", Validators.required],
+      referral_link: ["", Validators.required],
       user_id: [this.userId, Validators.required],
-      company: ["", Validators.required],
-      currentLat: [""],
-      currentLong: [""],
+      company_id: ["", Validators.required],
+      lattitude: [""],
+      longitude: [""],
     });
   }
 
@@ -58,13 +58,13 @@ export class DashboardComponent implements OnInit {
       }
       else {
         this.form.patchValue({
-          currentLat: this.currentLat,
-          currentLong: this.currentLong
+          lattitude: this.currentLat,
+          longitude: this.currentLong
         })
         this.referralService.addReferral(this.form.value).subscribe(
           res => {
             console.log(res);
-            this.toastr.error("Referral code added successfully", '', {
+            this.toastr.success("Referral code has been added successfully", '', {
               timeOut: 3000,
             });
             this.router.navigate(['/']);

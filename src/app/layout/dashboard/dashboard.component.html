@@ -27,19 +27,19 @@
                 <div class="input-sec d-flex justify-content-between">
                   <div class="form-group">
                     <label for="usr">Company:</label>
-                    <select class="form-control" formControlName="company" [ngClass]="displayFieldCss('company')">
+                    <select class="form-control" formControlName="company_id" [ngClass]="displayFieldCss('company_id')">
                       <option value="">Select Company</option>
                       <option *ngFor="let company of companylist" [value]="company.id">{{company.name}}</option>
                     </select>
-                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('company')">
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('company_id')">
                       Please select company
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="pwd">Code or Link:</label>
-                    <input type="password" class="form-control" placeholder="Code or Link" formControlName="referral_code"
-                      [ngClass]="displayFieldCss('referral_code')">
-                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('referral_code')">
+                    <input type="text" class="form-control" placeholder="Code or Link" formControlName="referral_link"
+                      [ngClass]="displayFieldCss('referral_link')">
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('referral_link')">
                       Please enter code or link
                     </div>
                   </div>
