@@ -1642,6 +1642,78 @@ ul ul .cmmnt {
 
 .side-nav .list-group-submenu .list-group-item {}
 
+.input-sec .form-group {
+    width: 49%;
+}
+
+.btn-green {
+    background: #007236;
+    color: #fff;
+    width: 45%;
+    border-radius: 20px;
+    transition: all .40s ease-out;
+}
+
+.btn-green:hover {
+    background: #035128;
+    transition: all .40s ease;
+}
+
+.devider-or {
+    display: block;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+}
+
+.devider-or h4 {
+    font-size: 15px;
+    line-height: 35px;
+    background: #fff;
+    width: 9%;
+    margin: 0 auto;
+}
+
+.devider-or:before {
+    position: absolute;
+    height: 1px;
+    width: 87%;
+    background: #d7d7d7;
+    content: "";
+    left: 37px;
+    top: 19px;
+    z-index: -1;
+}
+
+.discline {
+    text-align: center;
+    display: block;
+}
+
+.discline a {
+    display: block;
+}
+
+.ad-text {
+    color: #fff;
+    padding-top: 85px;
+}
+
+.ad-text h3 {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.ad-text h3 span {
+    font-weight: 100;
+}
+
+.ad-text ul li {
+    font-size: 25px;
+    font-weight: 100;
+}
+
 
 /** =====================
  * Responsive
