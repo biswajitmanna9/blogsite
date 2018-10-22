@@ -38,4 +38,12 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/')
   }
 
+  getMostRecentBlogList(): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'bloglistmostrecent/')
+  }
+
+  getHomeBannerContentList(){
+    return this.http.get(environment.apiEndpoint + 'homepagebannerdetails/')
+  }
+
 }
