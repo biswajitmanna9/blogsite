@@ -120,8 +120,13 @@ export class BlogDetailsComponent implements OnInit {
   getBlogListByCategory() {
     this.blogService.getBlogListByCategory(this.blogCategoryId).subscribe(
       res => {
-        // console.log(res)
-        this.blogList = res['result']['bloglist']
+        // console.log(res)        
+        for (var i = 0; i < res['result']['bloglist'].length; i++) {
+          var x = res['result']['bloglist'][i]
+          if (i < 5) {
+            this.blogList.push(x)
+          }
+        }
       },
       error => {
         // console.log(error)
@@ -175,7 +180,7 @@ export class BlogDetailsComponent implements OnInit {
     this.replyForm.reset();
   }
 
-  refreshAllData(){
+  refreshAllData() {
     this.getBlogDetails()
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { isPlatformBrowser } from '@angular/common';
 export class AppComponent implements OnInit {
 
   title = 'app';
-
+  currentLat: string;
+  currentLong: string;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router
@@ -24,6 +26,27 @@ export class AppComponent implements OnInit {
         window.scroll(0, 0);
       });
     }
+    this.trackMe();
+  }
+
+  trackMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition((position) => {
+        this.showTrackingPosition(position);
+      },
+        (error) => {
+
+        });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  showTrackingPosition(position) {
+    this.currentLat = position.coords.latitude;
+    this.currentLong = position.coords.longitude;
+    localStorage.setItem('currentLat', this.currentLat);
+    localStorage.setItem('currentLong', this.currentLong);
   }
 
 }
