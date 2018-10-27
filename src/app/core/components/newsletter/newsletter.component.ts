@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NewsletterService } from "../../services/newsletter.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-newsletter',
@@ -10,6 +12,8 @@ export class NewsletterComponent implements OnInit {
   form: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
+    private newsletterService: NewsletterService,
+    private toastr: ToastrService,
   ) {
   }
 
@@ -20,13 +24,25 @@ export class NewsletterComponent implements OnInit {
           Validators.required,
           Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
         ]
-      ]
+      ],
+      is_subscriber: [1]
     });
   }
 
   subscribe() {
     if (this.form.valid) {
-
+      this.newsletterService.subscribe(this.form.value).subscribe(
+        res => {
+          console.log(res)
+          this.form.reset();
+          this.toastr.success('Thanks for subscription', '', {
+            timeOut: 3000,
+          });
+        },
+        error => {
+          console.log(error)
+        }
+      )
     } else {
       this.markFormGroupTouched(this.form)
     }

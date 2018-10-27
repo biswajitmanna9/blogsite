@@ -47,7 +47,7 @@
         <h2 class="head-line-line mb-3 mt-3">{{categoryDetails.category_name}}</h2>
         <p>{{categoryDetails.description}}</p>
         <div class="list-sec" *ngIf="blogList.length > 0">
-          <div class="row bg-white-blog" [ngClass]="displayTrfarentCss(blog)" *ngFor="let blog of blogList; let i = index">
+          <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index" [ngClass]="{'trfarent-bg': blog.blog_content != '' && !blog.opened}" >
             <div class="col-md-2">
               <a href="#">
                 <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
@@ -60,13 +60,20 @@
               <p>{{blog.blog_excerpt}}</p>
             </div>
             <div class="col-md-2 text-decline">
-              <a class="btn derk-color text-white" href="javascript:void(0);">Apply Now</a>
+              <a class="btn derk-color text-white" *ngIf="loggedIn" [routerLink]="['/apply']" [queryParams]="{ code: blog.blog_url}" target="_blank">Apply Now</a>
+              <a class="btn derk-color text-white" *ngIf="!loggedIn"href="javascript:void(0);" (click)="openLoginModal()">Apply Now</a>
               <small>
                 Good to Excellent
                 Credit Recommended (670-850) ?
               </small>
             </div>
-            <div [innerHTML]="blog.blog_content"></div>
+            <span fxFlex *ngIf="blog.blog_content != ''" class="see_more">
+              <span fxFlex></span>
+              <mat-icon [@indicatorRotate]="blog.opened ? 'expanded': 'collapsed'" (click)="itemToggle(blog);$event.stopPropagation()">
+                expand_more
+              </mat-icon>
+            </span>
+            <div [innerHTML]="blog.blog_content" *ngIf="blog.opened"></div>
             <!-- <div class="col-md-12">
               <div class="d-flex justify-content-around card-head-full">
                 <div class="card-head">

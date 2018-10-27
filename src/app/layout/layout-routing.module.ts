@@ -24,10 +24,10 @@ const routes: Routes = [
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
       { path: '404', component: ErrorComponent },
       { path: ':cat_slug', component: BlogComponent },
-      { path: ':cat_slug/details/:blog_slug', component: BlogDetailsComponent }, 
+      { path: ':cat_slug/details/:blog_slug', component: BlogDetailsComponent },
       { path: ':cat_slug/:sub_cat_slug', component: BlogComponent },
-      { path: ':cat_slug/:sub_cat_slug/:sub_child_cat_slug', component: BlogComponent },
-      
+      { path: ':cat_slug/:sub_cat_slug/:sub_child_cat_slug', component: BlogComponent }
+
     ]
   }
 ];

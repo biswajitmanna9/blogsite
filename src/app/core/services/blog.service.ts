@@ -46,4 +46,8 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'homepagebannerdetails/')
   }
 
+  getApplyLink(data){
+    return this.http.post(environment.apiEndpoint + 'addcomment/', data)
+  }
+
 }
