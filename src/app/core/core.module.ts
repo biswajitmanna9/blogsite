@@ -23,8 +23,6 @@ let config = new AuthServiceConfig([
 export function provideConfig() {
   return config;
 }
-// pipe
-import { DatePipe } from '@angular/common';
 
 
 // services
@@ -122,7 +120,6 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         AuthGuard,
-        DatePipe,
         {
           provide: AuthServiceConfig,
           useFactory: provideConfig

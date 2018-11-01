@@ -148,9 +148,13 @@
           <h3>{{blog.blog_title}}</h3>
           <small>{{transformDate(blog.date_created)}}</small>
           <p>{{blog.blog_excerpt}}</p>
+          <ul *ngIf="blog.tags.length > 0">
+            <li *ngFor="let tag of blog.tags"><a href="javascript:void(0);">{{tag.name}}</a></li>
+          </ul>
+          <small>{{getBlogCount(blog)}}</small>
         </div>
         <div class="col-md-2">
-          <a class="btn derk-color text-white" href="javascript:void(0);">View</a>
+          <a class="btn derk-color text-white" (click)="goToDetails(blog)">View</a>
         </div>
       </div>
     </div>

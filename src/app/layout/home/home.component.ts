@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
-import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private blogService: BlogService,
     private _sanitizer: DomSanitizer,
-    private datePipe: DatePipe
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -54,36 +55,33 @@ export class HomeComponent implements OnInit {
   }
 
   transformDate(date) {
-    console.log(date)
-    var d1 = new Date();
-    var now = this.datePipe.transform(d1, 'yyyy-MM-dd')
-    var blog_date = this.datePipe.transform(date, 'yyyy-MM-dd')
-    if (now == blog_date) {
-      console.log(new Date(d1))
-      console.log(new Date(date))
-      var diffTime = new Date(d1).getTime() - new Date(date).getTime();
-      return this.msToTime(diffTime) + " Before"
+    var now = moment()
+    var blog_date = moment.utc(date).local()
+    // console.log(now)
+    // console.log(blog_date)      
+    if (moment(now).format('l') == moment(blog_date).format('l')) {
+      return moment(blog_date).startOf('hour').fromNow();
     }
     else {
-      return this.datePipe.transform(date, 'mediumDate');
+      return moment(blog_date).format('ll');
     }
 
   }
 
-  msToTime(duration) {
-    var seconds = Math.floor((duration / 1000) % 60),
-      minutes = Math.floor((duration / (1000 * 60)) % 60),
-      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  getBlogCount(blog) {
+    if (blog.comments.approved == undefined) {
+      return "0 Comment"
+    }
+    else if (blog.comments.approved < 2) {
+      return blog.comments.approved + " Comment"
+    }
+    else {
+      return blog.comments.approved + " Comments"
+    }
+  }
 
-    if (hours < 24 && hours > 0) {
-      return hours + " Hrs";
-    }
-    else if (minutes < 60 && minutes > 0) {
-      return minutes + " Min";
-    }
-    if (seconds < 60) {
-      return seconds + " Sec";
-    }
+  goToDetails(blog) {
+    this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
 
 }

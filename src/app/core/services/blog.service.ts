@@ -42,12 +42,12 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'bloglistmostrecent/')
   }
 
-  getHomeBannerContentList(){
+  getHomeBannerContentList() {
     return this.http.get(environment.apiEndpoint + 'homepagebannerdetails/')
   }
 
-  getApplyLink(data){
-    return this.http.post(environment.apiEndpoint + 'addcomment/', data)
+  getApplyLink(blsug, lat, long) {
+    return this.http.get(environment.apiEndpoint + 'reflinkbybsluglatlong/' + blsug + '/' + lat + '/' + long + '/')
   }
 
 }

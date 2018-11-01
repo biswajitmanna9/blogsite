@@ -28,18 +28,14 @@ export class ApplyComponent implements OnInit {
 
     this.currentLat = +localStorage.getItem('currentLat');
     this.currentLong = +localStorage.getItem('currentLong');
+    this.getApplyLink();
   }
 
   getApplyLink() {
-    var data = {
-      slug: this.code,
-      lat: this.currentLat,
-      long: this.currentLong
-    }
-    this.blogService.getApplyLink(data).subscribe(
+    this.blogService.getApplyLink(this.code, this.currentLat, this.currentLong).subscribe(
       res => {
         console.log(res)
-        window.location.href="https://www.google.com";
+        // window.location.href = "https://www.google.com";
       },
       error => {
         console.log(error)
