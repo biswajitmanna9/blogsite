@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   currentLat: number;
   currentLong: number;
   companylist: any = [];
-  programmeList: any = [];
+  programList: any = [];
   form: FormGroup;
   userId: number;
   constructor(
@@ -32,13 +32,15 @@ export class DashboardComponent implements OnInit {
       referral_link: ["", Validators.required],
       user_id: [this.userId, Validators.required],
       company_id: ["", Validators.required],
+      program_id: ["", Validators.required],
+      description: [""],
       lattitude: [""],
       longitude: [""],
     });
   }
 
   getCompanylist() {
-    this.referralService.getCompanylist().subscribe(
+    this.referralService.getCompanyLst().subscribe(
       res => {
         console.log(res);
         this.companylist = res['result'];
@@ -49,8 +51,25 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getProgrammeList() {
+  companyChange(id) {
+    if (id != "") {
+      this.getProgrammeList(id)
+    }
+    else {
+      this.programList = [];
+    }
+  }
 
+  getProgrammeList(id) {
+    this.referralService.getProgramListByCompany(id).subscribe(
+      res => {
+        console.log(res);
+        this.programList = res['result'];
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   addReferral() {

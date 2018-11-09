@@ -11,8 +11,12 @@ export class ReferralService {
     private http: HttpClient
   ) { }
 
-  getCompanylist(): Observable<any> {
+  getCompanyLst(): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'companylist/')
+  }
+
+  getProgramListByCompany(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'programlistbycomid/' + id)
   }
 
   addReferral(data) {

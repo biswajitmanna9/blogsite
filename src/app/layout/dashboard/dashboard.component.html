@@ -24,10 +24,10 @@
                 saving money and earning points.</span>
               <hr>
               <form role="form" [formGroup]="form" novalidate>
-                <div class="input-sec d-flex justify-content-between">
-                  <div class="form-group">
-                    <label for="usr">Company:</label>
-                    <select class="form-control" formControlName="company_id" [ngClass]="displayFieldCss('company_id')">
+                <div class="input-sec d-flex justify-content-between row">
+                  <div class="form-group col-md-6">
+                    <label>Company:</label>
+                    <select class="form-control" formControlName="company_id" [ngClass]="displayFieldCss('company_id')" (change)="companyChange($event.target.value)">
                       <option value="">Select Company</option>
                       <option *ngFor="let company of companylist" [value]="company.id">{{company.name}}</option>
                     </select>
@@ -35,26 +35,40 @@
                       Please select company
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="pwd">Code or Link:</label>
+                  <div class="form-group col-md-6">
+                    <label>Program:</label>
+                    <select class="form-control" formControlName="program_id" [ngClass]="displayFieldCss('program_id')">
+                      <option value="">Select Program</option>
+                      <option *ngFor="let program of programList" [value]="program.id">{{program.name}}</option>
+                    </select>
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('program_id')">
+                      Please select program
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label>Code or Link:</label>
                     <input type="text" class="form-control" placeholder="Code or Link" formControlName="referral_link"
                       [ngClass]="displayFieldCss('referral_link')">
                     <div class="invalid-feedback text-left" *ngIf="isFieldValid('referral_link')">
                       Please enter code or link
                     </div>
                   </div>
+                  <div class="form-group col-md-12">
+                    <label>Description</label>
+                    <textarea class="form-control" placeholder="Description" formControlName="description"></textarea>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-center">
                   <button type="button" class="btn btn-green" (click)="addReferral()">Submit</button>
                 </div>
               </form>
-              <div class="devider-or">
+              <!-- <div class="devider-or">
                 <h4>OR</h4>
               </div>
               <small class="discline">
                 <i class="fa fa-info-circle" aria-hidden="true"></i> Don't see your company or program?
                 <a href="#"> Click here to add one.</a>
-              </small>
+              </small> -->
             </div>
             <div class="send-bg-refer"></div>
           </div>
