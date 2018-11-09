@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   currentLat: number;
   currentLong: number;
   companylist: any = [];
+  programmeList: any = [];
   form: FormGroup;
   userId: number;
   constructor(
@@ -46,6 +47,10 @@ export class DashboardComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  getProgrammeList() {
+
   }
 
   addReferral() {
