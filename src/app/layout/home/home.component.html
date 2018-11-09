@@ -1,20 +1,18 @@
 <header>
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" *ngFor="let banner of homeBannerContentList; let i = index"
-        [ngClass]="{'active': i == 0}"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}"
-        [style.background-image]="getBackground(banner.slider_img)">
-        <div class="carousel-caption-bnr d-none d-md-block">
-          <h3>{{banner.title}}</h3>
-          <p>{{banner.description}}</p>
-          <a [href]="banner.btn_link" target="_blank">Read More</a>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}" [style.background-image]="getBackground(banner.slider_img)">
+                <div class="carousel-caption-bnr d-none d-md-block">
+                    <h3>{{banner.title}}</h3>
+                    <p>{{banner.description}}</p>
+                    <a [href]="banner.btn_link" target="_blank">Read More</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!--
+        <!--
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -24,140 +22,140 @@
     <span class="sr-only">Next</span>
   </a>
 -->
-  </div>
+    </div>
 </header>
 <!--catagory-sec-->
 <section class="catagory-sec">
-  <div class="row col-no-padd">
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="photo-block hover-aqua">
-        <div class="tour-layer delay-1"></div>
-        <img class="bg-img" src="assets/images/news.jpg" alt="">
-        <div class="vertical-align">
-          <div class="photo-title">
-            <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
-            <a class="hover-it" href="#">
-              <h3>News</h3>
-            </a>
+    <div class="row col-no-padd">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="photo-block hover-aqua">
+                <div class="tour-layer delay-1"></div>
+                <img class="bg-img" src="assets/images/news.jpg" alt="">
+                <div class="vertical-align">
+                    <div class="photo-title">
+                        <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
+                        <a class="hover-it" href="#">
+                            <h3>News</h3>
+                        </a>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="photo-block hover-aqua">
-        <div class="tour-layer delay-1"></div>
-        <img class="bg-img" src="assets/images/news.jpg" alt="">
-        <div class="vertical-align">
-          <div class="photo-title">
-            <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
-            <a class="hover-it" href="#">
-              <h3>News</h3>
-            </a>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="photo-block hover-aqua">
+                <div class="tour-layer delay-1"></div>
+                <img class="bg-img" src="assets/images/news.jpg" alt="">
+                <div class="vertical-align">
+                    <div class="photo-title">
+                        <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
+                        <a class="hover-it" href="#">
+                            <h3>News</h3>
+                        </a>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="photo-block hover-aqua">
-        <div class="tour-layer delay-1"></div>
-        <img class="bg-img" src="assets/images/news.jpg" alt="">
-        <div class="vertical-align">
-          <div class="photo-title">
-            <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
-            <a class="hover-it" href="#">
-              <h3>News</h3>
-            </a>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="photo-block hover-aqua">
+                <div class="tour-layer delay-1"></div>
+                <img class="bg-img" src="assets/images/news.jpg" alt="">
+                <div class="vertical-align">
+                    <div class="photo-title">
+                        <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
+                        <a class="hover-it" href="#">
+                            <h3>News</h3>
+                        </a>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="photo-block hover-aqua">
-        <div class="tour-layer delay-1"></div>
-        <img class="bg-img" src="assets/images/news.jpg" alt="">
-        <div class="vertical-align">
-          <div class="photo-title">
-            <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
-            <a class="hover-it" href="#">
-              <h3>News</h3>
-            </a>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="photo-block hover-aqua">
+                <div class="tour-layer delay-1"></div>
+                <img class="bg-img" src="assets/images/news.jpg" alt="">
+                <div class="vertical-align">
+                    <div class="photo-title">
+                        <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
+                        <a class="hover-it" href="#">
+                            <h3>News</h3>
+                        </a>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="photo-block hover-aqua">
-        <div class="tour-layer delay-1"></div>
-        <img class="bg-img" src="assets/images/news.jpg" alt="">
-        <div class="vertical-align">
-          <div class="photo-title">
-            <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
-            <a class="hover-it" href="#">
-              <h3>News</h3>
-            </a>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="photo-block hover-aqua">
+                <div class="tour-layer delay-1"></div>
+                <img class="bg-img" src="assets/images/news.jpg" alt="">
+                <div class="vertical-align">
+                    <div class="photo-title">
+                        <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
+                        <a class="hover-it" href="#">
+                            <h3>News</h3>
+                        </a>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="photo-block hover-aqua">
-        <div class="tour-layer delay-1"></div>
-        <img class="bg-img" src="assets/images/news.jpg" alt="">
-        <div class="vertical-align">
-          <div class="photo-title">
-            <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
-            <a class="hover-it" href="#">
-              <h3>News</h3>
-            </a>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="photo-block hover-aqua">
+                <div class="tour-layer delay-1"></div>
+                <img class="bg-img" src="assets/images/news.jpg" alt="">
+                <div class="vertical-align">
+                    <div class="photo-title">
+                        <h4 class="delay-1"><img src="assets/images/news-icon.png" alt=""> </h4>
+                        <a class="hover-it" href="#">
+                            <h3>News</h3>
+                        </a>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+
+
     </div>
-
-
-
-  </div>
 
 
 </section>
 
 <!-- Page Content -->
 <section class="full-bg-grey">
-  <div class="container">
-    <h2 class="head-line-line mb-3 mt-3">Portfolio Heading</h2>
-    <div class="list-sec">
-      <div class="row bg-white-blog" *ngFor="let blog of mostRecentBlogList; let i = index">
-        <div class="col-md-2">
-          <a href="javascript:void(0);">
-            <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
-          </a>
+    <div class="container">
+        <h2 class="head-line-line mb-3 mt-3">Recent Posts</h2>
+        <div class="list-sec">
+            <div class="row bg-white-blog" *ngFor="let blog of mostRecentBlogList; let i = index">
+                <div class="col-md-2">
+                    <a href="javascript:void(0);">
+                        <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <span>{{blog.category_name}}</span>
+                    <h3>{{blog.blog_title}}</h3>
+                    <small>{{transformDate(blog.date_created)}}</small>
+                    <p>{{blog.blog_excerpt}}</p>
+                    <ul *ngIf="blog.tags.length > 0" class="tags">
+                        <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
+                    </ul>
+                    <small>{{getBlogCount(blog)}}</small>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn derk-color text-white" (click)="goToDetails(blog)">View</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-          <span>{{blog.category_name}}</span>
-          <h3>{{blog.blog_title}}</h3>
-          <small>{{transformDate(blog.date_created)}}</small>
-          <p>{{blog.blog_excerpt}}</p>
-          <ul *ngIf="blog.tags.length > 0">
-            <li *ngFor="let tag of blog.tags"><a href="javascript:void(0);">{{tag.name}}</a></li>
-          </ul>
-          <small>{{getBlogCount(blog)}}</small>
-        </div>
-        <div class="col-md-2">
-          <a class="btn derk-color text-white" (click)="goToDetails(blog)">View</a>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 <app-newsletter></app-newsletter>

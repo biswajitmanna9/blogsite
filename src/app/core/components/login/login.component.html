@@ -1,76 +1,85 @@
 <div class="login-wrap">
-  <div class="login-html">
-    <h1>{{title}}</h1>
-    <div class="login-form">
-      <div class="sign-in-htm">
-        <form role="form" [formGroup]="loginForm" novalidate (submit)="signIn()" *ngIf="!toggle_key">
-          <div class="form-content">
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss(loginForm,'email')">
-              <div class="invalid-feedback text-left" *ngIf="loginForm.controls['email'].hasError('pattern') && !loginForm.controls['email'].hasError('required')">
-                Please enter a valid email address
-              </div>
-              <div class="invalid-feedback text-left" *ngIf="loginForm.controls['email'].hasError('required')">
-                Email is required
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control input-underline input-lg" placeholder="Password"
-                formControlName="password" [ngClass]="displayFieldCss(loginForm,'password')">
-              <div class="invalid-feedback text-left" *ngIf="isFieldValid(loginForm,'password')">
-                Please enter password
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-block"> Sign In </button>
-          </div>
-        </form>
-        <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" *ngIf="toggle_key">
-          <div class="form-content">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" name="name" class="form-control input-underline input-lg" placeholder="User Name"
-                formControlName="name" [ngClass]="displayFieldCss(signupForm,'name')">
-              <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'name')">
-                Please enter name
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss(signupForm,'email')">
-              <div class="invalid-feedback text-left" *ngIf="signupForm.controls['email'].hasError('pattern') && !signupForm.controls['email'].hasError('required')">
-                Please enter a valid email address
-              </div>
-              <div class="invalid-feedback text-left" *ngIf="signupForm.controls['email'].hasError('required')">
-                Email is required
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control input-underline input-lg" placeholder="Password"
-                formControlName="password" [ngClass]="displayFieldCss(signupForm,'password')">
-              <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'password')">
-                Please enter password
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-block"> Sign Up </button>
-          </div>
-        </form>
-        <button type="buton" class="btn btn-block" (click)="signInWithFB()">
+
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+    <!-- <button mat-raised-button (click)="openDialog()">Pick one</button> -->
+    <div class="login-html">
+        <h1>{{title}}</h1>
+        <div class="login-form">
+            <div class="sign-in-htm">
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-7 filed-blank">
+                        <form role="form" [formGroup]="loginForm" novalidate (submit)="signIn()" *ngIf="!toggle_key">
+                            <div class="form-content">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss(loginForm,'email')">
+                                    <div class="invalid-feedback text-left" *ngIf="loginForm.controls['email'].hasError('pattern') && !loginForm.controls['email'].hasError('required')">
+                                        Please enter a valid email address
+                                    </div>
+                                    <div class="invalid-feedback text-left" *ngIf="loginForm.controls['email'].hasError('required')">
+                                        Email is required
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control input-underline input-lg" placeholder="Password" formControlName="password" [ngClass]="displayFieldCss(loginForm,'password')">
+                                    <div class="invalid-feedback text-left" *ngIf="isFieldValid(loginForm,'password')">
+                                        Please enter password
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-signup"> Sign In </button>
+                                <a (click)="toggle()">{{toggle_btn}}</a>
+                            </div>
+                        </form>
+                        <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" *ngIf="toggle_key">
+                            <div class="form-content">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control input-underline input-lg" placeholder="User Name" formControlName="name" [ngClass]="displayFieldCss(signupForm,'name')">
+                                    <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'name')">
+                                        Please enter name
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss(signupForm,'email')">
+                                    <div class="invalid-feedback text-left" *ngIf="signupForm.controls['email'].hasError('pattern') && !signupForm.controls['email'].hasError('required')">
+                                        Please enter a valid email address
+                                    </div>
+                                    <div class="invalid-feedback text-left" *ngIf="signupForm.controls['email'].hasError('required')">
+                                        Email is required
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control input-underline input-lg" placeholder="Password" formControlName="password" [ngClass]="displayFieldCss(signupForm,'password')">
+                                    <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'password')">
+                                        Please enter password
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-signup"> Sign Up </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-md-5">
+                        <h2>Sign in with</h2>
+                        <button type="buton" class="btn btn-block social-btn fb" (click)="signInWithFB()">
           <i class="fa fa-facebook" aria-hidden="true"></i>
           Login with Facebook
         </button>
-        <button type="button" class="btn btn-block" (click)="signInWithGoogle()">
+                        <button type="button" class="btn btn-block social-btn gplus" (click)="signInWithGoogle()">
           <i class="fa fa-google" aria-hidden="true"></i>
           Login with Google
         </button>
-        <a (click)="toggle()">{{toggle_btn}}</a>
-      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
