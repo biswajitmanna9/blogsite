@@ -1714,9 +1714,46 @@ ul ul .cmmnt {
     font-weight: 100;
 }
 
-.see_more{
+.see_more {
     z-index: 999;
 }
+
+.card-listing {
+    background: #192b4f;
+    width: 100%;
+    border-top: 2px solid #001670;
+}
+
+.card-item h2 {
+    font-size: 15px;
+    color: #fff;
+    text-shadow: 2px 2px 2px #120f0f;
+    text-align: center;
+}
+
+.card-item {
+    padding: 0 17px;
+    position: relative;
+}
+
+.card-item img {
+    height: 35px;
+    width: 35px;
+    margin: 0 auto;
+    display: block;
+}
+
+.active-card::before {
+    content: "\f0d8";
+    position: absolute;
+    bottom: -60%;
+    left: 43%;
+    color: #fff;
+    font-size: 38px;
+    font-family: FontAwesome;
+}
+
+
 /** =====================
  * Responsive
  ========================*/
