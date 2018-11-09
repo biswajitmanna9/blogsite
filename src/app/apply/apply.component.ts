@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from "../core/services/blog.service";
+import { ReferralService } from "../core/services/referral.service";
 
 @Component({
   selector: 'app-apply',
@@ -13,7 +14,8 @@ export class ApplyComponent implements OnInit {
   currentLong: number;
   constructor(
     private route: ActivatedRoute,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private referralService: ReferralService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,27 @@ export class ApplyComponent implements OnInit {
     this.blogService.getApplyLink(this.code, this.currentLat, this.currentLong).subscribe(
       res => {
         console.log(res)
-        // window.location.href = "https://www.google.com";
+        if (res['result'] != null) {
+          window.location.href = res['result']['referral_link']
+          if (res['result']['id'] != undefined) {
+            this.updateReferral(res['result']['id'])
+          }
+        }
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  updateReferral(id) {
+    var data = {
+      referral_id: id
+    }
+    this.referralService.updateReferral(data).subscribe(
+      res => {
+        console.log(res)
       },
       error => {
         console.log(error)

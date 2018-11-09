@@ -34,6 +34,7 @@ export class CardListComponent implements OnInit {
   visibleKey: boolean;
   @Input() opened = false;
   private loggedIn: boolean;
+  mainCardCategoryId: string;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -48,7 +49,18 @@ export class CardListComponent implements OnInit {
     this.loadUserInfo();
     this.getBlogListByCategory();
     this.getTagListByCategory();
-    this.getSubCategoryByCategory();
+    this.getCategorySlugInfo(this.blogCategorySlug);
+  }
+
+  getCategorySlugInfo(slug) {
+    this.blogService.getSlugInfo(slug).subscribe(
+      res => {
+        this.mainCardCategoryId = res['result']['id']
+        this.getSubCategoryByCategory();
+      },
+      error => {
+      }
+    )
   }
 
   private changeStatus(status: boolean) {
@@ -70,7 +82,7 @@ export class CardListComponent implements OnInit {
   getBlogListByCategory() {
     this.blogService.getBlogListByCategory(this.blogCategoryId).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         this.visibleKey = true
@@ -98,10 +110,59 @@ export class CardListComponent implements OnInit {
   }
 
   getSubCategoryByCategory() {
-    this.blogService.getSubCategoryByCategory(this.blogCategoryId).subscribe(
+    this.blogService.getSubCategoryByCategory(this.mainCardCategoryId).subscribe(
       res => {
         // console.log(res)
-        this.subCategoryList = res['result']
+        res['result'].forEach(x => {
+          var data = {
+            category_name: x.category_name,
+            category_slug: x.category_slug,
+            id: x.id
+          }
+          this.subCategoryList.push(data)
+          if (x.sub_category_details.length > 0) {
+            x.sub_category_details.forEach(y => {
+              var Sub_data = {
+                category_name: y.category_name,
+                category_slug: y.category_slug,
+                id: y.id
+              }
+              this.subCategoryList.push(Sub_data)
+            })
+          }
+        })
+        // console.log(this.subCategoryList)
+      },
+      error => {
+        // console.log(error)
+      }
+    )
+  }
+
+  goToCategoryPage(slug: string) {
+    this.goToPageByCategorySlugChecking(slug)
+  }
+
+  goToPageByCategorySlugChecking(slug) {
+    this.blogService.getSlugInfo(slug).subscribe(
+      res => {
+        console.log(res)
+        var parent_Slug;
+        var grand_parent_slug;
+        if (res['result']['parent'] != undefined) {
+          parent_Slug = res['result']['parent'][0]['slug'];
+          if (res['result']['parent'][0]['grand_parent'] != undefined) {
+            grand_parent_slug = res['result']['parent'][0]['grand_parent'][0]['slug'];
+          }
+        }
+
+        if (grand_parent_slug != undefined && parent_Slug != undefined) {
+          this.router.navigateByUrl('/' + grand_parent_slug + '/' + parent_Slug + '/' + slug);
+        }
+        else if (parent_Slug != undefined) {
+          this.router.navigateByUrl('/' + parent_Slug + '/' + slug);
+        }
+
       },
       error => {
         // console.log(error)
