@@ -106,6 +106,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  clodeLogin()
+  {
+    this.dialogRef.close(true);
+  }
+
   signUp() {
     if (this.signupForm.valid) {
       this.loginService.userSignup(this.signupForm.value).subscribe(
