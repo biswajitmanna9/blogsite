@@ -30,27 +30,27 @@
 
 
 <div class="card-listing pt-3 pb-3">
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <div class="d-flex justify-content-between" *ngFor="let category of subCategoryList">
-                <div class="card-item" [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
-                    <a [routerLink]="['.']" (click)="goToCategoryPage(category.category_slug)">
-                        <img class="img-fluid" src="assets/images/right-arrow.png" alt="">
-                        <h2>{{category.category_name}}</h2>
-                    </a>
-                </div>
-            </div>
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-between" *ngFor="let category of subCategoryList">
+        <div class="card-item" [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
+          <a [routerLink]="['.']" (click)="goToCategoryPage(category.category_slug)">
+            <img class="img-fluid" src="assets/images/right-arrow.png" alt="">
+            <h2>{{category.category_name}}</h2>
+          </a>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 
 
 
 <section class="full-bg-grey">
-    <div class="container">
-        <div class="row">
-            <!-- <div class="col-md-3" *ngIf="subCategoryList.length > 0">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-3" *ngIf="subCategoryList.length > 0">
         <div id="MainMenu">
           <div class="list-group panel">
             <mat-sidenav mode="over" opened="true">
@@ -61,157 +61,55 @@
           </div>
         </div>
       </div> -->
-            <div class="col-md-12">
-                <h2 class="head-line-line mb-3 mt-3">{{categoryDetails?.category_name}}</h2>
-                <p>{{categoryDetails?.description}}</p>
-                <div class="row">
+      <div class="col-md-12">
+        <h2 class="head-line-line mb-3 mt-3">{{categoryDetails?.category_name}}</h2>
+        <p>{{categoryDetails?.description}}</p>
+        <div class="row">
 
-                    <ul class="d-flex flex-row bd-highlight tag_list ">
-                        <li *ngFor="let tag of tagList">
-                            <a href="javascript:void(0);">
-                                {{tag.name}}
-                            </a>
-                        </li>
+          <ul class="d-flex flex-row bd-highlight tag_list ">
+            <li *ngFor="let tag of tagList">
+              <a href="javascript:void(0);">
+                {{tag.name}}
+              </a>
+            </li>
 
-                    </ul>
+          </ul>
 
-                </div>
-                <div class="list-sec" *ngIf="blogList.length > 0">
-                    <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index" [ngClass]="{'trfarent-bg': blog.blog_content != '' && !blog.opened}">
-                        <div class="col-md-2">
-                            <a href="#">
-                                <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-8 ">
-                            <span>{{blog.category_name}}</span>
-                            <h3>{{blog.blog_title}}</h3>
-                            <small>{{blog.date_created | date:'mediumDate'}}</small>
-                            <p>{{blog.blog_excerpt}}</p>
-                        </div>
-                        <div class="col-md-2 text-decline">
-                            <a class="btn derk-color text-white" *ngIf="loggedIn" [routerLink]="['/apply']" [queryParams]="{ code: blog.blog_url}" target="_blank">Apply Now</a>
-                            <a class="btn derk-color text-white" *ngIf="!loggedIn" href="javascript:void(0);" (click)="openLoginModal()">Apply
-                Now</a>
-                            <small>
-                Good to Excellent
-                Credit Recommended (670-850) ?
-              </small>
-                        </div>
-                        <span fxFlex *ngIf="blog.blog_content != ''" class="see_more">
-              <span fxFlex></span>
-                        <mat-icon [@indicatorRotate]="blog.opened ? 'expanded': 'collapsed'" (click)="itemToggle(blog);$event.stopPropagation()">
-                            expand_more
-                        </mat-icon>
-                        </span>
-                        <div class="col-md-12">
-                            <div [innerHTML]="blog.blog_content" *ngIf="blog.opened" class="blog-detail-contant"></div>
-                        </div>
-                        <!-- <div class="col-md-12">
-              <div class="d-flex justify-content-around card-head-full">
-                <div class="card-head">
-                  <h4>At A Glance</h4>
-                </div>
-                <div class="card-head">
-                  <h4>
-                    <span>Intro Bonus</span> 60,000 points</h4>
-                </div>
-                <div class="card-head">
-                  <h4>
-                    <span>Annual Fee</span> $550
-                  </h4>
-                </div>
-                <div class="card-head">
-                  <h4>
-                    <span>Regular APR</span> N/A
-                  </h4>
-                </div>
-              </div>
-              <div class="d-flex product-details-list py-5 px-3">
-                <div class="glance">
-                  <h4>At A Glance</h4>
-                </div>
-                <div class="flex-grow-1 list-sec ">
-                  <ul>
-                    <li>
-                      <p>
-                        Discover will match all the cash back you've earned at the end of your first year,
-                        automatically. back you've earned at the end of your first year, automatically.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Discover will match all the cash back you've earned at the end of your first year,
-                        automatically. back you've earned at the end of your first year, automatically.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Discover will match all the cash back you've earned at the end of your first year,
-                        automatically. back you've earned at the end of your first year, automatically.
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div> -->
-                    </div>
-                    <!-- <div class="row bg-white-blog">
-            <div class="col-md-2">
-              <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-              </a>
-            </div>
-            <div class="col-md-8">
-              <span>Intro Bonus</span>
-              <h3>Project One</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-                perspiciatis atque eveniet unde.</p>
-            </div>
-            <div class="col-md-2">
-              <a class="btn derk-color text-white" href="#">View Project</a>
-            </div>
-          </div>
-          <div class="row bg-white-blog">
-            <div class="col-md-2">
-              <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-              </a>
-            </div>
-            <div class="col-md-8">
-              <span>Intro Bonus</span>
-              <h3>Project One</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-                perspiciatis atque eveniet unde.</p>
-            </div>
-            <div class="col-md-2">
-              <a class="btn derk-color text-white" href="#">View Project</a>
-            </div>
-          </div>
-          <div class="row bg-white-blog">
-            <div class="col-md-2">
-              <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/listing-img.jpg" alt="">
-              </a>
-            </div>
-            <div class="col-md-8">
-              <span>Intro Bonus</span>
-              <h3>Project One</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita
-                laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos
-                perspiciatis atque eveniet unde.</p>
-            </div>
-            <div class="col-md-2">
-              <a class="btn derk-color text-white" href="#">View Project</a>
-            </div>
-          </div> -->
-                </div>
-                <div class="list-sec" *ngIf="blogList.length == 0">
-                    <h3>Post Not Found Under {{categoryDetails?.category_name}}</h3>
-                </div>
-            </div>
         </div>
+        <div class="list-sec" *ngIf="blogList.length > 0">
+          <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index" [ngClass]="{'trfarent-bg': blog.blog_content != '' && !blog.opened}">
+            <div class="col-md-2">
+              <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
+              </a>
+            </div>
+            <div class="col-md-8 ">
+              <span>{{blog.category_name}}</span>
+              <h3>{{blog.blog_title}}</h3>
+              <small>{{blog.date_created | date:'mediumDate'}}</small>
+              <p>{{blog.blog_excerpt}}</p>
+            </div>
+            <div class="col-md-2 text-decline">
+              <a class="btn derk-color text-white" *ngIf="loggedIn" [routerLink]="['/apply']" [queryParams]="{ code: blog.blog_url}"
+                target="_blank">Apply Now</a>
+              <a class="btn derk-color text-white" *ngIf="!loggedIn" href="javascript:void(0);" (click)="openLoginModal()">Apply
+                Now</a>
+            </div>
+            <span fxFlex *ngIf="blog.blog_content != ''" class="see_more">
+              <span fxFlex></span>
+              <mat-icon [@indicatorRotate]="blog.opened ? 'expanded': 'collapsed'" (click)="itemToggle(blog);$event.stopPropagation()">
+                expand_more
+              </mat-icon>
+            </span>
+            <div class="col-md-12">
+              <div [innerHTML]="blog.blog_content" *ngIf="blog.opened" class="blog-detail-contant"></div>
+            </div>
+          </div>
+        </div>
+        <div class="list-sec" *ngIf="blogList.length == 0">
+          <h3>Post Not Found Under {{categoryDetails?.category_name}}</h3>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

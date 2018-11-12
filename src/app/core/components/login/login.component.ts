@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       this.loginService.userLogin(this.loginForm.value).subscribe(
         res => {
           // console.log(res)
-          localStorage.setItem('isLoggedin', 'true');          
+          localStorage.setItem('isLoggedin', 'true');
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
             timeOut: 3000,
           });
           this.loginService.loginStatus(true);
-          this.dialogRef.close(true);          
+          this.dialogRef.close(true);
         },
         error => {
           // console.log(error)
@@ -106,8 +106,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  clodeLogin()
-  {
+  clodeLogin() {
     this.dialogRef.close(true);
   }
 
@@ -116,7 +115,7 @@ export class LoginComponent implements OnInit {
       this.loginService.userSignup(this.signupForm.value).subscribe(
         res => {
           // console.log(res)
-          localStorage.setItem('isLoggedin', 'true');          
+          localStorage.setItem('isLoggedin', 'true');
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);

@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   currentLat: string;
   currentLong: string;
+  isTracking: boolean;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
 
   trackMe() {
     if (navigator.geolocation) {
+      this.isTracking = true;
       navigator.geolocation.watchPosition((position) => {
         this.showTrackingPosition(position);
       },

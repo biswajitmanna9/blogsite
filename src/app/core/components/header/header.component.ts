@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
   displayDropdownCss(category: any) {
     if (category.sub_category_details != undefined) {
       if (category.sub_category_details.length > 0) {
-        return 'dropdown'
+        return 'dropdown ' + category.category_slug
       }
     }
     else if (category.sub_sub_category_details != undefined) {
@@ -107,6 +107,13 @@ export class HeaderComponent implements OnInit {
         return 'dropdown-toggle'
       }
     }
+  }
+
+  goTo(url_slug) {
+    if (url_slug != "cards") {
+      this.router.navigate(['/' + url_slug]);
+    }
+
   }
 
 }

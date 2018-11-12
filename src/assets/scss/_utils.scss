@@ -888,7 +888,9 @@ h4 {
 .dropdown:hover>.dropdown-menu {
     display: block;
 }
-
+.dropdown-toggle::after{
+    display: none;
+}
 // custom mega menu
 .cdk-overlay-container {
     z-index: 99999;
@@ -1921,7 +1923,7 @@ ul ul .cmmnt {
 .filed-blank::before {
     content: "";
     width: 1px;
-    height: 263px;
+    height: 100%;
     background: #e8e8e8;
     position: absolute;
     right: 0;
