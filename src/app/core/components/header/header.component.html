@@ -42,8 +42,13 @@
         <li class="nav-item" *ngIf="!loggedIn">
           <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
         </li>
-        <li class="nav-item" *ngIf="loggedIn">
-          <a class="nav-link" [routerLink]="['.']" (click)="logout()">Logout</a>
+        <li class="nav-item dropdown" *ngIf="loggedIn">
+          <a class="nav-link dropdown-toggle" href="javascript:void(0);">{{user_pic_letter}}</a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" [routerLink]="['/dashboard']">Dashboard</a>
+            <a class="dropdown-item" [routerLink]="['/add-referral']">Add Referral</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="logout()">Logout</a>
+          </div>
         </li>
       </ul>
     </div>
