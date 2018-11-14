@@ -39,17 +39,28 @@
                     <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="JavaScript:Void(0);">My Profile</a>
-                </li>
-
-                <li class="nav-item" *ngIf="!loggedIn">
-                    <a class="nav-link" [routerLink]="['.']" (click)="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
-                </li>
-                <li class="nav-item" *ngIf="loggedIn">
-                    <a class="nav-link" [routerLink]="['.']" (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
-                </li>
-            </ul>
         </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/coupon']">Coupon</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
+        </li>
+        <li class="nav-item" *ngIf="!loggedIn">
+            <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="loggedIn">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0);">{{user_pic_letter}}</a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" [routerLink]="['/dashboard']">Dashboard</a>
+                <a class="dropdown-item" [routerLink]="['/add-referral']">Add Referral</a>
+                <a class="dropdown-item" href="javascript:void(0);" (click)="logout()">Logout</a>
+            </div>
+        </li>
+        </ul>
     </div>
 </nav>

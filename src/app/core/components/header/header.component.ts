@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   private user: SocialUser;
   private loggedIn: boolean;
   categoryList: any = [];
+  user_pic_letter: string;
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
   loadUserInfo() {
     if (localStorage.getItem('isLoggedin')) {
       this.loggedIn = true;
+      this.user_pic_letter = localStorage.getItem('userName').charAt(0)
     }
     else {
       this.authService.authState.subscribe((user) => {
