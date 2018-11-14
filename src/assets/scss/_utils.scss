@@ -1938,10 +1938,107 @@ ul ul .cmmnt {
     border-bottom: 3px solid #113786;
 }
 
+// mega-css
+.navbar .dropdown-menu div[class*="col"] {
+    margin-bottom: 1rem;
+}
+
+.navbar-collapse {
+    position: relative!important;
+}
+
+.navbar .dropdown-menu {
+    border: none;
+    background-color: #192b4f!important;
+    width: 100% !important;
+    position: absolute !important;
+}
+
+.height-all {
+    height: 76px;
+}
+
+.nav-item .nav-link {
+    padding: 1rem;
+}
+
+.nav-subhover li {
+    width: 224px;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+}
+
+.nav-subhover .nav-subdropdown ul li a {
+    padding: 9px 0px !important;
+    font-size: 14px !important;
+}
+
+.nav-subhover .nav-subdropdown ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background: #120f0f;
+}
+
+.nav-subhover .nav-subdropdown:hover ul {
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999;
+    top: 47px;
+    left: 0px;
+}
+
+.nav-subhover li a {
+    padding-left: 37px !important;
+}
+
+.nav-subhover li::before {
+    content: "\f28e";
+    color: #fff;
+    font-family: FontAwesome;
+    position: absolute;
+    top: 14px;
+    font-size: 18px;
+    left: 12px;
+}
+
 
 /** =====================
  * Responsive
  ========================*/
+
+@media screen and (min-width: 992px) {
+    /* remove the padding from the navbar so the dropdown hover state is not broken */
+    .navbar {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+    .navbar .nav-item {
+        padding: .5rem .5rem;
+        margin: 0 .25rem;
+    }
+    /* makes the dropdown full width  */
+    .navbar .dropdown {
+        position: static;
+    }
+    .navbar .dropdown-menu {
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 62px;
+    }
+    /* shows the dropdown menu on hover */
+    .navbar .dropdown:hover .dropdown-menu,
+    .navbar .dropdown .dropdown-menu:hover {
+        display: block!important;
+    }
+    .navbar .dropdown-menu {
+        border: 1px solid rgba(0, 0, 0, .15);
+        background-color: #fff;
+    }
+}
 
 @media only screen and (max-width: 766px) {
     .comments-container {
