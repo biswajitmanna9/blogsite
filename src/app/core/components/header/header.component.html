@@ -1,51 +1,55 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark derk-color fixed-top">
-  <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"><img src="assets/images/logo.png" alt=""> </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']"><img src="assets/images/logo.png" alt=""> </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto" *ngIf="categoryList.length > 0">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/home']">Home</a>
-        </li>
-        <li class="nav-item " *ngFor="let cat of categoryList" [ngClass]="displayDropdownCss(cat)">
-          <a class="nav-link" (click)="goTo(cat.category_slug)" href="javascript:void(0);" [ngClass]="displayDropdownToggleCss(cat)">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto" *ngIf="categoryList.length > 0">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']">Home</a>
+                </li>
+                <li class="nav-item " *ngFor="let cat of categoryList" [ngClass]="displayDropdownCss(cat)">
+                    <a class="nav-link" (click)="goTo(cat.category_slug)" href="javascript:void(0);" [ngClass]="displayDropdownToggleCss(cat)">
             {{cat.category_name}}
           </a>
-          <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.sub_category_details != undefined">
-            <ul *ngIf="cat.sub_category_details.length > 0">
-              <li *ngFor="let sub_cat of cat.sub_category_details" class="nav-item" [ngClass]="displayDropdownCss(sub_cat)">
-                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]" [ngClass]="displayDropdownToggleCss(sub_cat)">{{sub_cat.category_name}}</a>
-                <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.sub_sub_category_details != undefined">
-                  <ul>
-                    <li *ngFor="let sub_child_cat of sub_cat.sub_sub_category_details" class="nav-item">
-                      <a class="dropdown-item" [routerLink]="['/', cat.category_slug,sub_cat.category_slug, sub_child_cat.category_slug]">{{sub_child_cat.category_name}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
+                    <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.sub_category_details != undefined">
+                        <ul *ngIf="cat.sub_category_details.length > 0">
+                            <li *ngFor="let sub_cat of cat.sub_category_details" class="nav-item" [ngClass]="displayDropdownCss(sub_cat)">
+                                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]" [ngClass]="displayDropdownToggleCss(sub_cat)">{{sub_cat.category_name}}</a>
+                                <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.sub_sub_category_details != undefined">
+                                    <ul>
+                                        <li *ngFor="let sub_child_cat of sub_cat.sub_sub_category_details" class="nav-item">
+                                            <a class="dropdown-item" [routerLink]="['/', cat.category_slug,sub_cat.category_slug, sub_child_cat.category_slug]">{{sub_child_cat.category_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
 
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/coupon']">Coupon</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
-        </li>
-        <li class="nav-item" *ngIf="!loggedIn">
-          <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
-        </li>
-        <li class="nav-item" *ngIf="loggedIn">
-          <a class="nav-link" [routerLink]="['.']" (click)="logout()">Logout</a>
-        </li>
-      </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/coupon']">Coupon</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="JavaScript:Void(0);">My Profile</a>
+                </li>
+
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link" [routerLink]="['.']" (click)="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                </li>
+                <li class="nav-item" *ngIf="loggedIn">
+                    <a class="nav-link" [routerLink]="['.']" (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
