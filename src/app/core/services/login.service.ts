@@ -28,4 +28,8 @@ export class LoginService {
     return this.http.post(environment.apiEndpoint + 'userregister/', data)
   }
 
+  userForgotPassword(data): Observable<any> {
+    return this.http.post(environment.apiEndpoint + 'userresetpasswordlinksend/', data)
+  }
+
 }

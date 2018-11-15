@@ -7,7 +7,7 @@
       <div class="sign-in-htm">
         <div class="row d-flex align-items-center">
           <div class="col-md-7 filed-blank">
-            <form role="form" [formGroup]="loginForm" novalidate (submit)="signIn()" *ngIf="!toggle_key">
+            <form role="form" [formGroup]="loginForm" novalidate (submit)="signIn()" *ngIf="!toggle_key && formType!=2">
               <div class="form-content">
                 <div class="form-group">
                   <label>Email</label>
@@ -33,7 +33,7 @@
                 <button type="submit" class="btn btn-block btn-signup"> Sign In </button>                
               </div>
             </form>
-            <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" *ngIf="toggle_key">
+            <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" *ngIf="toggle_key && formType!=2">
               <div class="form-content">
                 <div class="form-group">
                   <label>Name</label>
@@ -67,7 +67,27 @@
                 <button type="submit" class="btn btn-block btn-signup"> Sign Up </button>
               </div>
             </form>
+            <form role="form" [formGroup]="forgotForm" novalidate (submit)="forgotPassword()" *ngIf="formType==2">
+              <div class="form-content">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" placeholder="Enter your email" formControlName="email"
+                    [ngClass]="displayFieldCss(loginForm,'email')">
+                  <div class="invalid-feedback text-left" *ngIf="loginForm.controls['email'].hasError('pattern') && !loginForm.controls['email'].hasError('required')">
+                    Please enter a valid email address
+                  </div>
+                  <div class="invalid-feedback text-left" *ngIf="loginForm.controls['email'].hasError('required')">
+                    Email is required
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-block btn-signup"> Submit </button>                
+              </div>
+            </form>
             <a (click)="toggle()" href="javascript:void(0)">{{toggle_btn}}</a>
+            <br>
+            <a (click)="toggleForgot()" href="javascript:void(0)">{{toggle_btn_forgot}}</a>
           </div>
           <div class="col-md-5">
             <h2>Sign in with</h2>

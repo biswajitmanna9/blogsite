@@ -152,6 +152,8 @@
             <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
           </ul>
           <small>{{getBlogCount(blog)}}</small>
+          <a href="javascript:void(0)" (click)="addLike(blog.id,blog.is_like,userId)"><i  class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+          
         </div>
         <div class="col-md-2">
           <a class="btn derk-color text-white" (click)="goToDetails(blog)">View</a>

@@ -38,8 +38,8 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/')
   }
 
-  getMostRecentBlogList(): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'bloglistmostrecent/')
+  getMostRecentBlogList(data): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'bloglistmostrecent/'+data)
   }
 
   getHomeBannerContentList() {
@@ -48,6 +48,11 @@ export class BlogService {
 
   getApplyLink(blsug, lat, long) {
     return this.http.get(environment.apiEndpoint + 'reflinkbybsluglatlong/' + blsug + '/' + lat + '/' + long + '/')
+  }
+
+  userAddLike(data) {
+    console.log(data);
+    return this.http.post(environment.apiEndpoint + 'bloglikeordislike/', data)
   }
 
 }

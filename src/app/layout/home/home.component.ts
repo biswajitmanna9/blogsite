@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { LoginComponent } from '../../core/components/login/login.component';
+import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 
@@ -14,20 +17,29 @@ export class HomeComponent implements OnInit {
   mostRecentBlogList: any = [];
   imageBaseUrl: string;
   homeBannerContentList: any = [];
+  userId:string;
   constructor(
     private blogService: BlogService,
     private _sanitizer: DomSanitizer,
+    public dialog: MatDialog,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
+    if(localStorage.getItem('userId')) {
+      this.userId = localStorage.getItem('userId');
+    }
+    else {
+      this.userId ="";
+    }
     this.imageBaseUrl = environment.imageBaseUrl;
-    this.getMostRecentBlogList();
+    this.getMostRecentBlogList(this.userId);
     this.getHomeBannerContentList();
   }
 
-  getMostRecentBlogList() {
-    this.blogService.getMostRecentBlogList().subscribe(
+  getMostRecentBlogList(data) {
+    this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
         console.log(res)
         this.mostRecentBlogList = res['result']
@@ -41,7 +53,6 @@ export class HomeComponent implements OnInit {
   getHomeBannerContentList() {
     this.blogService.getHomeBannerContentList().subscribe(
       res => {
-        // console.log(res)
         this.homeBannerContentList = res['result']
       },
       error => {
@@ -80,5 +91,52 @@ export class HomeComponent implements OnInit {
   goToDetails(blog) {
     this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
+
+  addLike(id,is_like,user_id) {
+    if(user_id) {
+      if(is_like ==0) {
+        is_like="1";
+      }
+      else {
+        is_like="0";
+      }
+      var data = {
+        user_id: localStorage.getItem('userId'),
+        post_id: id,
+        is_like:is_like
+      }
+      this.blogService.userAddLike(data).subscribe(
+        res => {
+          console.log(res);
+          this.getMostRecentBlogList(this.userId);
+          if(res['result']['is_like'] ==1) {
+            this.toastr.success('Liked Succesfully', '', {
+              timeOut: 3000,
+            });
+          }
+          else {
+            this.toastr.error('Unliked Succesfully', '', {
+              timeOut: 3000,
+            });
+          }
+        },
+        error => {
+          // console.log(error)
+        }
+      )
+    }
+    else {
+      let dialogRef = this.dialog.open(LoginComponent, {
+        width: '525px',
+        data: {}
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        // console.log(result)
+      })
+    }
+    
+  }
+
+ 
 
 }
