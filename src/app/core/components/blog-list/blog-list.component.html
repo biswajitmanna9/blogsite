@@ -1,58 +1,76 @@
 <header *ngIf="blogList.length > 0">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner" role="listbox">
-      <div class="carousel-item active" style="background-image: url('assets/images/blog-banner.jpg')">
-        <div class="container headline-blog pt-4">
-          <h1>Recent {{categoryName}}</h1>
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " *ngFor="let blog of blogList; let i = index">
-              <div class="hovereffect">
-                <img class="img-responsive" [src]="imageBaseUrl + blog.blog_large_image" alt="">
-                <div class="overlay">
-                  <h2>{{blog.blog_title}}</h2>
-                  <p>
-                    <a (click)="goToDetails(blog.blog_url)">View</a>
-                  </p>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active" style="background-image: url('assets/images/blog-banner.jpg')">
+                <div class="container headline-blog pt-4">
+                    <h1>Recent {{categoryName}}</h1>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " *ngFor="let blog of blogList; let i = index">
+                            <div class="hovereffect">
+                                <img class="img-responsive" [src]="imageBaseUrl + blog.blog_large_image" alt="">
+                                <div class="overlay">
+                                    <h2>{{blog.blog_title}}</h2>
+                                    <p>
+                                        <a (click)="goToDetails(blog.blog_url)">View</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </header>
 
 <!-- Page Content -->
 <section class="full-bg-grey">
-  <div class="container" *ngIf="visibleKey">
-    <h2 class="head-line-line mb-3 mt-3">{{categoryDetails.category_name}} List</h2>
-    <div class="list-sec" *ngIf="blogList.length > 0">
-      <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index">
-        <div class="col-md-2">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
-          </a>
+    <div class="container" *ngIf="visibleKey">
+        <h2 class="head-line-line float-left mb-3 mt-3">{{categoryDetails.category_name}} List</h2>
+
+        <div class="Show-item float-right d-inline-flex">
+            <span>Show Items</span>
+            <form class="woocommerce-ordering" method="post">
+                <label>
+          <select name="order" class="orderby">
+            <option selected="selected" value="menu-order">Recent Posts</option>
+            <option value="popularity">popularity</option>
+            <option value="popularity">Average ration</option>
+            <option value="popularity">newness</option>
+            <option value="popularity">price</option>
+          </select>
+        </label>
+            </form>
         </div>
-        <div class="col-md-8">
-          <span>{{blog.category_name}}</span>
-          <span>{{blog.category_name}}</span>
-          <h3>{{blog.blog_title}}</h3>
-          <small>{{transformDate(blog.date_created)}}</small>
-          <p>{{blog.blog_excerpt | slice:0:200}}</p>
-          <!-- <ul *ngIf="blog.tags.length > 0" class="tags">
-            <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
-          </ul> -->
-          <!-- <small>{{getBlogCount(blog)}}</small> -->
+
+
+
+
+        <div class="clearfix"></div>
+        <div class="list-sec" *ngIf="blogList.length > 0">
+            <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index">
+                <div class="col-md-2">
+                    <a href="#">
+                        <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <span>{{blog.category_name}}</span>
+                    <h3>{{blog.blog_title}}</h3>
+                    <small>{{blog.date_created | date:'mediumDate'}}</small>
+                    <p>{{blog.blog_excerpt | slice:0:200}}</p>
+                    <ul *ngIf="blog.tags.length > 0" class="tags">
+                        <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
+                    </ul>
+                    <small>{{getBlogCount(blog)}}</small> <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.blog_url)">View</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2">
-          <a class="btn derk-color text-white" (click)="goToDetails(blog.blog_url)">View</a>
+        <div class="list-sec" *ngIf="blogList.length == 0">
+            <h3>Post Not Found Under {{categoryDetails.category_name}}</h3>
         </div>
-      </div>
     </div>
-    <!-- <div [innerHTML]="blogLinks"></div> -->
-    <div class="list-sec" *ngIf="blogList.length == 0">
-      <h3>Post Not Found Under {{categoryDetails.category_name}}</h3>
-    </div>
-  </div>
 </section>
