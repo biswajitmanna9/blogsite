@@ -57,15 +57,12 @@ export class HomeComponent implements OnInit {
   transformDate(date) {
     var now = moment()
     var blog_date = moment.utc(date).local()
-    // console.log(now)
-    // console.log(blog_date)      
     if (moment(now).format('l') == moment(blog_date).format('l')) {
       return moment(blog_date).startOf('hour').fromNow();
     }
     else {
       return moment(blog_date).format('ll');
     }
-
   }
 
   getBlogCount(blog) {

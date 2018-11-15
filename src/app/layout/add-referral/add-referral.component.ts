@@ -92,7 +92,7 @@ export class AddReferralComponent implements OnInit {
             this.toastr.success("Referral code has been added successfully", '', {
               timeOut: 3000,
             });
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
           },
           error => {
             console.log(error)
