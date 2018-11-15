@@ -18,6 +18,7 @@ export class BlogListComponent implements OnInit {
   pageHeading: string;
   categoryDetails: any;
   visibleKey: boolean;
+  blogLinks:string;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -31,8 +32,10 @@ export class BlogListComponent implements OnInit {
   getBlogListByCategory() {
     this.blogService.getBlogListByCategory(this.blogCategoryId).subscribe(
       res => {
+        console.log(res);
         this.categoryDetails = res['result']['category_details'];
-        this.blogList = res['result']['bloglist']
+        this.blogList = res['result']['bloglist'];
+        this.blogLinks = res['result']['links'];
         this.visibleKey = true
       },
       error => {

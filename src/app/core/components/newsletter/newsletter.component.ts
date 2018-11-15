@@ -31,6 +31,7 @@ export class NewsletterComponent implements OnInit {
 
   subscribe() {
     if (this.form.valid) {
+      this.form.value.is_subscriber= '1';
       this.newsletterService.subscribe(this.form.value).subscribe(
         res => {
           console.log(res)

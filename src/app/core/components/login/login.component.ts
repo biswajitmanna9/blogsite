@@ -14,9 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
+  forgotForm: FormGroup;
   title: string;
   toggle_btn: string;
   toggle_key: boolean;
+  toggle_btn_forgot:string;
+  formType:number;
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,8 +30,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.formType; // 2 : Forgot password Modal
     this.title = "Sign In";
     this.toggle_btn = "New user sign up";
+    this.toggle_btn_forgot = "Forgot Password";
     this.loginForm = this.formBuilder.group({
       email: ["",
         [
@@ -49,19 +54,42 @@ export class LoginComponent implements OnInit {
       ],
       password: ["", Validators.required]
     });
+
+    this.forgotForm = this.formBuilder.group({
+      email: ["",
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
+        ]
+      ]
+    });
   }
 
   toggle() {
     this.toggle_key = !this.toggle_key;
     if (this.toggle_key) {
+      this.formType = 1;
       this.title = "Sign Up";
       this.toggle_btn = "Back to sign in";
     }
     else {
+      this.formType = 1;
       this.title = "Sign In";
       this.toggle_btn = "New user sign up";
     }
   }
+
+  toggleForgot() {
+      this.formType = 2; // 2 : Forgot Password Modal
+      this.title = "Forgot Password";
+      this.toggle_btn = "New user sign up"; 
+  }
+
+
+ 
+
+
+  
 
   signInWithGoogle() {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
@@ -112,6 +140,7 @@ export class LoginComponent implements OnInit {
 
   signUp() {
     if (this.signupForm.valid) {
+      this.signupForm.value.is_subscriber= '0';
       this.loginService.userSignup(this.signupForm.value).subscribe(
         res => {
           // console.log(res)
@@ -134,6 +163,27 @@ export class LoginComponent implements OnInit {
       )
     } else {
       this.markFormGroupTouched(this.signupForm)
+    }
+  }
+
+  forgotPassword() {
+    if (this.forgotForm.valid) {
+      this.loginService.userForgotPassword(this.forgotForm.value).subscribe(
+        res => {
+          console.log(res);
+          this.toastr.success(res.result, '', {
+            timeOut: 3000,
+          });
+          this.dialogRef.close(true);
+        },
+        error => {
+          // console.log(error)
+          this.toastr.error(error.error.message, '', {
+            timeOut: 3000,
+          });
+        })
+    } else {
+      this.markFormGroupTouched(this.forgotForm)
     }
   }
 

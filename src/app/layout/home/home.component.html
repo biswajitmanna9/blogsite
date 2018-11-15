@@ -81,7 +81,7 @@
                     <ul *ngIf="blog.tags.length > 0" class="tags">
                         <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
                     </ul>
-                    <small>{{getBlogCount(blog)}}</small> <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                    <small>{{getBlogCount(blog)}}</small> <span (click)="addLike(blog.id,blog.is_like,userId)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                 </div>
                 <div class="col-md-2">
                     <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog)">View</a>
