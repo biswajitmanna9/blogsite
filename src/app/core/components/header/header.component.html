@@ -1,56 +1,168 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark derk-color fixed-top">
-  <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"><img src="assets/images/logo.png" alt=""> </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto" *ngIf="categoryList.length > 0">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/home']">Home</a>
-        </li>
-        <li class="nav-item " *ngFor="let cat of categoryList" [ngClass]="displayDropdownCss(cat)">
-          <a class="nav-link" (click)="goTo(cat.category_slug)" href="javascript:void(0);" [ngClass]="displayDropdownToggleCss(cat)">
-            {{cat.category_name}}
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.sub_category_details != undefined">
-            <ul *ngIf="cat.sub_category_details.length > 0">
-              <li *ngFor="let sub_cat of cat.sub_category_details" class="nav-item" [ngClass]="displayDropdownCss(sub_cat)">
-                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]" [ngClass]="displayDropdownToggleCss(sub_cat)">{{sub_cat.category_name}}</a>
-                <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.sub_sub_category_details != undefined">
-                  <ul>
-                    <li *ngFor="let sub_child_cat of sub_cat.sub_sub_category_details" class="nav-item">
-                      <a class="dropdown-item" [routerLink]="['/', cat.category_slug,sub_cat.category_slug, sub_child_cat.category_slug]">{{sub_child_cat.category_name}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark derk-color fixed-top">
+
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="assets/images/logo.png" alt=""> </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto" *ngIf="categoryList.length > 0">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']">Home</a>
+                </li>
+                <li class="nav-item " *ngFor="let cat of categoryList" [ngClass]="displayDropdownCss(cat)">
+                    <a class="nav-link" (click)="goTo(cat.category_slug)" href="javascript:void(0);" [ngClass]="displayDropdownToggleCss(cat)">
+                        {{cat.category_name}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" *ngIf="cat?.sub_category_details != undefined">
+                        <ul *ngIf="cat.sub_category_details.length > 0">
+                            <li *ngFor="let sub_cat of cat.sub_category_details" class="nav-item" [ngClass]="displayDropdownCss(sub_cat)">
+                                <a class="dropdown-item" [routerLink]="['/', cat.category_slug, sub_cat.category_slug]" [ngClass]="displayDropdownToggleCss(sub_cat)">{{sub_cat.category_name}}</a>
+                                <div class="dropdown-menu dropdown-menu-right" *ngIf="sub_cat?.sub_sub_category_details != undefined">
+                                    <ul>
+                                        <li *ngFor="let sub_child_cat of sub_cat.sub_sub_category_details" class="nav-item">
+                                            <a class="dropdown-item" [routerLink]="['/', cat.category_slug,sub_cat.category_slug, sub_child_cat.category_slug]">{{sub_child_cat.category_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/coupon']">Coupon</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
+                </li>
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
+                </li>
+                <li class="nav-item dropdown" *ngIf="loggedIn">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);">{{user_pic_letter}}</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" [routerLink]="['/dashboard']">Dashboard</a>
+                        <a class="dropdown-item" [routerLink]="['/add-referral']">Add Referral</a>
+                        <a class="dropdown-item" href="javascript:void(0);" (click)="logout()">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark derk-color height-all">
+    <div class="container">
+
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="assets/images/logo.png" alt=""> </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto float-right">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category 1
+              </a>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category 2
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        <div class="col-md-12">
+                            <div class="row">
+
+
+                                <ul class="nav d-flex justify-content-start nav-subhover">
+                                    <li class="nav-item ">
+                                        <a class="nav-link active" href="#">Active 1</a>
+                                    </li>
+                                    <li class="nav-item nav-subdropdown">
+                                        <a class="nav-link" href="#">Link item sub</a>
+                                        <ul>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+
+
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link item</a>
+                                    </li>
+
+
+                                </ul>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category 3
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                        <div class="col-md-12">
+                            <div class="row">
+
+
+
+                                <ul class="nav d-flex justify-content-start nav-subhover">
+
+                                    <li class="nav-item ">
+                                        <a class="nav-link active" href="#">Active 2</a>
+                                    </li>
+
+                                    <li class="nav-item nav-subdropdown">
+                                        <a class="nav-link" href="#">Link item sub</a>
+                                        <ul>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+                                            <li> <a class="nav-link" href="#">Sub item</a></li>
+
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link item</a>
+                                    </li>
+
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
 
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/coupon']">Coupon</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contact-us']">Contact Us</a>
-        </li>
-        <li class="nav-item" *ngIf="!loggedIn">
-          <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
-        </li>
-        <li class="nav-item dropdown" *ngIf="loggedIn">
-          <a class="nav-link dropdown-toggle" href="javascript:void(0);">{{user_pic_letter}}</a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" [routerLink]="['/dashboard']">Dashboard</a>
-            <a class="dropdown-item" [routerLink]="['/add-referral']">Add Referral</a>
-            <a class="dropdown-item" href="javascript:void(0);" (click)="logout()">Logout</a>
-          </div>
-        </li>
-      </ul>
+        </div>
     </div>
-  </div>
+
 </nav>
