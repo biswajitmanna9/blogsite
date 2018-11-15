@@ -25,7 +25,7 @@
     </div>
 </header>
 <!--catagory-sec-->
-<section class="catagory-sec">
+<!-- <section class="catagory-sec">
     <div class="row col-no-padd">
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="photo-block hover-aqua">
@@ -128,7 +128,54 @@
     </div>
 
 
-</section>
+</section> -->
+<div class="card-listing pt-3 pb-3">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <!---->
+            <div class="d-flex justify-content-between ng-tns-c8-0 ng-star-inserted">
+                <div class="card-item">
+                    <a class="ng-tns-c8-0" href="#/cards/business-cards">
+                        <img class="img-fluid" alt="" src="assets/images/information.png">
+                        <h2 class="ng-tns-c8-0">Business Cards</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between ng-tns-c8-0 ng-star-inserted">
+                <div class="card-item">
+                    <a class="ng-tns-c8-0" href="#/cards/business-cards">
+                        <img class="img-fluid" alt="" src="assets/images/information.png">
+                        <h2 class="ng-tns-c8-0">Rupay Cards</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between ng-tns-c8-0 ng-star-inserted">
+                <div class="card-item">
+                    <a class="ng-tns-c8-0" href="#/cards/business-cards">
+                        <img class="img-fluid" alt="" src="assets/images/information.png">
+                        <h2 class="ng-tns-c8-0">Top Cards</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between ng-tns-c8-0 ng-star-inserted">
+                <div class="card-item">
+                    <a class="ng-tns-c8-0" href="#/cards/business-cards">
+                        <img class="img-fluid" alt="" src="assets/images/information.png">
+                        <h2 class="ng-tns-c8-0">Master Card</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between ng-tns-c8-0 ng-star-inserted">
+                <div class="card-item">
+                    <a class="ng-tns-c8-0" href="#/cards/business-cards">
+                        <img class="img-fluid" alt="" src="assets/images/information.png">
+                        <h2 class="ng-tns-c8-0">Visa</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Page Content -->
 <section class="full-bg-grey">
@@ -149,10 +196,10 @@
                     <ul *ngIf="blog.tags.length > 0" class="tags">
                         <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
                     </ul>
-                    <small>{{getBlogCount(blog)}}</small>
+                    <small>{{getBlogCount(blog)}}</small> <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                 </div>
                 <div class="col-md-2">
-                    <a class="btn derk-color text-white" (click)="goToDetails(blog)">View</a>
+                    <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog)">View</a>
                 </div>
             </div>
         </div>

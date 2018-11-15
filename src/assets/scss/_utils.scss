@@ -47,25 +47,26 @@ a:hover {
 /*my-css*/
 
 .derk-color {
-    background: #4267b2;
+    background: #1538c5;
     border-bottom: 2px solid #29487d;
 }
 
 .carousel-caption-bnr {
     position: absolute;
-    right: 15%;
-    bottom: 65px;
-    left: 0;
+    bottom: 0;
+    left: 33px;
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
-    background: #001670;
-    padding: 25px 25px 25px 143px;
+    background: #1538c5;
+    padding: 25px 25px 25px 56px;
     color: #fff;
-    width: 52%;
+    width: 43%;
     -webkit-box-shadow: 0px -1px 48px 5px rgba(0, 0, 0, 0.37);
-    -moz-box-shadow: 0px -1px 48px 5px rgba(0, 0, 0, 0.37);
     box-shadow: 0px -1px 48px 5px rgba(0, 0, 0, 0.37);
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #102682;
+    border-bottom: none;
 }
 
 .carousel-caption-bnr h3 {
@@ -77,9 +78,15 @@ a:hover {
 }
 
 .carousel-caption-bnr a {
-    border: 2px solid #fff;
+    border: 2px solid #061e7b;
     color: #fff;
     padding: 9px 23px;
+    transition: all .40s ease-out;
+}
+
+.carousel-caption-bnr a:hover {
+    transition: all .40s ease;
+    background: #041f8a;
 }
 
 .carousel-indicators li {
@@ -464,7 +471,8 @@ footer p {
 .head-line-line {
     position: relative;
     padding-left: 28px;
-    font-weight: 100;
+    font-weight: bold;
+    color: #5a5e6d;
 }
 
 .head-line-line::before {
@@ -487,6 +495,32 @@ footer p {
     left: 3px;
     top: -11px;
     z-index: 0;
+}
+
+.list-sec span i {
+    font-size: 20px;
+    color: #949494;
+}
+
+.list-sec span:active i {
+    color: #1538c5;
+}
+
+.Show-item {
+    margin-top: 25px;
+}
+
+.Show-item span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #646567;
+    margin-right: 7px;
+}
+
+.Show-item .orderby {
+    border: 2px solid #cacaca;
+    border-radius: 4px;
+    height: 30px;
 }
 
 
@@ -1943,16 +1977,22 @@ ul ul .cmmnt {
     margin-bottom: 1rem;
 }
 
-.navbar-collapse {
+.navbar-collapse .dropdown {
     position: relative!important;
 }
 
 .navbar .dropdown-menu {
     border: none;
-    background-color: #192b4f!important;
-    width: 100% !important;
     position: absolute !important;
+    background-color: #1d428e !important;
+    width: 530px !important;
 }
+
+.navbar .dropdown-single {
+    width: 100% !important;
+}
+
+.navbar .dropdown-menu ul {}
 
 .height-all {
     height: 76px;
@@ -1963,22 +2003,41 @@ ul ul .cmmnt {
 }
 
 .nav-subhover li {
-    width: 224px;
+    width: 172px;
     padding: 0 !important;
     margin: 0 !important;
     position: relative;
 }
 
 .nav-subhover .nav-subdropdown ul li a {
-    padding: 9px 0px !important;
+    padding: 7px 32px !important;
     font-size: 14px !important;
+}
+
+.nav-subhover .nav-subdropdown ul li::before {
+    top: 8px;
+    font-size: 14px;
+    left: 13px;
+}
+
+.nav-subhover .nav-subdropdown::after {
+    content: "\f107";
+    color: #d7d8da;
+    font-family: FontAwesome;
+    position: absolute;
+    top: 18px;
+    font-size: 14px;
+    right: 24px;
 }
 
 .nav-subhover .nav-subdropdown ul {
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    background: #120f0f;
+    background: #143069;
+    border-radius: 11px;
+    transition: all .40s ease-out;
+    top: 100px;
 }
 
 .nav-subhover .nav-subdropdown:hover ul {
@@ -1987,6 +2046,7 @@ ul ul .cmmnt {
     z-index: 999;
     top: 47px;
     left: 0px;
+    transition: all .40s ease;
 }
 
 .nav-subhover li a {
@@ -2001,6 +2061,54 @@ ul ul .cmmnt {
     top: 14px;
     font-size: 18px;
     left: 12px;
+}
+
+// search
+#demo-2 input[type=search] {
+    background: #ededed url(../images/search.png) no-repeat 6px center;
+    border: solid 1px #ccc;
+    padding: 3px 5px;
+    width: 55px;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#demo-2 input[type=search] {
+    width: 34px;
+    padding-left: 10px;
+    color: transparent;
+    cursor: pointer;
+    border: 2px solid #102475;
+    border-radius: 20px;
+}
+
+#demo-2 input[type=search]:hover {
+    background-color: #fff;
+}
+
+#demo-2 input[type=search]:focus {
+    width: 150px;
+    padding-left: 32px;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+    border: none;
+}
+
+#demo-2 input:-moz-placeholder {
+    color: transparent;
+}
+
+#demo-2 input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.blog-btn {
+    width: 100%;
 }
 
 
@@ -2024,10 +2132,12 @@ ul ul .cmmnt {
         position: static;
     }
     .navbar .dropdown-menu {
-        width: 100%;
-        left: 0;
+        left: -197px;
         right: 0;
         top: 62px;
+    }
+    .navbar .dropdown-single {
+        left: 0px !important;
     }
     /* shows the dropdown menu on hover */
     .navbar .dropdown:hover .dropdown-menu,
