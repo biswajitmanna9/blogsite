@@ -27,4 +27,7 @@ export class ReferralService {
     return this.http.post(environment.apiEndpoint + 'reflinkcountupdate/', data)
   }
 
+  getUserReferralList(id) {
+    return this.http.get(environment.apiEndpoint + 'userreferrallist/' + id)
+  }
 }

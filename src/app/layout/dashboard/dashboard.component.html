@@ -1,1 +1,33 @@
-<p>dashboard</p>
+<!-- Page Content -->
+<section class="full-bg-grey">
+  <div class="container">
+    <h2 class="head-line-line mb-3 mt-3">Referral link List</h2>
+    <div class="list-sec" *ngIf="referralLinkList.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Link</th>
+            <!-- <th>Description</th> -->
+            <th>Company</th>
+            <th>Program</th>
+            <th>Created Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let referral of referralLinkList">
+            <td><a [href]="referral.referral_link" target="_blank">{{referral.referral_link}}</a></td>
+            <!-- <td>{{referral.description}}</td> -->
+            <td>{{referral.company_name}}</td>
+            <td>{{referral.program_name}}</td>
+            <td>{{transformDate(referral.date_created)}}</td>
+            <td>{{referral.is_active}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="list-sec" *ngIf="referralLinkList.length == 0">
+      <h3>You have not added any referral link</h3>
+    </div>
+  </div>
+</section>
