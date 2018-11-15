@@ -151,7 +151,7 @@ export class BlogDetailsComponent implements OnInit {
   getBlogDetails() {
     this.blogService.getBlogDetails(this.blogId).subscribe(
       res => {
-        // console.log(res)
+        console.log(res)
         this.blogDetails = res['result'];
         this.isVisible = true;
       },

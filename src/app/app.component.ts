@@ -31,13 +31,15 @@ export class AppComponent implements OnInit {
   }
 
   trackMe() {
+    console.log("getting location")
     if (navigator.geolocation) {
       this.isTracking = true;
       navigator.geolocation.watchPosition((position) => {
         this.showTrackingPosition(position);
+        console.log("getting location 1")
       },
         (error) => {
-
+          console.log("getting location 2" + error)
         });
     } else {
       alert("Geolocation is not supported by this browser.");
@@ -45,6 +47,7 @@ export class AppComponent implements OnInit {
   }
 
   showTrackingPosition(position) {
+    console.log("getting location 3")
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
     localStorage.setItem('currentLat', this.currentLat);

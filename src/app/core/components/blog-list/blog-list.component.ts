@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-blog-list',
@@ -41,6 +42,29 @@ export class BlogListComponent implements OnInit {
 
   goToDetails(blog_url) {
     this.router.navigateByUrl('/' + this.blogCategorySlug + '/details/' + blog_url);
+  }
+
+  transformDate(date) {
+    var now = moment()
+    var blog_date = moment.utc(date).local()
+    if (moment(now).format('l') == moment(blog_date).format('l')) {
+      return moment(blog_date).startOf('hour').fromNow();
+    }
+    else {
+      return moment(blog_date).format('ll');
+    }
+  }
+
+  getBlogCount(blog) {
+    if (blog.comments.approved == undefined) {
+      return "0 Comment"
+    }
+    else if (blog.comments.approved < 2) {
+      return blog.comments.approved + " Comment"
+    }
+    else {
+      return blog.comments.approved + " Comments"
+    }
   }
 
 }

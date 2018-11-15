@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 // import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 import { environment } from '../../environments/environment';
 // social login
@@ -63,6 +64,11 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      apiKey: 'AIzaSyB3FKbaqonmY-bDPanbzJSH9U7HXF8dpS4',
+      libraries: ["places"]
+    }),
     // JwSocialButtonsModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,
@@ -90,6 +96,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule,
     // JwSocialButtonsModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,

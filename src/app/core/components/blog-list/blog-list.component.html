@@ -36,9 +36,14 @@
         </div>
         <div class="col-md-8">
           <span>{{blog.category_name}}</span>
+          <span>{{blog.category_name}}</span>
           <h3>{{blog.blog_title}}</h3>
-          <small>{{blog.date_created | date:'mediumDate'}}</small>
-          <p>{{blog.blog_excerpt}}</p>
+          <small>{{transformDate(blog.date_created)}}</small>
+          <p>{{blog.blog_excerpt | slice:0:200}}</p>
+          <!-- <ul *ngIf="blog.tags.length > 0" class="tags">
+            <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
+          </ul> -->
+          <!-- <small>{{getBlogCount(blog)}}</small> -->
         </div>
         <div class="col-md-2">
           <a class="btn derk-color text-white" (click)="goToDetails(blog.blog_url)">View</a>
