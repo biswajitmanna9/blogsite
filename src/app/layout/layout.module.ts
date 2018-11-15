@@ -16,6 +16,7 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { ErrorComponent } from './error/error.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
