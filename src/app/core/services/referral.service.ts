@@ -30,4 +30,9 @@ export class ReferralService {
   getUserReferralList(id) {
     return this.http.get(environment.apiEndpoint + 'userreferrallist/' + id)
   }
+
+  getZipCode(data) {
+    return this.http.post(environment.apiEndpoint + 'userZipcodeGetOrUpdate/', data)
+  }
+ 
 }

@@ -92,30 +92,30 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
 
-  addLike(id,is_like,user_id) {
-    if(user_id) {
-      if(is_like ==0) {
-        is_like="1";
+  addLike(id, is_like, user_id) {
+    if (user_id) {
+      if (is_like == 0) {
+        is_like = "1";
       }
       else {
-        is_like="0";
+        is_like = "0";
       }
       var data = {
         user_id: localStorage.getItem('userId'),
         post_id: id,
-        is_like:is_like
+        is_like: is_like
       }
       this.blogService.userAddLike(data).subscribe(
         res => {
           console.log(res);
           this.getMostRecentBlogList(this.userId);
-          if(res['result']['is_like'] ==1) {
+          if (res['result']['is_like'] == 1) {
             this.toastr.success('Liked Succesfully', '', {
               timeOut: 3000,
             });
           }
           else {
-            this.toastr.error('Unliked Succesfully', '', {
+            this.toastr.success('Dislike Succesfully', '', {
               timeOut: 3000,
             });
           }
@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit {
         // console.log(result)
       })
     }
-    
+
   }
 
  

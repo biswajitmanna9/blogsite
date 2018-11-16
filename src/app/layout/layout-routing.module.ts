@@ -9,6 +9,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { ErrorComponent } from './error/error.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AllblogComponent } from './allblog/allblog.component';
 import { AuthGuard } from '../core/guard/auth.guard';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'coupon', component: CouponComponent },
       { path: 'contact-us', component: ContactUsComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
+      { path: 'allblog', component: AllblogComponent },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
       { path: 'add-referral', loadChildren: './add-referral/add-referral.module#AddReferralModule', canActivate: [AuthGuard] },
       { path: '404', component: ErrorComponent },

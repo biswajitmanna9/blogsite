@@ -30,6 +30,7 @@ export class BlogComponent implements OnInit {
       }
       if (val['cat_slug']) {
         this.blogCategorySlug = val['cat_slug'];
+        
       }
       this.isCard = false;
       this.isVisible = false;

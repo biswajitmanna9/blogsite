@@ -55,6 +55,14 @@
                     </div>
                   </div>
                   <div class="form-group col-md-12">
+                    <label>Zip Code:</label>
+                    <input type="text" class="form-control" placeholder="Zip Code" [(ngModel)]="zipCode" formControlName="zip_code"
+                      [ngClass]="displayFieldCss('zip_code')">
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('zip_code')">
+                      Please enter zip code
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
                     <label>Description</label>
                     <textarea class="form-control" placeholder="Description" formControlName="description"></textarea>
                   </div>

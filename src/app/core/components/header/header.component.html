@@ -58,107 +58,95 @@
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark derk-color height-all">
     <div class="container">
-
         <a class="navbar-brand" [routerLink]="['/']">
             <img src="assets/images/logo.png" alt=""> </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto float-right">
                 <li class="nav-item">
-                    <a class="nav-link">Blog</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Stores
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        <div class="col-md-12">
-                            <div class="row">
-
-
-                                <ul class="nav d-inline-flex nav-subhover">
-                                    <li class="nav-item ">
-                                        <a class="nav-link active" href="#">Deals</a>
-                                    </li>
-                                    <li class="nav-item nav-subdropdown">
-                                        <a class="nav-link" href="#">coupon</a>
-                                        <ul>
-                                            <li>
-                                                <a class="nav-link" href="#">Sub item</a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#">Sub item</a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#">Sub item</a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#">Sub item</a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" href="#">Sub item</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Cash back</a>
-                                    </li>
-
-
-                                </ul>
-
-
-                            </div>
-                        </div>
-                    </div>
+                    <a class="nav-link" [routerLink]="['/allblog']">Blog</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Credit cards
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Stores
                     </a>
                     <div class="dropdown-menu dropdown-single" aria-labelledby="navbarDropdown">
-
-
                         <div class="col-md-12">
                             <div class="row">
-
-
-
                                 <ul class="nav d-flex justify-content-start nav-subhover">
-
-
-
-
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Link item</a>
+                                        <a class="nav-link" href="javascript:void(0);" (click)="goTo('deals')">Deals</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Link item</a>
+                                        <a class="nav-link" [routerLink]="['/coupon']">Cupon</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" [routerLink]="['.']">Cash Back</a>
                                     </li>
                                 </ul>
-
-
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Credit cards
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="cards_category_list.length > 0">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <ul class="nav d-inline-flex nav-subhover">
+                                    <li class="nav-item" *ngFor="let card_cat of cards_category_list"  [ngClass]="{'nav-subdropdown': card_cat.sub_sub_category_details.length > 0}">
+                                        <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug]">{{card_cat.category_name}}</a>
+                                        <ul *ngIf="card_cat.sub_sub_category_details.length > 0">
+                                            <li *ngFor="let card_sub_cat of card_cat.sub_sub_category_details">
+                                                <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug, card_sub_cat.category_slug]">{{card_sub_cat.category_name}}</a>
+                                            </li>                                           
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Banks</a>
+                    <a class="nav-link" [routerLink]="['.']">Banks</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">My Account</a>
+                <li class="nav-item" *ngIf="!loggedIn">
+                    <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
                 </li>
+                <li class="nav-item dropdown" *ngIf="loggedIn">
+                    <a class="nav-link dropdown-toggle user_letter_pic" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{user_pic_letter}}
+                    </a>
+                    <div class="dropdown-menu dropdown-single" aria-labelledby="navbarDropdown">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <ul class="nav d-flex justify-content-start nav-subhover">
+                                    <li class="nav-item">
+                                        <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" [routerLink]="['/add-referral']">Add Referral</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:void(0);" (click)="logout()">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>                
             </ul>
             <form id="demo-2">
                 <input type="search" placeholder="Search">
             </form>
         </div>
     </div>
-
 </nav>

@@ -17,6 +17,7 @@ export class AddReferralComponent implements OnInit {
   programList: any = [];
   form: FormGroup;
   userId: number;
+  zipCode:string;
   constructor(
     private formBuilder: FormBuilder,
     private referralService: ReferralService,
@@ -37,7 +38,26 @@ export class AddReferralComponent implements OnInit {
       description: [""],
       lattitude: [""],
       longitude: [""],
+      zip_code:["",Validators.required],
     });
+
+    this.getUserZipCode();
+  }
+
+  getUserZipCode() {
+    var data = {
+      user_id: this.userId,
+      zipcode: ""
+    }
+    this.referralService.getZipCode(data).subscribe(
+      res => {
+        this.zipCode = res['result']['zipcode'];
+        console.log(this.zipCode);
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   getCompanylist() {
@@ -89,6 +109,7 @@ export class AddReferralComponent implements OnInit {
         this.referralService.addReferral(this.form.value).subscribe(
           res => {
             console.log(res);
+            this.updateUserZipCode(this.form.value.zip_code);
             this.toastr.success("Referral code has been added successfully", '', {
               timeOut: 3000,
             });
@@ -102,6 +123,21 @@ export class AddReferralComponent implements OnInit {
     } else {
       this.markFormGroupTouched(this.form)
     }
+  }
+
+  updateUserZipCode(zipCode) {
+    var data = {
+      user_id: this.userId,
+      zipcode: zipCode
+    }
+    this.referralService.getZipCode(data).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   markFormGroupTouched(formGroup: FormGroup) {

@@ -15,6 +15,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { ErrorComponent } from './error/error.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AllblogComponent } from './allblog/allblog.component';
 
 
 
@@ -24,6 +25,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     LayoutRoutingModule,
     CoreModule
   ],
-  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent]
+  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent]
 })
 export class LayoutModule { }

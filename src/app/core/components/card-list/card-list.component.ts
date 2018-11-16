@@ -6,6 +6,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../../services/login.service';
+import * as Globals from '../../../core/globals';
 
 @Component({
   selector: 'app-card-list',
@@ -35,6 +36,14 @@ export class CardListComponent implements OnInit {
   @Input() opened = false;
   private loggedIn: boolean;
   mainCardCategoryId: string;
+  userId:string;
+  paginationMaxSize: number;
+  itemPerPage: number;
+  defaultPagination: number;
+  itemNo: number;
+  lower_count: number;
+  upper_count: number;
+  blogListCount:any;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -45,7 +54,17 @@ export class CardListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('userId')) {
+      this.userId = localStorage.getItem('userId');
+    }
+    else {
+      this.userId ="";
+    }
     this.imageBaseUrl = environment.imageBaseUrl;
+    this.itemNo = 0;
+    this.defaultPagination = 1;
+    this.paginationMaxSize = Globals.paginationMaxSize;
+    this.itemPerPage = Globals.itemPerPage;
     this.loadUserInfo();
     this.getBlogListByCategory();
     this.getTagListByCategory();
@@ -80,11 +99,23 @@ export class CardListComponent implements OnInit {
   }
 
   getBlogListByCategory() {
-    this.blogService.getBlogListByCategory(this.blogCategoryId).subscribe(
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', this.defaultPagination.toString());
+    console.log(params);
+    this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
       res => {
         // console.log(res)
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
+        this.blogListCount =  res['result']['total_count'];
+        this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+        this.lower_count = this.itemNo + 1;
+        if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
+          this.upper_count = this.itemPerPage * this.defaultPagination
+        }
+        else {
+          this.upper_count = this.blogListCount;
+        }
         this.visibleKey = true
       },
       error => {
@@ -92,6 +123,11 @@ export class CardListComponent implements OnInit {
       }
     )
   }
+
+  pagination() {
+    this.getBlogListByCategory();
+  };
+
 
   goToDetails(blog_url) {
     this.router.navigateByUrl('/' + this.blogCategorySlug + '/details/' + blog_url);

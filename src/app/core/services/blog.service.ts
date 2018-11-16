@@ -18,8 +18,8 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'checkslug/' + slug + '/')
   }
 
-  getBlogListByCategory(id): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'bloglistbycatid/' + id + '/')
+  getBlogListByCategory(id,user_id,params): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'bloglistbycatid/' + id + '/'+ user_id + '/?'+params)
   }
 
   getBlogDetails(id): Observable<any> {
@@ -53,6 +53,10 @@ export class BlogService {
   userAddLike(data) {
     console.log(data);
     return this.http.post(environment.apiEndpoint + 'bloglikeordislike/', data)
+  }
+
+  getAllBlogList(user_id,params): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + user_id +'/?'+params )
   }
 
 }

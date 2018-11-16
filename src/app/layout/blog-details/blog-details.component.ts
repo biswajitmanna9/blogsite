@@ -31,6 +31,7 @@ export class BlogDetailsComponent implements OnInit {
   userPic: string;
   private loggedIn: boolean;
   selectedToggleArea: number;
+  user_id:string;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -55,6 +56,12 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('userId')) {
+      this.user_id = localStorage.getItem('userId');
+    }
+    else {
+      this.user_id="";
+    }
     this.imageBaseUrl = environment.imageBaseUrl;
   }
 
@@ -118,7 +125,9 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   getBlogListByCategory() {
-    this.blogService.getBlogListByCategory(this.blogCategoryId).subscribe(
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', "");
+    this.blogService.getBlogListByCategory(this.blogCategoryId,this.user_id,params).subscribe(
       res => {
         // console.log(res)        
         for (var i = 0; i < res['result']['bloglist'].length; i++) {

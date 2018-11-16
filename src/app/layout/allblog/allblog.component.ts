@@ -1,27 +1,24 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlogService } from '../../services/blog.service';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import * as moment from 'moment';
-import * as Globals from '../../../core/globals';
+import * as Globals from '../../core/globals';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { LoginComponent } from '../../../core/components/login/login.component';
+import { LoginComponent } from '../../core/components/login/login.component';
+import { BlogService } from '../../core/services/blog.service';
+
 @Component({
-  selector: 'app-blog-list',
-  templateUrl: './blog-list.component.html',
-  styleUrls: ['./blog-list.component.scss']
+  selector: 'app-allblog',
+  templateUrl: './allblog.component.html',
+  styleUrls: ['./allblog.component.scss']
 })
-export class BlogListComponent implements OnInit {
-  @Input('blogCategoryId') blogCategoryId;
-  @Input('categoryName') categoryName;
-  @Input('blogCategorySlug') blogCategorySlug;
+export class AllblogComponent implements OnInit {
+  // @Input('blogCategoryId') blogCategoryId;
+  // @Input('categoryName') categoryName;
+  // @Input('blogCategorySlug') blogCategorySlug;
   blogList: any = [];
   imageBaseUrl: string;
-  pageHeading: string;
-  categoryDetails: any;
-  visibleKey: boolean;
-  blogLinks:string;
   paginationMaxSize: number;
   itemPerPage: number;
   defaultPagination: number;
@@ -30,6 +27,8 @@ export class BlogListComponent implements OnInit {
   upper_count: number;
   blogListCount:any;
   userId:string;
+  visibleKey: boolean;
+  blogLinks:string;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -49,23 +48,17 @@ export class BlogListComponent implements OnInit {
     this.defaultPagination = 1;
     this.paginationMaxSize = Globals.paginationMaxSize;
     this.itemPerPage = Globals.itemPerPage;
-    this.getBlogListByCategory();
+    this.getBlogList();
+    //this.blogCategorySlug = 'deals';
   }
 
-  pagination() {
-    this.getBlogListByCategory();
-  };
-
-
-  getBlogListByCategory() {
+  getBlogList() {
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
-    this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
+    this.blogService.getAllBlogList(this.userId,params).subscribe(
       res => {
         console.log(res);
-        this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
-        console.log(this.blogList);
         this.blogListCount =  res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
         this.lower_count = this.itemNo + 1;
@@ -75,27 +68,14 @@ export class BlogListComponent implements OnInit {
         else {
           this.upper_count = this.blogListCount;
         }
+
+
         this.blogLinks = res['result']['links'];
         this.visibleKey = true
       },
       error => {
       }
     )
-  }
-
-  goToDetails(blog_url) {
-    this.router.navigateByUrl('/' + this.blogCategorySlug + '/details/' + blog_url);
-  }
-
-  transformDate(date) {
-    var now = moment()
-    var blog_date = moment.utc(date).local()
-    if (moment(now).format('l') == moment(blog_date).format('l')) {
-      return moment(blog_date).startOf('hour').fromNow();
-    }
-    else {
-      return moment(blog_date).format('ll');
-    }
   }
 
   getBlogCount(blog) {
@@ -116,6 +96,10 @@ export class BlogListComponent implements OnInit {
    
   }
 
+  pagination() {
+    this.getBlogList();
+  };
+
   addLike(id, is_like, user_id) {
     console.log(is_like);
     if (user_id) {
@@ -132,7 +116,7 @@ export class BlogListComponent implements OnInit {
       }
       this.blogService.userAddLike(data).subscribe(
         res => {
-          this.getBlogListByCategory();
+          this.getBlogList();
           if (res['result']['is_like'] == 1) {
             this.toastr.success('Liked Succesfully', '', {
               timeOut: 3000,
@@ -159,6 +143,9 @@ export class BlogListComponent implements OnInit {
       })
     }
 
+  }
+  goToDetails(category_slug,blog_url) {
+    this.router.navigateByUrl('/' + category_slug + '/details/' + blog_url);
   }
 
 

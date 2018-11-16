@@ -14,9 +14,10 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   private user: SocialUser;
-  private loggedIn: boolean;
+  loggedIn: boolean;
   categoryList: any = [];
   user_pic_letter: string;
+  cards_category_list: any = [];
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
@@ -76,8 +77,13 @@ export class HeaderComponent implements OnInit {
   getCategoryList() {
     this.blogService.getCategoryList().subscribe(
       res => {
-        // console.log(res)
+        console.log(res)
         this.categoryList = res['result']
+        var cards_category = this.categoryList.filter(x => x.category_slug == "cards")
+        if(cards_category != undefined){
+          this.cards_category_list = cards_category[0]['sub_category_details']
+        }
+        console.log(this.cards_category_list)
       },
       error => {
         // console.log(error)

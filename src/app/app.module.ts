@@ -10,9 +10,10 @@ import { AppComponent } from './app.component';
 // core
 import { CoreModule } from './core/core.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
