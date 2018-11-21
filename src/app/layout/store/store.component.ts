@@ -5,6 +5,7 @@ import * as Globals from '../../core/globals';
 import { ToastrService } from 'ngx-toastr';
 import { StoreService } from '../../core/services/store.service';
 import { BlogService } from '../../core/services/blog.service';
+import { CouponService } from '../../core/services/coupon.service';
 
 @Component({
   selector: 'app-store',
@@ -15,6 +16,7 @@ export class StoreComponent implements OnInit {
   popularstoree: any = [];
   storebyCashback: any = [];
   blogList: any=[];
+  couponList: any = [];
   imageBaseUrl: string;
   blogCategoryId:number;
   defaultPagination:number;
@@ -23,7 +25,8 @@ export class StoreComponent implements OnInit {
     private storeService: StoreService,
     private router: Router,
     private toastr: ToastrService,
-    private blogService:BlogService
+    private blogService:BlogService,
+    private couponService:CouponService
   ) { }
 
   ngOnInit() {
@@ -39,6 +42,7 @@ export class StoreComponent implements OnInit {
     this.popularstore();
     this.storeByCashback();
     this.getBlogListByCategory();
+    this.maxDiscountList();
   }
   getAlphabet() {
     let alphabets = [];
@@ -78,6 +82,18 @@ export class StoreComponent implements OnInit {
       res => {
         console.log(res);
         this.blogList = res['result']['bloglist'];
+      },
+      error => {
+      }
+    )
+  }
+
+  maxDiscountList() {
+    this.couponService.maxDiscountCouponList().subscribe(
+      res => {
+        console.log("Coupon List==>", res);
+        this.couponList = res['result'];
+        console.log(this.couponList);
       },
       error => {
       }

@@ -34,6 +34,7 @@ import { ReferralService } from './services/referral.service';
 import { ResetpasswordService } from './services/resetpassword.service';
 import { CouponService } from './services/coupon.service';
 import { StoreService } from './services/store.service';
+import { CashbackService } from './services/cashback.service';
 
 // guard
 import { AuthGuard } from './guard/auth.guard';
@@ -140,7 +141,8 @@ export class CoreModule {
         ReferralService,
         ResetpasswordService,
         CouponService,
-        StoreService
+        StoreService,
+        CashbackService
       ]
     };
   }
