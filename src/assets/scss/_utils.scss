@@ -262,7 +262,7 @@ h4.delay-1 {
 .full-mail-sec {
     background: url(../images/massagesec.jpg) no-repeat 0 0;
     position: relative;
-    padding-top: 62px;
+    padding-top: 40px;
 }
 
 .send-mail-box {
@@ -972,6 +972,10 @@ h4 {
     display: block;
     font-size: 9px;
 }
+.cuppon:hover {
+    -webkit-box-shadow: 0 8px 14px -6px rgba(153,153,153,0.65);
+}
+
 
 .deal .deal-sec {
     background: #fff;
@@ -1007,7 +1011,8 @@ h4 {
 
 .deal .deal-sec .deal-provider {
     background: #fff;
-    padding: 6px 32px;
+   // padding: 6px 32px;
+   padding: 6px 56px;
     position: absolute;
     top: 41%;
     left: 56px;
@@ -1120,6 +1125,10 @@ h4 {
 .hot-deal .deal-sec .deal-detail small {
     display: block;
     font-size: 9px;
+}
+
+.deal-sec:hover {
+    -webkit-box-shadow: 0 8px 14px -6px rgba(153,153,153,0.65);
 }
 
 .font-size-20 {
@@ -2003,7 +2012,7 @@ ul ul .cmmnt {
 }
 
 .nav-subhover li {
-    width: 172px;
+    width: 195px;
     padding: 0 !important;
     margin: 0 !important;
     position: relative;
@@ -2118,6 +2127,30 @@ ul ul .cmmnt {
 }
 .like-btn .active{
     color:#47CE6B;
+}
+.user_letter_pic {
+width: 35px;
+height: 35px;
+border-radius: 50%;
+background: #051d7b;
+font-size: 15px;
+font-weight:bold;
+color: #fff;
+text-align: center;
+line-height: 6px;
+margin: 10px 0;
+text-transform: uppercase;
+
+}
+
+.cuppon .coupon-discount {
+    font-size:13px;
+}
+
+
+.cuppon-double-sec .cuppon span {
+    display: block;
+    line-height: 20px;
 }
 
 /** =====================

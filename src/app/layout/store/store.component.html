@@ -3,35 +3,63 @@
     <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
     <div class="col-md-2 side-ad">
       <ul>
+        <li *ngFor="let popularStore of popularstoree; let i = index">
+          {{popularStore.name}}
+          <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+        </li>
+        <!-- <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
         <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
         <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
         <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
+        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li> -->
       </ul>
     </div>
   </div>
 </div>
 <section class="full-bg-grey">
   <div class="container">
+      <h2 class="head-line-line mb-3 mt-3">Most Recent Stores - <a [routerLink]="['/allstore']" href="javascript:void(0)">See All Stores</a></h2>
     <div class="cuppon-sec">
       <div class="row">
-        <div class="col-md-2" *ngFor="let couponList of discountCouponList; let i = index">
+        <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index">
           <div class="cuppon">
             <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
-            <span>{{couponList.store_name}}</span>
-            <span class="coupon-discount">{{couponList.discount}}% Cash Back</span>
-            <small>See All One Hanes Place Coupons</small>
+            <span>{{storeCashBack.name}}</span>
+            <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+            <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
           </div>
         </div>
 
       </div>
     </div>
-    <h2 class="head-line-line mb-3 mt-3">Featured Daily Deals </h2>
+    <h2 class="head-line-line mb-3 mt-3">Most Recent Deals </h2>
     <div class="deal">
       <div class="row">
-        <div class="col-md-3">
+
+        <div class="col-md-3" *ngFor="let blog of blogList | slice:0:4; let i = index">
+          <div class="deal-sec">
+            <div class="deal-img">
+              <!-- <img class="img-fluid" src="assets/images/deal-image.jpg" alt=""> -->
+              <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
+              <!-- <span>Up to<br>80% Off</span> -->
+            </div>
+            <div class="deal-provider">
+              <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+              {{blog.blog_title}}
+            </div>
+            <div class="deal-detail">
+              <!-- <h3>3.0% Cash Back</h3>
+              <h4>Extra 20% off
+                <span> fall fashion and home</span></h4>
+              <small>{{blog.date_created | date:'mediumDate'}}</small>
+              <a href="#">
+                Available
+              </a> -->
+              <span [innerHTML]="blog.blog_content"></span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
           <div class="deal-sec">
             <div class="deal-img">
               <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
@@ -96,29 +124,7 @@
               </a>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="deal-sec">
-            <div class="deal-img">
-              <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-              <span>
-                Up to<br>
-                80% Off</span>
-            </div>
-            <div class="deal-provider">
-              <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-            </div>
-            <div class="deal-detail">
-              <h3>3.0% Cash Back</h3>
-              <h4>Extra 20% off
-                <span> fall fashion and home</span></h4>
-              <small>Expires 9/30/2018</small>
-              <a href="#">
-                Available
-              </a>
-            </div>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="hot-deal-sec">
@@ -172,9 +178,7 @@
                     <div class="deal-sec">
                       <div class="deal-img">
                         <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-                        <span>
-                          Up to<br>
-                          80% Off</span>
+                        <span>Up to<br>80% Off</span>
                       </div>
                       <div class="deal-provider">
                         <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
@@ -198,7 +202,15 @@
             <div class="hot-deal-headline">
               <h2 class="head-line-line mb-3 mt-3 font-size-20">Double Cash Back </h2>
             </div>
-            <ul class="side-ad d-flex justify-content-between flex-wrap flex-width">
+            <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
+              <li *ngFor="let storeCashBack of storebyCashback; let i = index" class="cuppon">
+                <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+                <span class="coupon-name">{{storeCashBack.cashback_portal_name}}</span>
+                <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+                <span>{{storeCashBack.name}}</span>
+
+              </li>
+              <!-- <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
@@ -206,9 +218,7 @@
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
+              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li> -->
             </ul>
           </div>
         </div>

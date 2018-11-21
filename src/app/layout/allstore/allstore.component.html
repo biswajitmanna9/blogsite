@@ -1,34 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
-    <div class="col-md-2 side-ad">
-      <ul>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-      </ul>
-    </div>
+    <div class="col-md-12"> <img class="img-fluid all-store-banner" src="assets/images/card-banner.jpg" alt=""></div>
   </div>
 </div>
 <section class="full-bg-grey">
   <div class="container">
-    <div class="cuppon-sec">
-      <div class="row">
-        <div class="col-md-2" *ngFor="let couponList of discountCouponList; let i = index">
-          <div class="cuppon">
-            <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
-            <span>{{couponList.store_name}}</span>
-            <span class="coupon-discount">{{couponList.discount}}% Cash Back</span>
-            <small>See All One Hanes Place Coupons</small>
+      <h2 class="head-line-line mb-3 mt-3">Most Recent Stores</h2>
+      <div class="cuppon-sec">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index">
+            <div class="cuppon">
+              <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+              <span>{{storeCashBack.name}}</span>
+              <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+              <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
+            </div>
           </div>
+  
         </div>
-
       </div>
-    </div>
-    <h2 class="head-line-line mb-3 mt-3">Featured Daily Deals </h2>
+    <!-- <h2 class="head-line-line mb-3 mt-3">Recomended Stores </h2>
     <div class="deal">
       <div class="row">
         <div class="col-md-3">
@@ -120,71 +111,39 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="hot-deal-sec">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="white-board">
             <div class="hot-deal-headline">
-              <h2 class="head-line-line mb-3 mt-3">Featured Daily Deals </h2>
+              <h2 class="head-line-line mb-3 mt-3">All Store </h2>
             </div>
             <div class="hot-deal">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <ul>
+                    <li>All</li>
+                    <li class="letter-filter" (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
+                    <li>0-9</li>
+                  </ul>
+                </div>
+              </div>
+
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="deal-sec">
-                      <div class="deal-img">
-                        <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-                        <span>
-                          Up to<br>
-                          80% Off</span>
-                      </div>
-                      <div class="deal-provider">
-                        <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-                      </div>
-                      <div class="deal-detail">
-                        <h4>Extra 20% off
-                          <span> fall fashion and home</span></h4>
-                        <small>Expires 9/30/2018</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="deal-sec">
-                      <div class="deal-img">
-                        <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-                        <span>
-                          Up to<br>
-                          80% Off</span>
-                      </div>
-                      <div class="deal-provider">
-                        <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-                      </div>
-                      <div class="deal-detail">
-                        <h4>Extra 20% off
-                          <span> fall fashion and home</span></h4>
-                        <small>Expires 9/30/2018</small>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-md-4">
-                    <div class="deal-sec">
-                      <div class="deal-img">
-                        <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-                        <span>
-                          Up to<br>
-                          80% Off</span>
-                      </div>
-                      <div class="deal-provider">
-                        <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-                      </div>
-                      <div class="deal-detail">
-                        <h4>Extra 20% off
-                          <span> fall fashion and home</span></h4>
-                        <small>Expires 9/30/2018</small>
-                      </div>
-                    </div>
+                  <div class="col-md-12">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>A Pea in the Pod</td>
+                          <td>9 Coupons</td>
+                          <td>1.0 % Cash Back</td>
+                          <td> <button>shop Now</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -193,7 +152,7 @@
           </div>
         </div>
 
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <div class="white-board">
             <div class="hot-deal-headline">
               <h2 class="head-line-line mb-3 mt-3 font-size-20">Double Cash Back </h2>
@@ -211,7 +170,7 @@
               <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
             </ul>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

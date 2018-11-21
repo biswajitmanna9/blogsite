@@ -118,6 +118,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goTo(url_slug) {
+    console.log(url_slug);
     if (url_slug != "cards") {
       this.router.navigate(['/' + url_slug]);
     }

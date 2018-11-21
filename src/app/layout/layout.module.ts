@@ -16,6 +16,11 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { ErrorComponent } from './error/error.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AllblogComponent } from './allblog/allblog.component';
+import { StoreComponent } from './store/store.component';
+import { AllstoreComponent } from './allstore/allstore.component';
+import { CoupondetailsComponent } from './coupondetails/coupondetails.component';
+import { CashbackComponent } from './cashback/cashback.component';
+import { CashbackdetailsComponent } from './cashbackdetails/cashbackdetails.component';
 
 
 
@@ -25,6 +30,6 @@ import { AllblogComponent } from './allblog/allblog.component';
     LayoutRoutingModule,
     CoreModule
   ],
-  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent]
+  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent, StoreComponent, AllstoreComponent, CoupondetailsComponent, CashbackComponent, CashbackdetailsComponent]
 })
 export class LayoutModule { }

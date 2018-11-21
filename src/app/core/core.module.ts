@@ -32,6 +32,8 @@ import { NewsletterService } from './services/newsletter.service';
 import { LoginService } from './services/login.service';
 import { ReferralService } from './services/referral.service';
 import { ResetpasswordService } from './services/resetpassword.service';
+import { CouponService } from './services/coupon.service';
+import { StoreService } from './services/store.service';
 
 // guard
 import { AuthGuard } from './guard/auth.guard';
@@ -136,7 +138,9 @@ export class CoreModule {
         NewsletterService,
         LoginService,
         ReferralService,
-        ResetpasswordService
+        ResetpasswordService,
+        CouponService,
+        StoreService
       ]
     };
   }

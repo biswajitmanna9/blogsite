@@ -7,6 +7,7 @@ import { LoginComponent } from '../../core/components/login/login.component';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { AlertPromise } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-home',
@@ -92,8 +93,8 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
 
-  addLike(id, is_like, user_id) {
-    if (user_id) {
+  addLike(id, is_like,user_id) {
+    if (localStorage.getItem('userId')) {
       if (is_like == 0) {
         is_like = "1";
       }
@@ -108,7 +109,7 @@ export class HomeComponent implements OnInit {
       this.blogService.userAddLike(data).subscribe(
         res => {
           console.log(res);
-          this.getMostRecentBlogList(this.userId);
+          this.getMostRecentBlogList(localStorage.getItem('userId'));
           if (res['result']['is_like'] == 1) {
             this.toastr.success('Liked Succesfully', '', {
               timeOut: 3000,
