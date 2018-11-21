@@ -1,25 +1,25 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12"> <img class="img-fluid all-store-banner" src="assets/images/card-banner.jpg" alt=""></div>
-  </div>
+    <div class="row">
+        <div class="col-md-12"> <img class="img-fluid all-store-banner" src="assets/images/card-banner.jpg" alt=""></div>
+    </div>
 </div>
 <section class="full-bg-grey">
-  <div class="container">
-      <h2 class="head-line-line mb-3 mt-3">Most Recent Stores</h2>
-      <div class="cuppon-sec">
-        <div class="row">
-          <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index">
-            <div class="cuppon">
-              <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
-              <span>{{storeCashBack.name}}</span>
-              <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
-              <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
+    <div class="container">
+        <h2 class="head-line-line mb-3 mt-3">Most Recent Stores</h2>
+        <div class="cuppon-sec">
+            <div class="row">
+                <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index">
+                    <div class="cuppon">
+                        <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+                        <span>{{storeCashBack.name}}</span>
+                        <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+                        <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
+                    </div>
+                </div>
+
             </div>
-          </div>
-  
         </div>
-      </div>
-    <!-- <h2 class="head-line-line mb-3 mt-3">Recomended Stores </h2>
+        <!-- <h2 class="head-line-line mb-3 mt-3">Recomended Stores </h2>
     <div class="deal">
       <div class="row">
         <div class="col-md-3">
@@ -112,29 +112,29 @@
         </div>
       </div>
     </div> -->
-    <div class="hot-deal-sec">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="white-board">
-            <div class="hot-deal-headline">
-              <h2 class="head-line-line mb-3 mt-3">All Store </h2>
-            </div>
-            <div class="hot-deal">
-
-              <div class="row">
+        <div class="hot-deal-sec">
+            <div class="row">
                 <div class="col-md-12">
-                  <ul>
-                    <li>All</li>
-                    <li class="letter-filter" (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
-                    <li>0-9</li>
-                  </ul>
-                </div>
-              </div>
+                    <div class="white-board">
+                        <div class="hot-deal-headline">
+                            <h2 class="head-line-line mb-3 mt-3">All Store </h2>
+                        </div>
+                        <div class="hot-deal">
 
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-12">
-                    <table class="table">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul>
+                                        <li class="text-light bg-dark">All</li>
+                                        <li class="letter-filter text-muted" (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
+                                        <li class="text-light bg-dark">0-9</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="row border-top">
+                                    <div class="col-md-12">
+                                        <!-- <table class="table">
                       <tbody>
                         <tr>
                           <td>A Pea in the Pod</td>
@@ -143,16 +143,25 @@
                           <td> <button>shop Now</button></td>
                         </tr>
                       </tbody>
-                    </table>
-                  </div>
+                    </table> -->
+
+                                        <div class="table-box d-flex justify-content-around">
+                                            <a href="#">A Pea in the Pod</a>
+                                            <a href="#">9 Coupons</a>
+                                            <a class="text-danger" href="#">1.0 % Cash Back</a>
+                                            <button>shop Now</button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-              </div>
-            </div>
 
-          </div>
-        </div>
-
-        <!-- <div class="col-md-3">
+                <!-- <div class="col-md-3">
           <div class="white-board">
             <div class="hot-deal-headline">
               <h2 class="head-line-line mb-3 mt-3 font-size-20">Double Cash Back </h2>
@@ -171,8 +180,8 @@
             </ul>
           </div>
         </div> -->
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <app-newsletter></app-newsletter>

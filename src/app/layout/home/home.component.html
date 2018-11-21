@@ -67,7 +67,7 @@
     <div class="container">
         <h2 class="head-line-line mb-3 mt-3">Recent Posts</h2>
         <div class="list-sec">
-            <div class="row bg-white-blog" *ngFor="let blog of mostRecentBlogList; let i = index">
+            <div class="row bg-white-blog d-flex align-items-center" *ngFor="let blog of mostRecentBlogList; let i = index">
                 <div class="col-md-2">
                     <a href="javascript:void(0);">
                         <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
@@ -81,8 +81,8 @@
                     <ul *ngIf="blog.tags.length > 0" class="tags">
                         <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
                     </ul>
-                    <small>{{getBlogCount(blog)}}</small> 
-                    <span class="like-btn"  (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                    <small>{{getBlogCount(blog)}}</small>
+                    <span class="like-btn" (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                     <small>{{blog.likes}} Likes</small>
                 </div>
                 <div class="col-md-2">
