@@ -3,12 +3,10 @@
     <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
     <div class="col-md-2 side-ad">
       <ul>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
+        <li *ngFor="let popularStore of popularstoree; let i = index">
+          {{popularStore.name}}
+          <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+        </li>
       </ul>
     </div>
   </div>
@@ -17,12 +15,12 @@
   <div class="container">
     <div class="cuppon-sec">
       <div class="row">
-        <div class="col-md-2" *ngFor="let couponList of discountCouponList; let i = index">
+        <div class="col-md-2" *ngFor="let storeCashBack of cashBackList; let i = index">
           <div class="cuppon">
             <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
-            <span>{{couponList.store_name}}</span>
-            <span class="coupon-discount">{{couponList.discount}}% Cash Back</span>
-            <small>See All One Hanes Place Coupons</small>
+           <span>{{storeCashBack.cashback_portal_name}}</span>
+            <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+            <small>{{storeCashBack.name}}</small> 
           </div>
         </div>
 
