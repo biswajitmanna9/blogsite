@@ -1,13 +1,12 @@
-
 <!-- Page Content -->
 <section class="full-bg-grey">
-  <div class="container">
-      <h2 class="head-line-line float-left mb-3 mt-3">Blog List</h2>
+    <div class="container">
+        <h2 class="head-line-line float-left mb-3 mt-3">Blog List</h2>
 
-      <div class="Show-item float-right d-inline-flex">
-          <span>Show Items</span>
-          <form class="woocommerce-ordering" method="post">
-              <label>
+        <div class="Show-item float-right d-inline-flex">
+            <span>Show Items</span>
+            <form class="woocommerce-ordering" method="post">
+                <label>
         <select name="order" class="orderby">
           <option selected="selected" value="menu-order">Recent Posts</option>
           <option value="popularity">popularity</option>
@@ -16,51 +15,50 @@
           <option value="popularity">price</option>
         </select>
       </label>
-          </form>
-      </div>
+            </form>
+        </div>
 
 
 
 
-      <div class="clearfix"></div>
-      <div class="list-sec" *ngIf="blogList.length > 0">
-          <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index">
-              <div class="col-md-2">
-                  <a href="#">
-                      <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
-                  </a>
-              </div>
-              <div class="col-md-8">
-                  <span>{{blog.category_name}}</span>
-                  <h3>{{blog.blog_title}}</h3>
-                  <small>{{blog.date_created | date:'mediumDate'}}</small>
-                  <p>{{blog.blog_excerpt | slice:0:200}}</p>
-                  <ul *ngIf="blog.tags.length > 0" class="tags">
-                      <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
-                  </ul>
-                  <small>{{getBlogCount(blog)}}</small> 
-                  <span class="like-btn"  (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-                  <small>{{blog.likes}} Likes</small>
-              </div>
-              <div class="col-md-2">
-                  <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.category_slug,blog.blog_url)">View</a>
-              </div>
-          </div>
-          
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="pagination-msg" *ngIf="blogListCount > 0">
-                    <p>Showing {{lower_count}} to {{upper_count}} of {{blogListCount}} entries</p>
-                  </div>
+        <div class="clearfix"></div>
+        <div class="list-sec" *ngIf="blogList.length > 0">
+            <div class="row bg-white-blog  d-flex align-items-center" *ngFor="let blog of blogList; let i = index">
+                <div class="col-md-2">
+                    <a href="#">
+                        <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
+                    </a>
                 </div>
-            <div class="col-md-12">
-              <div class="card-body pull-right" *ngIf="blogListCount > itemPerPage">
-                <ngb-pagination [collectionSize]="blogListCount" [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()"
-                  size="sm"></ngb-pagination>
-              </div>
+                <div class="col-md-8">
+                    <span>{{blog.category_name}}</span>
+                    <h3>{{blog.blog_title}}</h3>
+                    <small>{{blog.date_created | date:'mediumDate'}}</small>
+                    <p>{{blog.blog_excerpt | slice:0:200}}</p>
+                    <ul *ngIf="blog.tags.length > 0" class="tags">
+                        <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
+                    </ul>
+                    <small>{{getBlogCount(blog)}}</small>
+                    <span class="like-btn" (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                    <small>{{blog.likes}} Likes</small>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.category_slug,blog.blog_url)">View</a>
+                </div>
             </div>
-          </div>
-      </div>
-     
-  </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pagination-msg" *ngIf="blogListCount > 0">
+                        <p>Showing {{lower_count}} to {{upper_count}} of {{blogListCount}} entries</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-body pull-right" *ngIf="blogListCount > itemPerPage">
+                        <ngb-pagination [collectionSize]="blogListCount" [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()" size="sm"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </section>
