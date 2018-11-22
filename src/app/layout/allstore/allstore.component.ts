@@ -13,9 +13,15 @@ import { BlogService } from '../../core/services/blog.service';
 })
 export class AllstoreComponent implements OnInit {
   userId:string;
-  popularstoree: any = [];
-  storebyCashback: any =[];
+  allStore:any =[];
   filterAlphabets: any = [];
+  paginationMaxSize: number;
+  itemPerPage: number;
+  defaultPagination: number;
+  itemNo: number;
+  lower_count: number;
+  upper_count: number;
+  allStoreListCount:any;
   constructor(
     private storeService: StoreService,
     private router: Router,
@@ -29,44 +35,43 @@ export class AllstoreComponent implements OnInit {
     else {
       this.userId ="";
     }
-    this.getAlphabet();
-    this.popularstore();
-    this.storeByCashback();
+    this.itemNo = 0;
+    this.defaultPagination = 1;
+    this.paginationMaxSize = Globals.paginationMaxSize;
+    //this.itemPerPage = Globals.itemPerPage;
+    this.itemPerPage = 30;
+    this.allStoreListing();
+
   }
 
-  getAlphabet() {
-    let alphabets = [];
-    for (let i = 65; i <= 90;i++) {
-        alphabets.push(String.fromCharCode(i));
-        this.filterAlphabets = alphabets;
-    }
-    console.log(alphabets);
-  }
-
-  filterSearch(value) {
-   // alert(value);
-  }
-
-  popularstore() {
-    this.storeService.store().subscribe(
+  allStoreListing() {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', this.defaultPagination.toString());
+    this.storeService.allStore(params).subscribe(
       res => {
-        console.log("Store List==>",res);
-        this.popularstoree = res['result'];
+        console.log("All Store List==>",res);
+        
+        this.allStore = res['result']['storelist'];
+        this.allStoreListCount =  res['result']['total_count'];
+        
+        this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+
+
+        this.lower_count = this.itemNo + 1;
+        if (this.allStoreListCount > this.itemPerPage * this.defaultPagination) {
+          this.upper_count = this.itemPerPage * this.defaultPagination
+        }
+        else {
+          this.upper_count = this.allStoreListCount;
+        }
+
       },
       error => {
       }
     )
   }
-
-  storeByCashback() {
-    this.storeService.storeCashBack().subscribe(
-      res => {
-        console.log("Store List By Cashback==>",res);
-        this.storebyCashback = res['result'];
-      },
-      error => {
-      }
-    )
-  }
+  pagination() {
+    this.allStoreListing();
+  };
 
 }

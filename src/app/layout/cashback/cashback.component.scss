@@ -1,3 +1,19 @@
 .cuppon-sec .cuppon span {
     line-height: 35px;
 }
+
+.hot-deal ul {
+    text-align: center;
+}
+.hot-deal ul li {
+    display: inline-block;
+    padding: 3px 3px 3px 3px;
+    cursor: pointer;
+    color: #1791d3;
+}
+.no-records-found {
+    text-align: center;
+}
+.store-list {
+    cursor: 'pointer';
+}

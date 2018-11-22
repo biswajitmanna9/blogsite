@@ -1,21 +1,21 @@
 <section class="full-bg-grey">
     <div class="container">
-        <h2 class="head-line-line mb-3 mt-3">Groupon Coupons & Coupon Codes</h2>
+        <h2 class="head-line-line mb-3 mt-3">{{storeName}} Codes</h2>
         <div class="list-sec">
-            <div class="row bg-white-blog d-flex align-items-center">
+            <div class="row bg-white-blog d-flex align-items-center" *ngFor="let cashback of cashbackList; let i = index">
                 <div class="col-md-2">
                     <a href="javascript:void(0);">
-                        <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/flipkart-sidescroll.jpg" alt="">
+                        <!-- <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+                        <img class="img-fluid rounded mb-3 mb-md-0" src="assets/images/no-image.png" alt="">
                     </a>
                 </div>
                 <div class="col-md-8">
                     <!-- <span>abc sde</span> -->
-                    <h3>Stay home, get deals! Up to 80% off activities, beauty & spas, tech and more.</h3>
-                    <small class="cash-back">+ 6.0% Cash Back</small>
-                    <p class="text-muted">Prices as marked on select deals in select markets.
-                    </p>
+                    <h3>{{cashback.cashback_portal_name}}</h3>
+                    <small class="cash-back"> {{cashback.cashback_rate}} Cashback</small>
+                    <p class="text-muted">{{cashback.description}}</p>
 
-                    <small><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Ends Today</small>
+                    <!-- <small><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Ends Today</small> -->
 
 
                 </div>

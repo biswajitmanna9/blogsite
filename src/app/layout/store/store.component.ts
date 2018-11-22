@@ -30,6 +30,7 @@ export class StoreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.imageBaseUrl = environment.imageBaseUrl;
     if(localStorage.getItem('userId')) {
       this.userId = localStorage.getItem('userId');
     }

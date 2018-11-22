@@ -15,6 +15,14 @@ export class StoreService {
   storeCashBack(): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'storelistbycashback/')
   }
+  allStore(params): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'allstorelist/?'+params)
+  }
+
+  searchStore(params): Observable<any> {
+    console.log(environment.apiEndpoint + 'allstorelist/'+params);
+    return this.http.get(environment.apiEndpoint + 'allstorelist/'+params)
+  }
 
   
 }

@@ -13,5 +13,8 @@ export class CashbackService {
   maxDiscountCashBackList(): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'maxdiscountcashbacklist/')
   }
+  cashBackListByStore(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'cashbacksbystoreid/'+id)
+  }
 
 }

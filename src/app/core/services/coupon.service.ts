@@ -14,4 +14,8 @@ export class CouponService {
     return this.http.get(environment.apiEndpoint + 'maxDiscountCouponsList/')
   }
 
+  couponListByStore(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'couponsbystoreid/'+id)
+  }
+
 }
