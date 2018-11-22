@@ -37,7 +37,6 @@ export class StoreComponent implements OnInit {
     else {
       this.userId ="";
     }
-    this.imageBaseUrl = environment.imageBaseUrl;
     this.defaultPagination = 1;
     this.getAlphabet();
     this.popularstore();
@@ -56,7 +55,7 @@ export class StoreComponent implements OnInit {
   popularstore() {
     this.storeService.store().subscribe(
       res => {
-        console.log("Store List==>",res);
+        console.log("Popular Store List==>",res);
         this.popularstoree = res['result'];
       },
       error => {
@@ -81,7 +80,7 @@ export class StoreComponent implements OnInit {
     this.blogCategoryId =3; // For Deals 
     this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
       res => {
-        console.log(res);
+        console.log("Deals Listing",res);
         this.blogList = res['result']['bloglist'];
       },
       error => {
@@ -94,11 +93,25 @@ export class StoreComponent implements OnInit {
       res => {
         console.log("Coupon List==>", res);
         this.couponList = res['result'];
-        console.log(this.couponList);
+        console.log("Coupon List==>",this.couponList);
       },
       error => {
       }
     )
+  }
+
+  onNavigate(url){
+    window.open("http://www."+ url, "_blank");
+  }
+
+  goToCashBackDetails(id) {
+    this.router.navigate(['/cashbackdetails',id]);
+  }
+  goToDealsDetails(url) {
+    this.router.navigate(['/deals','details',url]);
+  }
+  goToCouponDetails(id) {
+    this.router.navigate(['/coupondetails',id]);
   }
 
 

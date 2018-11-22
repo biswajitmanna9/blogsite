@@ -14,6 +14,7 @@ import { CashbackService } from '../../core/services/cashback.service';
 export class CashbackdetailsComponent implements OnInit {
   cashbackList:any =[];
   storeName:string;
+  storeUrl:string;
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -29,12 +30,16 @@ export class CashbackdetailsComponent implements OnInit {
     this.cashbackService.cashBackListByStore(this.route.snapshot.params['id']).subscribe(
       res => {
         console.log("Cash Back List==>",res);
-        this.storeName = res['store_name']
+        this.storeName = res['store_details']['name'];
+        this.storeUrl = res['store_details']['url']
         this.cashbackList = res['result'];
       },
       error => {
       }
     )
+  }
+  onNavigate(url){
+    window.open("http://www."+ url, "_blank");
   }
 
 }

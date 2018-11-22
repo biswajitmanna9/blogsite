@@ -24,6 +24,8 @@ export class CouponComponent implements OnInit {
   upper_count: number;
   allStoreListCount:any;
   allStoreLength:number;
+  imageBaseUrl: string;
+  selectedItem:any;
   constructor(
     private couponService: CouponService,
     private router: Router,
@@ -32,6 +34,7 @@ export class CouponComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.imageBaseUrl = environment.imageBaseUrl;
     this.itemNo = 0;
     this.defaultPagination = 1;
     this.paginationMaxSize = Globals.paginationMaxSize;
@@ -89,6 +92,7 @@ export class CouponComponent implements OnInit {
   }
 
   pagination() {
+    window.scroll(0,500);
     this.allStoreListing();
   };
 
@@ -114,8 +118,9 @@ export class CouponComponent implements OnInit {
     console.log(alphabets);
   }
 
-  filterSearch(value) {
-    this.storeService.searchStore(value).subscribe(
+  filterSearch(alphabet) {
+    this.selectedItem = alphabet;
+    this.storeService.searchStore(alphabet).subscribe(
       res => {
         console.log("All Store List==>",res);
         this.allStore = res['result'];
@@ -126,5 +131,10 @@ export class CouponComponent implements OnInit {
       }
     )
   }
+
+  goToCouponDetails(id) {
+    this.router.navigate(['/coupondetails',id]);
+  }
+
 
 }

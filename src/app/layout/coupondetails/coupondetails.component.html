@@ -12,7 +12,11 @@
               <div class="col-md-8" >
                   <!-- <span>abc sde</span> -->
                   <h3>{{couponList.coupon_description}}</h3>
-                  <small class="cash-back">{{couponList.coupon_code}}</small>
+                
+                  <small class="cash-back" (click)="showCode(i)">Get Code</small>
+                  <small class="cash-back" *ngIf="show === i">{{couponList.coupon_code}}</small>
+
+
                   <!-- <p class="text-muted">Prices as marked on select deals in select markets.
                   </p> -->
 
@@ -21,10 +25,10 @@
 
               </div>
               <div class="col-md-2">
-                  <a class="btn derk-color text-white blog-btn">Shop Now</a>
+                  <a class="btn derk-color text-white blog-btn" (click)=onNavigate(storeUrl)>Shop Now</a>
               </div>
           </div>
-          <div class="no-record-found">
+          <div *ngIf="couponListing.length==0" class="no-records-found">
               No Records Found 
           </div>
       </div>

@@ -25,6 +25,8 @@ export class CashbackComponent implements OnInit {
   allStoreLength:number;
   filterAlphabets: any = [];
   allStore:any =[];
+  imageBaseUrl: string;
+  selectedItem:any;
   constructor(
     private storeService: StoreService,
     private router: Router,
@@ -33,6 +35,7 @@ export class CashbackComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.imageBaseUrl = environment.imageBaseUrl;
     if(localStorage.getItem('userId')) {
       this.userId = localStorage.getItem('userId');
     }
@@ -109,6 +112,7 @@ export class CashbackComponent implements OnInit {
   }
 
   pagination() {
+    window.scroll(0,500);
     this.allStoreListing();
   };
 
@@ -121,8 +125,9 @@ export class CashbackComponent implements OnInit {
     console.log(alphabets);
   }
 
-  filterSearch(value) {
-    this.storeService.searchStore(value).subscribe(
+  filterSearch(alphabet) {
+    this.selectedItem = alphabet;
+    this.storeService.searchStore(alphabet).subscribe(
       res => {
         console.log("All Store List==>",res);
         this.allStore = res['result'];
@@ -132,6 +137,14 @@ export class CashbackComponent implements OnInit {
       error => {
       }
     )
+  }
+
+  goToCashBackDetails(id) {
+    this.router.navigate(['/cashbackdetails',id]);
+  }
+
+  onNavigate(url){
+    window.open("http://www."+ url, "_blank");
   }
 
 }

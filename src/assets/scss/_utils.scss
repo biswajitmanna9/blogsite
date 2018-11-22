@@ -961,6 +961,7 @@ h4 {
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .cuppon-sec .cuppon img {
@@ -2198,6 +2199,38 @@ ul ul .cmmnt {
     color: #fff;
 }
 
+/* store right side bar start */
+
+.side-ad {
+    padding-top:12px;
+}
+.goto-store li {
+    cursor: pointer;
+    font-weight: bold;
+    
+}
+.goto-store li span {
+    color: #3498db;
+}
+.goto-store img {
+    cursor: pointer;
+}
+
+.cuppon-double-sec .cuppon {
+    margin-top:1%;
+}
+
+.filterSearch.active {
+    color:#1538c5 !important;
+}
+
+/* store right side bar start */
+
+.no-records-found {
+    color:#f55;
+    width:100%;
+    text-align: center;
+}
 
 /** =====================
  * Responsive

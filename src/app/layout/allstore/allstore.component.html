@@ -5,11 +5,11 @@
 </div>
 <section class="full-bg-grey">
     <div class="container">
-        <h2 class="head-line-line mb-3 mt-3">Most Recent Stores</h2>
+        <h2 class="head-line-line mb-3 mt-3">All Stores</h2>
         <div class="cuppon-sec">
             <div class="row">
                 <div class="col-md-2" *ngFor="let store of allStore; let i = index">
-                    <div class="cuppon">
+                    <div class="cuppon" (click)="goToCouponDetails(store.id)">
                         <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
                         <span>{{store.name}}</span>
                         <span class="coupon-discount">{{store.highest_cashback_raw}} Cash Back</span>

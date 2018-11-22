@@ -2,28 +2,23 @@
   <div class="row">
     <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
     <div class="col-md-2 side-ad">
-      <ul>
+      <ul class="goto-store">
         <li *ngFor="let popularStore of popularstoree; let i = index">
-          <!-- <span *ngIf="popularStore.image ==''">{{popularStore.name}}</span>  -->
-           <img class="store-img" [src]="popularStore.image != '' && imageBaseUrl+ popularStore.image || 'assets/images/no-image.png'"
-                                            alt=""> 
-           <!-- <img *ngIf="popularStore.image !=''" class="img-fluid store-img" [src]="imageBaseUrl+ popularStore.image" alt="">  -->
+          <span (click)="onNavigate(popularStore.url)" href="javascript:void(0)" *ngIf="popularStore.image ==''">{{popularStore.name}}</span>
+          <img (click)="onNavigate(popularStore.url)" *ngIf="popularStore.image !=''" class="img-fluid store-img"
+            [src]="imageBaseUrl+ popularStore.image" alt="">
         </li>
-        <!-- <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li> -->
       </ul>
     </div>
   </div>
 </div>
 <section class="full-bg-grey">
   <div class="container">
-      <h2 class="head-line-line mb-3 mt-3">Most Recent Stores - <a [routerLink]="['/allstore']" href="javascript:void(0)">See All Stores</a></h2>
+    <h2 class="head-line-line mb-3 mt-3">Most Recent Stores - <a [routerLink]="['/allstore']" href="javascript:void(0)">See
+        All Stores</a></h2>
     <div class="cuppon-sec">
       <div class="row">
-        <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index">
+        <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index" (click)=goToCashBackDetails(storeCashBack.id)>
           <div class="cuppon">
             <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
             <span>{{storeCashBack.name}}</span>
@@ -39,7 +34,7 @@
       <div class="row">
 
         <div class="col-md-3" *ngFor="let blog of blogList | slice:0:4; let i = index">
-          <div class="deal-sec">
+          <div class="deal-sec" (click)="goToDealsDetails(blog.blog_url)">
             <div class="deal-img">
               <!-- <img class="img-fluid" src="assets/images/deal-image.jpg" alt=""> -->
               <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
@@ -139,7 +134,7 @@
             <div class="hot-deal">
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-4" *ngFor="let coupon of couponList | slice:0:3; let i = index">
+                  <div class="col-md-4" *ngFor="let coupon of couponList | slice:0:6; let i = index">
                     <!-- <div class="deal-sec">
                       <div class="deal-img">
                         <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
@@ -156,13 +151,13 @@
                         <small>Expires 9/30/2018</small>
                       </div>
                     </div> -->
-                    <div class="deal-sec">
+                    <div class="deal-sec" (click)="goToCouponDetails(coupon.id)">
                       <div class="deal-detail">
                         <h4>{{coupon.coupon_description}}</h4>
                         <small>{{coupon.store_name}}</small>
                       </div>
                     </div>
-                  
+
                   </div>
                   <!-- <div class="col-md-4">
                     <div class="deal-sec">
@@ -209,25 +204,16 @@
         <div class="col-md-3">
           <div class="white-board">
             <div class="hot-deal-headline">
-              <h2 class="head-line-line mb-3 mt-3 font-size-20">Double Cash Back </h2>
+              <h2 class="head-line-line mb-3 mt-3 font-size-20">Cash Back Offers</h2>
             </div>
             <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
-              <li *ngFor="let storeCashBack of storebyCashback; let i = index" class="cuppon">
+              <li *ngFor="let storeCashBack of storebyCashback | slice:0:4; let i = index" class="cuppon">
                 <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
                 <span class="coupon-name">{{storeCashBack.cashback_portal_name}}</span>
                 <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
                 <span>{{storeCashBack.name}}</span>
 
               </li>
-              <!-- <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-              <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li> -->
             </ul>
           </div>
         </div>

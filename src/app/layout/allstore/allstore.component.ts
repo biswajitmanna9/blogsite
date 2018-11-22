@@ -74,4 +74,8 @@ export class AllstoreComponent implements OnInit {
     this.allStoreListing();
   };
 
+  goToCouponDetails(id) {
+    this.router.navigate(['/coupondetails',id]);
+  }
+
 }

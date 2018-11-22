@@ -14,7 +14,9 @@ import { CouponService } from '../../core/services/coupon.service';
 export class CoupondetailsComponent implements OnInit {
   couponListing:any =[];
   storeName:string;
-
+  storeUrl:string;
+  hideme=[];
+  show:number;
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -29,7 +31,8 @@ export class CoupondetailsComponent implements OnInit {
     this.couponService.couponListByStore(this.route.snapshot.params['id']).subscribe(
       res => {
         console.log("Coupon List==>",res);
-        this.storeName = res['store_name']
+        this.storeName = res['store_details']['name'];
+        this.storeUrl = res['store_details']['url']
         this.couponListing = res['result'];
       },
       error => {
@@ -47,5 +50,14 @@ export class CoupondetailsComponent implements OnInit {
       return moment(blog_date).format('ll');
     }
   }
+
+  onNavigate(url){
+    window.open("http://www."+ url, "_blank");
+  }
+
+  showCode(index){
+    this.show = index;
+ };
+
 
 }

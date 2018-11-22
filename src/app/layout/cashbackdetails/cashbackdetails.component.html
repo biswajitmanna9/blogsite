@@ -20,9 +20,12 @@
 
                 </div>
                 <div class="col-md-2">
-                    <a class="btn derk-color text-white blog-btn">Shop Now</a>
+                    <a (click)=onNavigate(storeUrl) class="btn derk-color text-white blog-btn">Shop Now</a>
                 </div>
             </div>
+            <div *ngIf="cashbackList.length==0" class="no-records-found">
+                    No Records Found 
+                </div>
         </div>
     </div>
 </section>

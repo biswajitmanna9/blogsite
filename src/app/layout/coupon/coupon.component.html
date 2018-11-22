@@ -2,18 +2,14 @@
   <div class="row">
     <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
     <div class="col-md-2 side-ad">
-      <!-- <ul>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-        <li><img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""></li>
-      </ul> -->
-      <ul>
+     
+      <ul class="goto-store">
         <li *ngFor="let popularStore of popularstoree; let i = index">
-          {{popularStore.name}}
+          <!-- {{popularStore.name}} -->
           <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+          <span (click)="onNavigate(popularStore.url)" href="javascript:void(0)" *ngIf="popularStore.image ==''">{{popularStore.name}}</span>
+          <img (click)="onNavigate(popularStore.url)" *ngIf="popularStore.image !=''" class="img-fluid store-img"
+            [src]="imageBaseUrl+ popularStore.image" alt="">
         </li>
         
       </ul>
@@ -25,7 +21,7 @@
     <div class="cuppon-sec">
       <div class="row">
         <div class="col-md-2" *ngFor="let couponList of discountCouponList; let i = index">
-          <div class="cuppon">
+          <div class="cuppon" (click)="goToCouponDetails(couponList.id)">
             <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
             <span>{{couponList.coupon_description}}</span>
             <!-- <span class="coupon-discount">{{couponList.discount}}% Cash Back</span> -->
@@ -40,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="white-board">
                         <div class="hot-deal-headline">
-                            <h2 class="head-line-line mb-3 mt-3">All Store </h2>
+                            <h2 class="head-line-line mb-3 mt-3">All Coupons </h2>
                         </div>
                         <div class="hot-deal">
 
@@ -48,7 +44,7 @@
                                 <div class="col-md-12">
                                     <ul>
                                         <li class="text-light bg-dark" (click)="allStoreListing()">All</li>
-                                        <li class="letter-filter text-muted" (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
+                                        <li class="letter-filter text-muted filterSearch" [ngClass]="{'active': selectedItem == alphabet}" (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
                                         <li class="text-light bg-dark" (click)="filterSearch('numberfilter')">0-9</li>
                                     </ul>
                                 </div>
@@ -77,7 +73,7 @@
                                     </div>
                                 <div class="col-md-12">
                                   <div class="card-body pull-right" *ngIf="allStoreListCount > itemPerPage">
-                                    <ngb-pagination [collectionSize]="allStoreListCount" [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()"
+                                    <ngb-pagination [collectionSize]="allStoreListCount" [pageSize]="itemPerPage" [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()"
                                       size="sm"></ngb-pagination>
                                   </div>
                                 </div>
