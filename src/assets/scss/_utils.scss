@@ -1,15 +1,14 @@
 body {
-    padding-top: 71px;
+    // padding-top: 71px;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
 }
 
-@media (min-width: 992px) {
-    body {
-        padding-top: 71px;
-    }
-}
-
+// @media (min-width: 992px) {
+//     body {
+//         padding-top: 71px;
+//     }
+// }
 ul {
     margin: 0;
     padding: 0;
@@ -2021,6 +2020,7 @@ ul ul .cmmnt {
 
 .height-all {
     height: 76px;
+    position: relative;
 }
 
 .nav-item .nav-link {
@@ -2251,6 +2251,13 @@ ul ul .cmmnt {
     margin-top: 8px;
 }
 
+.invalid-feedback {
+    position: absolute;
+    bottom: -18px;
+    left: 14px;
+    text-align: left;
+}
+
 
 /** =====================
  * Responsive
@@ -2299,5 +2306,74 @@ ul ul .cmmnt {
     }
     .reply-list .comment-box {
         width: 320px;
+    }
+    .show {
+        position: absolute;
+        top: 110%;
+        width: 92%;
+        background: #1538c5;
+        border-radius: 5px;
+        padding-bottom: 8px;
+    }
+    .show .float-right {
+        float: none !important;
+    }
+    .nav-item .nav-link {
+        padding: 6px 10px;
+        border-bottom: 1px solid #092aaf;
+    }
+    #demo-2 input[type=search] {
+        width: 100%;
+    }
+    .send-bg-filed {
+        bottom: 0;
+        width: 100%;
+        left: 0;
+    }
+    .send-mail-box {
+        width: 100%;
+    }
+    .send-mail-box span {
+        font-size: 14px;
+    }
+    .single .btn {
+        min-height: 37px;
+        font-size: 13px;
+    }
+    .single .form-control {
+        height: 37px;
+        font-size: 12px;
+    }
+    .full-mail-sec h2 {
+        font-size: 22px;
+    }
+    .footer-bs .footer-brand h2 {
+        font-size: 22px;
+    }
+    .blog-btn {
+        width: 30%;
+    }
+    .card-item img {
+        height: 15px;
+        width: 15px;
+    }
+    .card-item {
+        padding: 0 8px;
+    }
+    .card-item h2 {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .bg-subjet {
+        position: relative;
+        bottom: 0;
+        background: #011670;
+    }
+    .bg-subjet .d-flex {
+        display: block !important;
+        text-align: center;
+    }
+    .text-item h2 {
+        font-size: 17px;
     }
 }
