@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
     this.blogService.getHomeBannerContentList().subscribe(
       res => {
         this.homeBannerContentList = res['result']
+        console.log("Banner List ==>",this.homeBannerContentList);
       },
       error => {
         // console.log(error)

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import * as Globals from '../../core/globals';
 import { ToastrService } from 'ngx-toastr';
@@ -28,12 +28,16 @@ export class AllblogComponent implements OnInit {
   userId:string;
   visibleKey: boolean;
   blogLinks:string;
+  isSearch:number;
   constructor(
     private blogService: BlogService,
     private router: Router,
     private toastr: ToastrService,
     public dialog: MatDialog,
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+   }
 
   ngOnInit() {
     if(localStorage.getItem('userId')) {
@@ -47,8 +51,14 @@ export class AllblogComponent implements OnInit {
     this.defaultPagination = 1;
     this.paginationMaxSize = Globals.paginationMaxSize;
     this.itemPerPage = Globals.itemPerPage;
-    this.getBlogList();
+
     //this.blogCategorySlug = 'deals';
+    if(this.route.snapshot.params['search_key']) {
+      this.getSearchBlogList(this.route.snapshot.params['search_key']);
+    }
+    else {
+      this.getBlogList();
+    }
   }
 
   getBlogList() {
@@ -71,6 +81,20 @@ export class AllblogComponent implements OnInit {
 
         this.blogLinks = res['result']['links'];
         this.visibleKey = true
+      },
+      error => {
+      }
+    )
+  }
+
+  getSearchBlogList(search_key) {
+    this.blogService.getAllSearchBlogList(search_key,this.userId).subscribe(
+      res => {
+        console.log("Search List==>",res);
+        this.blogList = res['result']['bloglist'];
+        this.blogLinks = res['result']['links'];
+        this.visibleKey = true
+        this.isSearch =1;
       },
       error => {
       }

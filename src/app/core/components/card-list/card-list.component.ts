@@ -153,6 +153,7 @@ export class CardListComponent implements OnInit {
           var data = {
             category_name: x.category_name,
             category_slug: x.category_slug,
+            category_image: x.image,
             id: x.id
           }
           this.subCategoryList.push(data)
@@ -161,13 +162,14 @@ export class CardListComponent implements OnInit {
               var Sub_data = {
                 category_name: y.category_name,
                 category_slug: y.category_slug,
+                category_image: y.image,
                 id: y.id
               }
               this.subCategoryList.push(Sub_data)
             })
           }
         })
-        // console.log(this.subCategoryList)
+         console.log(this.subCategoryList)
       },
       error => {
         // console.log(error)

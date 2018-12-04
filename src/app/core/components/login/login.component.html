@@ -33,7 +33,7 @@
                 <button type="submit" class="btn btn-block btn-signup"> Sign In </button>                
               </div>
             </form>
-            <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" *ngIf="toggle_key && formType!=2">
+            <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" autocomplete="off" *ngIf="toggle_key && formType!=2">
               <div class="form-content">
                 <div class="form-group">
                   <label>Name</label>

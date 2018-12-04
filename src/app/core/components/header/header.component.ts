@@ -6,6 +6,7 @@ import { SocialUser } from "angularx-social-login";
 import { BlogService } from '../../services/blog.service';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -13,17 +14,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  searchForm: FormGroup;
   private user: SocialUser;
   loggedIn: boolean;
   categoryList: any = [];
   user_pic_letter: string;
   cards_category_list: any = [];
+  searchKey:any;
+  userId:any;
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
     private blogService: BlogService,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private formBuilder: FormBuilder,
   ) {
     loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
   }
@@ -31,6 +36,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.loadUserInfo();
     this.getCategoryList();
+
+    this.searchForm = this.formBuilder.group({
+      search: ["", Validators.required]
+    });
+   
+
+    
+
   }
 
 
@@ -123,6 +136,11 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/' + url_slug]);
     }
 
+  }
+
+  searchBlog() {
+    this.searchKey = this.searchForm.value.search
+    this.router.navigate(['/allblog/' + this.searchKey]);
   }
 
 }

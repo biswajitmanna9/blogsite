@@ -59,4 +59,9 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + user_id +'/?'+params )
   }
 
+  getAllSearchBlogList(search_key,user_id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + search_key+'/'+user_id)
+  }
+
+
 }

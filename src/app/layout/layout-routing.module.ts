@@ -33,6 +33,7 @@ const routes: Routes = [
       { path: 'contact-us', component: ContactUsComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
       { path: 'allblog', component: AllblogComponent },
+      { path: 'allblog/:search_key', component: AllblogComponent },
       { path: 'store', component: StoreComponent },
       { path: 'allstore', component: AllstoreComponent },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },

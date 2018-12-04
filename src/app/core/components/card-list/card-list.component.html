@@ -35,7 +35,8 @@
       <div class="d-flex justify-content-between" *ngFor="let category of subCategoryList">
         <div class="card-item" [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
           <a [routerLink]="['.']" (click)="goToCategoryPage(category.category_slug)">
-            <img class="img-fluid" src="assets/images/right-arrow.png" alt="">
+            <!-- <img class="img-fluid" src="assets/images/right-arrow.png" alt=""> -->
+            <img class="img-fluid" [src]="imageBaseUrl + category.category_image" alt="">
             <h2>{{category.category_name}}</h2>
           </a>
         </div>

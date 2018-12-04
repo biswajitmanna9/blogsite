@@ -144,9 +144,10 @@
                     </div>
                 </li>                
             </ul>
-            <form id="demo-2">
-                <input type="search" placeholder="Search">
+            <form id="demo-2" role="form" [formGroup]="searchForm" novalidate (submit)="searchBlog()">
+                <input type="search" placeholder="Search" formControlName="search">
             </form>
+            
         </div>
     </div>
 </nav>

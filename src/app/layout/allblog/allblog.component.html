@@ -3,7 +3,7 @@
 <section class="full-bg-grey">
   <div class="container">
       <h2 class="head-line-line float-left mb-3 mt-3">Blog List</h2>
-
+       
       <div class="Show-item float-right d-inline-flex">
           <span>Show Items</span>
           <form class="woocommerce-ordering" method="post">
@@ -24,6 +24,7 @@
 
       <div class="clearfix"></div>
       <div class="list-sec" *ngIf="blogList.length > 0">
+           
           <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index">
               <div class="col-md-2">
                   <a href="#">
@@ -60,6 +61,9 @@
               </div>
             </div>
           </div>
+      </div>
+      <div *ngIf="blogList.length == 0" class="no-records-found">
+          No Records Found 
       </div>
      
   </div>
