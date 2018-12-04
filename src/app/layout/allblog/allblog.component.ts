@@ -90,7 +90,8 @@ export class AllblogComponent implements OnInit {
   getSearchBlogList(search_key) {
     this.blogService.getAllSearchBlogList(search_key,this.userId).subscribe(
       res => {
-        console.log("Search List==>",res);
+        //alert(res['result']['bloglist'].length);
+        console.log("Search List==>",res.length);
         this.blogList = res['result']['bloglist'];
         this.blogLinks = res['result']['links'];
         this.visibleKey = true

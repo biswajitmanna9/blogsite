@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit {
         if(cards_category != undefined){
           this.cards_category_list = cards_category[0]['sub_category_details']
         }
-        console.log(this.cards_category_list)
+      //  console.log(this.cards_category_list)
       },
       error => {
         // console.log(error)
