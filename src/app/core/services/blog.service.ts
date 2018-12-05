@@ -56,11 +56,23 @@ export class BlogService {
   }
 
   getAllBlogList(user_id,params): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + user_id +'/?'+params )
+    //return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + user_id +'/?'+params )
+    return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcatuser/' + user_id +'/?'+params )
   }
 
   getAllSearchBlogList(search_key,user_id): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + search_key+'/'+user_id)
+    if(user_id) {
+      return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcatsearch/' + search_key)
+    }
+    else {
+      return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + search_key+'/'+user_id)
+    }
+   // return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + search_key+'/'+user_id)
+  }
+
+  getPopularSearch(user_id): Observable<any> {
+    console.log(environment.apiEndpoint + 'bloglistwithoutcardbylikecount/'+user_id);
+    return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardbylikecount/'+user_id)
   }
 
 

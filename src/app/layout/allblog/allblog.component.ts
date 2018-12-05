@@ -29,6 +29,7 @@ export class AllblogComponent implements OnInit {
   visibleKey: boolean;
   blogLinks:string;
   isSearch:number;
+  itemName:any;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -170,6 +171,41 @@ export class AllblogComponent implements OnInit {
   }
   goToDetails(category_slug,blog_url) {
     this.router.navigateByUrl('/' + category_slug + '/details/' + blog_url);
+  }
+  onChange(event: any) {
+    this.blogList=[];
+    this.blogListCount="";
+      this.itemName = event.target.value;
+      if(this.itemName == 'recent') {
+        this.blogService.getMostRecentBlogList(this.userId).subscribe(
+          res => {
+            console.log("Item List==>",res);
+            this.blogList = res['result'];
+            console.log("Item Blog List==>", this.blogList);
+            this.blogLinks = res['result']['links'];
+            this.visibleKey = true
+          },
+          error => {
+          }
+        )
+      }
+      else if(this.itemName == 'popular')  {
+        this.blogService.getPopularSearch(this.userId).subscribe(
+          res => {
+            console.log("Item List==>",res);
+            this.blogList = res['result']['bloglist'];
+            console.log("Item Blog List==>", this.blogList);
+            this.blogLinks = res['result']['links'];
+            this.visibleKey = true
+          },
+          error => {
+          }
+        )
+      }
+      else {
+        this.getBlogList();
+      }
+      
   }
 
 
