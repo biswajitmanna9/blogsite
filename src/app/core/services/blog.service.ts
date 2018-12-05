@@ -11,6 +11,7 @@ export class BlogService {
   ) { }
 
   getCategoryList(): Observable<any> {
+    console.log(environment.apiEndpoint + 'categorylist/');
     return this.http.get(environment.apiEndpoint + 'categorylist/')
   }
 
@@ -35,6 +36,7 @@ export class BlogService {
   }
 
   getSubCategoryByCategory(id): Observable<any> {
+    console.log(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/');
     return this.http.get(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/')
   }
 
@@ -73,6 +75,10 @@ export class BlogService {
   getPopularSearch(user_id): Observable<any> {
     console.log(environment.apiEndpoint + 'bloglistwithoutcardbylikecount/'+user_id);
     return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardbylikecount/'+user_id)
+  }
+  
+  getBlogListByTag(cat_id,tag_name): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'postListByTagName/' + cat_id + '/'+ tag_name)
   }
 
 

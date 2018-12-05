@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { AlertPromise } from 'selenium-webdriver';
+
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit {
   imageBaseUrl: string;
   homeBannerContentList: any = [];
   userId:string;
+  mainCardCategoryId: any;
+  subCategoryList: any = [];
   constructor(
     private blogService: BlogService,
     private _sanitizer: DomSanitizer,
@@ -37,16 +40,15 @@ export class HomeComponent implements OnInit {
     this.imageBaseUrl = environment.imageBaseUrl;
     this.getMostRecentBlogList(this.userId);
     this.getHomeBannerContentList();
+    this.getSubCategoryByCategory();
   }
 
   getMostRecentBlogList(data) {
     this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
-        console.log(res)
         this.mostRecentBlogList = res['result']
       },
       error => {
-        // console.log(error)
       }
     )
   }
@@ -58,7 +60,6 @@ export class HomeComponent implements OnInit {
         console.log("Banner List ==>",this.homeBannerContentList);
       },
       error => {
-        // console.log(error)
       }
     )
   }
@@ -109,7 +110,6 @@ export class HomeComponent implements OnInit {
       }
       this.blogService.userAddLike(data).subscribe(
         res => {
-          console.log(res);
           this.getMostRecentBlogList(localStorage.getItem('userId'));
           if (res['result']['is_like'] == 1) {
             this.toastr.success('Liked Succesfully', '', {
@@ -133,12 +133,50 @@ export class HomeComponent implements OnInit {
         data: {}
       });
       dialogRef.afterClosed().subscribe(result => {
-        // console.log(result)
       })
     }
 
   }
 
- 
+  getSubCategoryByCategory() {
+    this.mainCardCategoryId =2;
+    this.blogService.getSubCategoryByCategory(this.mainCardCategoryId).subscribe(
+      res => {
+        console.log(res);
+        res['result'].forEach(x => {
+          var data = {
+            category_name: x.category_name,
+            category_slug: x.category_slug,
+            category_image: x.image,
+            id: x.id
+          }
+         
+          this.subCategoryList.push(data);
+          if (x.sub_category_details.length > 0) {
+            x.sub_category_details.forEach(y => {
+              var Sub_data = {
+                category_name: y.category_name,
+                category_slug: y.category_slug,
+                category_image: y.image,
+                id: y.id
+              }
+              this.subCategoryList.push(Sub_data)
+            })
+          }
+        })
+      },
+      error => {
+        // console.log(error)
+      }
+    )
+  }
+
+  goToCategoryPage(slug: string) {
+    //alert(this.router.navigateByUrl('cards/' + slug));
+   
+    this.router.navigateByUrl('cards/' + slug);
+  }
+
+  
 
 }

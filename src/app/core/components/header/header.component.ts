@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   categoryList: any = [];
   user_pic_letter: string;
   cards_category_list: any = [];
+  banks_category_list: any =[];
   searchKey:any;
   userId:any;
   constructor(
@@ -40,12 +41,7 @@ export class HeaderComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       search: ["", Validators.required]
     });
-   
-
-    
-
   }
-
 
   loadUserInfo() {
     if (localStorage.getItem('isLoggedin')) {
@@ -55,7 +51,6 @@ export class HeaderComponent implements OnInit {
     else {
       this.authService.authState.subscribe((user) => {
         this.user = user;
-        console.log(user)
         this.loggedIn = (user != null);
         if (this.loggedIn) {
           localStorage.setItem('isLoggedin', 'true');
@@ -76,12 +71,10 @@ export class HeaderComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
     })
   }
 
   logout() {
-    // this.authService.signOut();
     localStorage.clear();
     this.loggedIn = false;
     this.router.navigate(['/']);
@@ -90,13 +83,21 @@ export class HeaderComponent implements OnInit {
   getCategoryList() {
     this.blogService.getCategoryList().subscribe(
       res => {
-        console.log(res)
+        console.log("Cat List==>",res);
         this.categoryList = res['result']
         var cards_category = this.categoryList.filter(x => x.category_slug == "cards")
+        console.log(cards_category);
         if(cards_category != undefined){
-          this.cards_category_list = cards_category[0]['sub_category_details']
+          this.cards_category_list = cards_category[0]['sub_category_details'];
+          console.log("Card Category List==>",this.cards_category_list);
         }
-      //  console.log(this.cards_category_list)
+
+        var banks_category = this.categoryList.filter(x => x.category_slug == "banking")
+        console.log(banks_category);
+        if(banks_category != undefined){
+          this.banks_category_list = banks_category[0]['sub_category_details'];
+          console.log("Bank Category List==>",this.banks_category_list);
+        }
       },
       error => {
         // console.log(error)
@@ -131,7 +132,6 @@ export class HeaderComponent implements OnInit {
   }
 
   goTo(url_slug) {
-    console.log(url_slug);
     if (url_slug != "cards") {
       this.router.navigate(['/' + url_slug]);
     }

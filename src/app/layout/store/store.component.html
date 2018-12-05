@@ -207,10 +207,10 @@
               <h2 class="head-line-line mb-3 mt-3 font-size-20">Cash Back Offers</h2>
             </div>
             <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
-              <li *ngFor="let storeCashBack of storebyCashback | slice:0:4; let i = index" class="cuppon">
+              <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:4; let i = index" class="cuppon">
                 <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
                 <span class="coupon-name">{{storeCashBack.cashback_portal_name}}</span>
-                <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+                <span class="coupon-discount" >{{storeCashBack.raw_rate_data}} Cash Back</span>
                 <span>{{storeCashBack.name}}</span>
 
               </li>

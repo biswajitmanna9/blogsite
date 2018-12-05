@@ -36,14 +36,14 @@ export class CardListComponent implements OnInit {
   @Input() opened = false;
   private loggedIn: boolean;
   mainCardCategoryId: string;
-  userId:string;
+  userId: string;
   paginationMaxSize: number;
   itemPerPage: number;
   defaultPagination: number;
   itemNo: number;
   lower_count: number;
   upper_count: number;
-  blogListCount:any;
+  blogListCount: any;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -54,11 +54,11 @@ export class CardListComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('userId')) {
+    if (localStorage.getItem('userId')) {
       this.userId = localStorage.getItem('userId');
     }
     else {
-      this.userId ="";
+      this.userId = "";
     }
     this.imageBaseUrl = environment.imageBaseUrl;
     this.itemNo = 0;
@@ -101,13 +101,11 @@ export class CardListComponent implements OnInit {
   getBlogListByCategory() {
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
-    console.log(params);
-    this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
+    this.blogService.getBlogListByCategory(this.blogCategoryId, this.userId, params).subscribe(
       res => {
-        // console.log(res)
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
-        this.blogListCount =  res['result']['total_count'];
+        this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
         this.lower_count = this.itemNo + 1;
         if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
@@ -148,7 +146,7 @@ export class CardListComponent implements OnInit {
   getSubCategoryByCategory() {
     this.blogService.getSubCategoryByCategory(this.mainCardCategoryId).subscribe(
       res => {
-        // console.log(res)
+        console.log(res);
         res['result'].forEach(x => {
           var data = {
             category_name: x.category_name,
@@ -156,7 +154,8 @@ export class CardListComponent implements OnInit {
             category_image: x.image,
             id: x.id
           }
-          this.subCategoryList.push(data)
+         
+          this.subCategoryList.push(data);
           if (x.sub_category_details.length > 0) {
             x.sub_category_details.forEach(y => {
               var Sub_data = {
@@ -169,7 +168,6 @@ export class CardListComponent implements OnInit {
             })
           }
         })
-         console.log(this.subCategoryList)
       },
       error => {
         // console.log(error)
@@ -184,7 +182,6 @@ export class CardListComponent implements OnInit {
   goToPageByCategorySlugChecking(slug) {
     this.blogService.getSlugInfo(slug).subscribe(
       res => {
-        console.log(res)
         var parent_Slug;
         var grand_parent_slug;
         if (res['result']['parent'] != undefined) {
@@ -221,8 +218,29 @@ export class CardListComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
     })
+  }
+
+  tagFilterList(tag_name) {
+    this.blogService.getBlogListByTag(this.blogCategoryId, tag_name).subscribe(
+      res => {
+        this.categoryDetails = res['result']['category_details'];
+        this.blogList = res['result']['bloglist'];
+        this.blogListCount = res['result']['total_count'];
+        this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+        this.lower_count = this.itemNo + 1;
+        if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
+          this.upper_count = this.itemPerPage * this.defaultPagination
+        }
+        else {
+          this.upper_count = this.blogListCount;
+        }
+        this.visibleKey = true
+      },
+      error => {
+        // console.log(error)
+      }
+    )
   }
 
 }

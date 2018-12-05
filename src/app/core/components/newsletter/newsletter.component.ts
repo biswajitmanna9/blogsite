@@ -34,7 +34,7 @@ export class NewsletterComponent implements OnInit {
       this.form.value.is_subscriber= '1';
       this.newsletterService.subscribe(this.form.value).subscribe(
         res => {
-          console.log(res)
+          console.log("News Letter Result==>",res)
           this.form.reset();
           this.toastr.success('Thanks for subscription', '', {
             timeOut: 3000,

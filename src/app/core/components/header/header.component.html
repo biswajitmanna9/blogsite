@@ -66,9 +66,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto float-right">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/allblog']">Blog</a>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0);" [routerLink]="['/store']" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -103,6 +103,7 @@
                                 <ul class="nav d-inline-flex nav-subhover">
                                     <li class="nav-item" *ngFor="let card_cat of cards_category_list"  [ngClass]="{'nav-subdropdown': card_cat.sub_sub_category_details.length > 0}">
                                         <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug]">{{card_cat.category_name}}</a>
+                    
                                         <ul *ngIf="card_cat.sub_sub_category_details.length > 0">
                                             <li *ngFor="let card_sub_cat of card_cat.sub_sub_category_details">
                                                 <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug, card_sub_cat.category_slug]">{{card_sub_cat.category_name}}</a>
@@ -114,8 +115,38 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item ">
+                <!-- <li class="nav-item ">
                     <a class="nav-link" [routerLink]="['.']">Banks</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                           Banks
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="banks_category_list.length > 0">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <ul class="nav d-inline-flex nav-subhover">
+                                        <li class="nav-item" *ngFor="let bank_cat of banks_category_list"  [ngClass]="{'nav-subdropdown': bank_cat.sub_sub_category_details.length > 0}">
+                                            <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug]">{{bank_cat.category_name}}</a>
+                        
+                                            <ul *ngIf="bank_cat.sub_sub_category_details.length > 0">
+                                                <li *ngFor="let bank_sub_cat of bank_cat.sub_sub_category_details">
+                                                    <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug, bank_sub_cat.category_slug]">{{bank_sub_cat.category_name}}</a>
+                                                </li>                                           
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <li class="nav-item ">
+                    <form id="demo-2" role="form" [formGroup]="searchForm" novalidate (submit)="searchBlog()">
+                        <input type="text" placeholder="Search" formControlName="search">
+                        <!-- <input type="text" placeholder="Search.." name="search2" class="search-box">
+                        <button type="submit"><i class="fa fa-search search-btn"></i></button> -->
+                    </form>
                 </li>
                 <li class="nav-item" *ngIf="!loggedIn">
                     <a class="nav-link" [routerLink]="['.']" (click)="login()">Login</a>
@@ -144,9 +175,7 @@
                     </div>
                 </li>                
             </ul>
-            <form id="demo-2" role="form" [formGroup]="searchForm" novalidate (submit)="searchBlog()">
-                <input type="search" placeholder="Search" formControlName="search">
-            </form>
+         
             
         </div>
     </div>

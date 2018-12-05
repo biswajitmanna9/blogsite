@@ -28,20 +28,17 @@
     <div class="container" *ngIf="visibleKey">
         <h2 class="head-line-line float-left mb-3 mt-3">{{categoryDetails.category_name}} List</h2>
 
-        <div class="Show-item float-right d-inline-flex">
+        <!-- <div class="Show-item float-right d-inline-flex">
             <span>Show Items</span>
             <form class="woocommerce-ordering" method="post">
                 <label>
           <select name="order" class="orderby">
             <option selected="selected" value="menu-order">Recent Posts</option>
             <option value="popularity">popularity</option>
-            <option value="popularity">Average ration</option>
-            <option value="popularity">newness</option>
-            <option value="popularity">price</option>
           </select>
         </label>
             </form>
-        </div>
+        </div> -->
 
 
 
@@ -85,7 +82,7 @@
             </div>
         </div>
         <div class="list-sec" *ngIf="blogList.length == 0">
-            <h3>Post Not Found Under {{categoryDetails.category_name}}</h3>
+            <h3 class="no-records-found">Post Not Found Under {{categoryDetails.category_name}}</h3>
         </div>
     </div>
 </section>

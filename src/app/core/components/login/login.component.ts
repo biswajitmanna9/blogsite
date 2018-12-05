@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from "../../services/login.service";
 import { ToastrService } from 'ngx-toastr';
 
+import { ReferralService } from "../../../core/services/referral.service";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
+    private referralService: ReferralService,
     private toastr: ToastrService,
   ) { }
 
@@ -52,7 +55,8 @@ export class LoginComponent implements OnInit {
           Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
         ]
       ],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
+      zip_code: ["", Validators.required]
     });
 
     this.forgotForm = this.formBuilder.group({
@@ -84,12 +88,6 @@ export class LoginComponent implements OnInit {
       this.title = "Forgot Password";
       this.toggle_btn = "New user sign up"; 
   }
-
-
- 
-
-
-  
 
   signInWithGoogle() {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
@@ -153,6 +151,7 @@ export class LoginComponent implements OnInit {
           });
           this.loginService.loginStatus(true);
           this.dialogRef.close(true);
+          this.updateUserZipCode(res['result']['id'],this.signupForm.value.zip_code);
         },
         error => {
           // console.log(error)
@@ -164,6 +163,22 @@ export class LoginComponent implements OnInit {
     } else {
       this.markFormGroupTouched(this.signupForm)
     }
+  }
+
+  updateUserZipCode(user_id,zipCode) {
+    var data = {
+      user_id: user_id,
+      zipcode: zipCode
+    }
+    console.log("Add Zip Code==>",data);
+    this.referralService.getZipCode(data).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   forgotPassword() {

@@ -14,10 +14,9 @@
         </div>
     </div>
 </header>
-<div class="card-listing pt-3 pb-3">
+<!-- <div class="card-listing pt-3 pb-3">
     <div class="container">
         <div class="d-flex justify-content-center">
-            <!---->
             <div class="d-flex justify-content-between ng-tns-c8-0 ng-star-inserted">
                 <div class="card-item">
                     <a class="ng-tns-c8-0" href="#/cards/business-cards">
@@ -60,7 +59,24 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="card-listing pt-3 pb-3">
+        <div class="container">
+            <div class="d-flex justify-content-center" >
+                <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of subCategoryList">
+                    <div class="card-item" (click)="goToCategoryPage(category.category_slug)">
+                        <a class="ng-tns-c8-0" >
+                            <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'"
+                            alt="">
+                            <h2 class="ng-tns-c8-0">{{category.category_name}}</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
 <!-- Page Content -->
 <section class="full-bg-grey">
@@ -89,6 +105,7 @@
                     <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog)">View</a>
                 </div>
             </div>
+            <a class="show-more-blog" [routerLink]="['/allblog']">Show More >></a>
         </div>
     </div>
 </section>

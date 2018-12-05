@@ -1805,11 +1805,12 @@ ul ul .cmmnt {
     border-top: 2px solid #001670;
 }
 
+
 .card-item h2 {
-    font-size: 15px;
-    color: #fff;
-    text-shadow: 2px 2px 2px #120f0f;
+    font-size: 10px;
+    color: #cecece;
     text-align: center;
+    padding-top: 8px;
 }
 
 .card-item {
@@ -1827,13 +1828,12 @@ ul ul .cmmnt {
 .active-card::before {
     content: "\f0d8";
     position: absolute;
-    bottom: -60%;
-    left: 43%;
+    bottom: -65%;
+    left: 31%;
     color: #f2f2f2;
-    font-size: 37px;
+    font-size: 53px;
     font-family: FontAwesome;
 }
-
 .tags {
     list-style: none;
     margin: 0;
@@ -1933,7 +1933,9 @@ ul ul .cmmnt {
 }
 
 .recent-blog-list .blog-detail-text {}
-
+.show-more-blog {
+    float:right;
+}
 .refar-code {
     min-height: 506px;
 }
@@ -2028,7 +2030,7 @@ ul ul .cmmnt {
 }
 
 .nav-subhover li {
-    width: 195px;
+    width: 220px;
     padding: 0 !important;
     margin: 0 !important;
     position: relative;
@@ -2089,10 +2091,10 @@ ul ul .cmmnt {
 }
 
 // search
-#demo-2 input[type=search] {
+#demo-2 input[type=text] {
     background: #ededed url(../images/search.png) no-repeat 6px center;
     border: solid 1px #ccc;
-    padding: 3px 5px;
+    padding: 7px 5px;
     width: 55px;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
@@ -2102,27 +2104,22 @@ ul ul .cmmnt {
     transition: all .5s;
 }
 
-#demo-2 input[type=search] {
-    width: 34px;
+#demo-2 input[type=text] {
+    width: 200px;
     padding-left: 10px;
     color: transparent;
-    cursor: pointer;
+    color: #000;
     border: 2px solid #102475;
     border-radius: 20px;
+    margin-top: 13px;
+    padding-left: 23px;
+    font-size: 11px;
 }
 
-#demo-2 input[type=search]:hover {
+#demo-2 input[type=text]:hover {
     background-color: #fff;
 }
 
-#demo-2 input[type=search]:focus {
-    width: 150px;
-    padding-left: 32px;
-    color: #000;
-    background-color: #fff;
-    cursor: auto;
-    border: none;
-}
 
 #demo-2 input:-moz-placeholder {
     color: transparent;
