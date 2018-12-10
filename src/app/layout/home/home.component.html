@@ -5,10 +5,26 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}" [style.background-image]="getBackground(banner.slider_img)">
-                <div class="carousel-caption-bnr d-none d-md-block">
-                    <h3>{{banner.title}}</h3>
-                    <p>{{banner.description}}</p>
-                    <a [href]="banner.btn_link" target="_blank">Read More</a>
+                <div class="carousel-caption-bnr d-none  d-flex justify-content-center">
+
+                    <div class="bnr-text text-center">
+                        <h3>{{banner.title}}</h3>
+                        <p>{{banner.description}}</p>
+                        <a [href]="banner.btn_link" target="_blank">Read More</a>
+                    </div>
+                    <div class="bnr-text text-center">
+                        <h3>{{banner.title}}</h3>
+                        <p>{{banner.description}}</p>
+                        <a [href]="banner.btn_link" target="_blank">Read More</a>
+                    </div>
+                    <div class="bnr-text text-center">
+                        <h3>{{banner.title}}</h3>
+                        <p>{{banner.description}}</p>
+                        <a [href]="banner.btn_link" target="_blank">Read More</a>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -61,7 +77,7 @@
     </div>
 </div> -->
 <!--  with out caraousel -->
- <!-- <div class="card-listing pt-3 pb-3">
+<!-- <div class="card-listing pt-3 pb-3">
         <div class="container">
             <div class="d-flex justify-content-center" >
                 <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of subCategoryList">
@@ -77,8 +93,8 @@
             </div>
         </div>
     </div> -->
-    <!-- With caraousal-->
-    <!-- <div class="card-listing pt-3 pb-3" id="categories">
+<!-- With caraousal-->
+<!-- <div class="card-listing pt-3 pb-3" id="categories">
         <div class="container">
             <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
                     '480': { items: 1,  margin: 5 },
@@ -104,22 +120,21 @@
             </owl-carousel>
         </div>
     </div> -->
-    <div class="card-listing pt-3 pb-3">
-            <div class="container">
-                <div class="d-flex justify-content-center" >
-                    <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of topCatList">
-                        <div class="card-item" (click)="goToTopCategoryPage(category.parent_category_url,category.category_slug)">
-                            <a class="ng-tns-c8-0" >
-                                <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'"
-                                alt="">
-                                <h2 class="ng-tns-c8-0">{{category.category_name}}</h2>
-                            </a>
-                        </div>
-                    </div>
-    
+<div class="card-listing pt-3 pb-3">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of topCatList">
+                <div class="card-item" (click)="goToTopCategoryPage(category.parent_category_url,category.category_slug)">
+                    <a class="ng-tns-c8-0">
+                        <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'" alt="">
+                        <h2 class="ng-tns-c8-0">{{category.category_name}}</h2>
+                    </a>
                 </div>
             </div>
+
         </div>
+    </div>
+</div>
 <!-- Page Content -->
 <section class="full-bg-grey">
     <div class="container">
@@ -127,7 +142,7 @@
         <div class="list-sec">
             <div class="row bg-white-blog d-flex align-items-center" *ngFor="let blog of mostRecentBlogList; let i = index">
                 <div class="col-md-2">
-                        <p *ngIf="blog.category_slug =='deals'">Sale Ends : {{blog.deals_end_datetime | date:'mediumDate'}}</p>
+                    <p *ngIf="blog.category_slug =='deals'">Sale Ends : {{blog.deals_end_datetime | date:'mediumDate'}}</p>
                     <a href="javascript:void(0);">
                         <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
                     </a>
