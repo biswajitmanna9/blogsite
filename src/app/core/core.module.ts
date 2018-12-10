@@ -60,6 +60,8 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 
+import { OwlModule } from 'ngx-owl-carousel';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -83,7 +85,8 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
     MatTabsModule, MatToolbarModule, MatTooltipModule,
     //----------------Material----------------//
-    SocialLoginModule
+    SocialLoginModule,
+    OwlModule
   ],
   declarations: [
     HeaderComponent,
@@ -119,7 +122,8 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     BlogListComponent,
     CardListComponent,
     ReplyTreeComponent,
-    SideNavComponent
+    SideNavComponent,
+    OwlModule
   ],
   entryComponents: [
     LoginComponent

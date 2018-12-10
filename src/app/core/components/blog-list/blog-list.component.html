@@ -45,8 +45,11 @@
 
         <div class="clearfix"></div>
         <div class="list-sec" *ngIf="blogList.length > 0">
-            <div class="row bg-white-blog  d-flex align-items-center" *ngFor="let blog of blogList; let i = index">
+            
+            <div  class="row bg-white-blog  d-flex align-items-center" *ngFor="let blog of blogList; let i = index">
                 <div class="col-md-2">
+                    
+                    <p *ngIf="blog.category_slug =='deals'">Sale Ends : {{blog.deals_end_datetime | date:'mediumDate'}}</p>
                     <a href="#">
                         <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
                     </a>
@@ -63,8 +66,12 @@
                     <span class="like-btn" (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                     <small>{{blog.likes}} Likes</small>
                 </div>
-                <div class="col-md-2">
-                    <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.blog_url)">View</a>
+                <div class="col-md-2 price-container">
+                    <div  *ngIf="blog.category_slug =='deals'">
+                        <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price | currency}}</del></p>
+                        <p class="main-price"> {{blog.sale_price | currency}}</p>
+                    </div>
+                        <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.blog_url)">View</a>
                 </div>
             </div>
 

@@ -132,7 +132,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  clodeLogin() {
+  closeLogin() {
     this.dialogRef.close(true);
   }
 

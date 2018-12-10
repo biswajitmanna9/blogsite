@@ -30,12 +30,15 @@ export class BlogListComponent implements OnInit {
   upper_count: number;
   blogListCount:any;
   userId:string;
+  now :any;
   constructor(
     private blogService: BlogService,
     private router: Router,
     private toastr: ToastrService,
     public dialog: MatDialog,
-  ) { }
+  ) {
+    this.now = Date.now();
+   }
 
   ngOnInit() {
     if(localStorage.getItem('userId')) {
@@ -65,7 +68,7 @@ export class BlogListComponent implements OnInit {
         console.log(res);
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
-        console.log(this.blogList);
+        console.log("Deals Page Blog List==>",this.blogList);
         this.blogListCount =  res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
         this.lower_count = this.itemNo + 1;

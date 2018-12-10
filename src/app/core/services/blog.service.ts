@@ -36,7 +36,6 @@ export class BlogService {
   }
 
   getSubCategoryByCategory(id): Observable<any> {
-    console.log(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/');
     return this.http.get(environment.apiEndpoint + 'subcategorylistbycatid/' + id + '/')
   }
 
@@ -79,6 +78,11 @@ export class BlogService {
   
   getBlogListByTag(cat_id,tag_name): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'postListByTagName/' + cat_id + '/'+ tag_name)
+  }
+
+  
+  getTopCategory(): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'topcategorylistbypostcount/')
   }
 
 

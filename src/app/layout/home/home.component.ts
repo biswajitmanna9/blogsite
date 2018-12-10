@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,ViewChild } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { AlertPromise } from 'selenium-webdriver';
+import { OwlCarousel } from 'ngx-owl-carousel';
 
 
 @Component({
@@ -16,12 +17,15 @@ import { AlertPromise } from 'selenium-webdriver';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('owlElement') owlElement: OwlCarousel
   mostRecentBlogList: any = [];
   imageBaseUrl: string;
   homeBannerContentList: any = [];
   userId:string;
   mainCardCategoryId: any;
   subCategoryList: any = [];
+  topCatList:any =[];
+  isCard:boolean;
   constructor(
     private blogService: BlogService,
     private _sanitizer: DomSanitizer,
@@ -40,13 +44,15 @@ export class HomeComponent implements OnInit {
     this.imageBaseUrl = environment.imageBaseUrl;
     this.getMostRecentBlogList(this.userId);
     this.getHomeBannerContentList();
-    this.getSubCategoryByCategory();
+    this.getCategorySlugInfo("cards");
+    this.topCategoryList();
   }
 
   getMostRecentBlogList(data) {
     this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
         this.mostRecentBlogList = res['result']
+        console.log("Most Recent Deals==>",this.mostRecentBlogList);
       },
       error => {
       }
@@ -92,6 +98,8 @@ export class HomeComponent implements OnInit {
   }
 
   goToDetails(blog) {
+    console.log(blog.parent_category_slug);
+    console.log(blog.blog_url);
     this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
 
@@ -139,7 +147,7 @@ export class HomeComponent implements OnInit {
   }
 
   getSubCategoryByCategory() {
-    this.mainCardCategoryId =2;
+    //this.mainCardCategoryId =2;
     this.blogService.getSubCategoryByCategory(this.mainCardCategoryId).subscribe(
       res => {
         console.log(res);
@@ -152,17 +160,18 @@ export class HomeComponent implements OnInit {
           }
          
           this.subCategoryList.push(data);
-          if (x.sub_category_details.length > 0) {
-            x.sub_category_details.forEach(y => {
-              var Sub_data = {
-                category_name: y.category_name,
-                category_slug: y.category_slug,
-                category_image: y.image,
-                id: y.id
-              }
-              this.subCategoryList.push(Sub_data)
-            })
-          }
+          // if (x.sub_category_details.length > 0) {
+          //   x.sub_category_details.forEach(y => {
+          //     var Sub_data = {
+          //       category_name: y.category_name,
+          //       category_slug: y.category_slug,
+          //       category_image: y.image,
+          //       id: y.id
+          //     }
+          //     this.subCategoryList.push(Sub_data)
+          //     console.log(this.subCategoryList);
+          //   })
+          // }
         })
       },
       error => {
@@ -171,10 +180,34 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  getCategorySlugInfo(slug) {
+    this.blogService.getSlugInfo(slug).subscribe(
+      res => {
+        this.mainCardCategoryId = res['result']['id']
+        this.getSubCategoryByCategory();
+      },
+      error => {
+      }
+    )
+  }
+
   goToCategoryPage(slug: string) {
-    //alert(this.router.navigateByUrl('cards/' + slug));
-   
     this.router.navigateByUrl('cards/' + slug);
+  }
+
+  goToTopCategoryPage(parent_url,slug) {
+    this.router.navigateByUrl(parent_url + '/' + slug);
+  }
+
+  topCategoryList() {
+    this.blogService.getTopCategory().subscribe(
+      res => {
+        this.topCatList = res['result'];
+        console.log("Top Cat List==>",this.topCatList);
+      },
+      error => {
+      }
+    )
   }
 
   

@@ -6,7 +6,21 @@
                 <p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies. Curabitur vehicula, libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi ut sem.</p>
                 <p>© 2014 BS3 UI Kit, All rights reserved</p>
             </div>
-            <div class="col-md-2 footer-nav animated fadeInUp">
+            <div class="col-md-4 footer-nav animated fadeInUp">
+
+                <h4>Recent Post —</h4>
+                <ul class="pages">
+                    <li *ngFor="let blog of mostRecentBlogListFooter | slice:0:3; let i = index" (click)="goToDetails(blog)">
+                            <span>{{blog.blog_title}}</span>
+                            <br>
+                            <small class="limited-text" [innerHTML]="blog.blog_content"></small>
+                          
+                    </li>
+                  
+                </ul>
+
+            </div>
+            <!-- <div class="col-md-2 footer-nav animated fadeInUp">
 
                 <h4>Menu —</h4>
                 <ul class="pages">
@@ -16,28 +30,13 @@
                     <li><a href="#">Science</a></li>
                     <li><a href="#">Advice</a></li>
                 </ul>
-
-            </div>
-            <div class="col-md-2 footer-nav animated fadeInUp">
-
-                <h4>Menu —</h4>
-                <ul class="pages">
-                    <li><a href="#">Travel</a></li>
-                    <li><a href="#">Nature</a></li>
-                    <li><a href="#">Explores</a></li>
-                    <li><a href="#">Science</a></li>
-                    <li><a href="#">Advice</a></li>
-                </ul>
-
-            </div>
+            </div> -->
             <div class="col-md-2 footer-social animated fadeInDown">
                 <h4>Menu —</h4>
                 <ul class="pages">
-                    <li><a href="#">Travel</a></li>
-                    <li><a href="#">Nature</a></li>
-                    <li><a href="#">Explores</a></li>
-                    <li><a href="#">Science</a></li>
-                    <li><a href="#">Advice</a></li>
+                    <li><a href="javascript:void(0)">Terms & Condition</a></li>
+                    <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)">Contact us</a></li>
                 </ul>
             </div>
             <div class="col-md-2 footer-social social-share animated fadeInDown">

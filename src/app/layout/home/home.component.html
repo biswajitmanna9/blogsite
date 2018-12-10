@@ -60,8 +60,8 @@
         </div>
     </div>
 </div> -->
-
-<div class="card-listing pt-3 pb-3">
+<!--  with out caraousel -->
+ <!-- <div class="card-listing pt-3 pb-3">
         <div class="container">
             <div class="d-flex justify-content-center" >
                 <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of subCategoryList">
@@ -73,11 +73,53 @@
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
+    </div> -->
+    <!-- With caraousal-->
+    <!-- <div class="card-listing pt-3 pb-3" id="categories">
+        <div class="container">
+            <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
+                    '480': { items: 1,  margin: 5 },
+        '640': { items: 10, margin: 5 }
+               }  }"
+                [items]="subCategoryList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
     
-
+                <div class="item" *ngFor="let category of subCategoryList ; let i = index">
+                    <a href="JavaScript:Void(0);" (click)="goToCategoryPage(category.category_slug)">
+                        <div class="category-icon-item">
+                            <div class="icon-box card-item">
+                                <div class="icon ">
+                                    
+                                    <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'"
+                                        alt="">
+    
+                                </div>
+                                <h2>{{category.category_name}}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </owl-carousel>
+        </div>
+    </div> -->
+    <div class="card-listing pt-3 pb-3">
+            <div class="container">
+                <div class="d-flex justify-content-center" >
+                    <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of topCatList">
+                        <div class="card-item" (click)="goToTopCategoryPage(category.parent_category_url,category.category_slug)">
+                            <a class="ng-tns-c8-0" >
+                                <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'"
+                                alt="">
+                                <h2 class="ng-tns-c8-0">{{category.category_name}}</h2>
+                            </a>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
 <!-- Page Content -->
 <section class="full-bg-grey">
     <div class="container">
@@ -85,6 +127,7 @@
         <div class="list-sec">
             <div class="row bg-white-blog d-flex align-items-center" *ngFor="let blog of mostRecentBlogList; let i = index">
                 <div class="col-md-2">
+                        <p *ngIf="blog.category_slug =='deals'">Sale Ends : {{blog.deals_end_datetime | date:'mediumDate'}}</p>
                     <a href="javascript:void(0);">
                         <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
                     </a>
@@ -101,7 +144,11 @@
                     <span class="like-btn" (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                     <small>{{blog.likes}} Likes</small>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 price-container">
+                    <div *ngIf="blog.category_slug =='deals'">
+                        <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price | currency}}</del></p>
+                        <p class="main-price"> {{blog.sale_price | currency}}</p>
+                    </div>
                     <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog)">View</a>
                 </div>
             </div>

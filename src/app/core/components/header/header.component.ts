@@ -23,6 +23,11 @@ export class HeaderComponent implements OnInit {
   banks_category_list: any =[];
   searchKey:any;
   userId:any;
+
+  menuList: any;
+  selected: any = {};
+
+  
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
@@ -141,6 +146,15 @@ export class HeaderComponent implements OnInit {
   searchBlog() {
     this.searchKey = this.searchForm.value.search
     this.router.navigate(['/allblog/' + this.searchKey]);
+  }
+
+  select(type, item, $event) {
+    this.selected[type] = (this.selected[type] === item ? null : item);
+    console.log('Item: ', item);
+    $event ? $event.stopPropagation() : null;
+  }
+  isActive(type, item) {
+    return this.selected[type] === item;
   }
 
 }
