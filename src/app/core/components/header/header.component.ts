@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   menuList: any;
   selected: any = {};
 
-  
+
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
@@ -143,18 +143,24 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  goToPage(url_slug) {
+      this.router.navigate(['/' + url_slug]);
+  }
+
   searchBlog() {
     this.searchKey = this.searchForm.value.search
     this.router.navigate(['/allblog/' + this.searchKey]);
   }
 
-  select(type, item, $event) {
-    this.selected[type] = (this.selected[type] === item ? null : item);
-    console.log('Item: ', item);
-    $event ? $event.stopPropagation() : null;
-  }
-  isActive(type, item) {
-    return this.selected[type] === item;
-  }
+  // select(type, item, $event) {
+  //   this.selected[type] = (this.selected[type] === item ? null : item);
+  //   $event ? $event.stopPropagation() : null;
+  // }
+  // isActive(type, item) {
+  //   if(item=='deals' || item=='coupon' || item=='cashback' ) {
+  //     item ==1;
+  //   }
+  //   return this.selected[type] === item;
+  // }
 
 }

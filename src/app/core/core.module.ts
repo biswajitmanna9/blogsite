@@ -61,6 +61,7 @@ import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 import { OwlModule } from 'ngx-owl-carousel';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -97,7 +98,8 @@ import { OwlModule } from 'ngx-owl-carousel';
     BlogListComponent,
     CardListComponent,
     ReplyTreeComponent,
-    SideNavComponent
+    SideNavComponent,
+    LoadingComponent
   ],
   exports: [
     NgbModule,
@@ -123,7 +125,8 @@ import { OwlModule } from 'ngx-owl-carousel';
     CardListComponent,
     ReplyTreeComponent,
     SideNavComponent,
-    OwlModule
+    OwlModule,
+    LoadingComponent
   ],
   entryComponents: [
     LoginComponent

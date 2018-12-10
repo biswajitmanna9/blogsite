@@ -69,7 +69,7 @@
                 <!-- <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/allblog']">Blog</a>
                 </li> -->
-                <li class="nav-item dropdown" [ngClass]="{active: isActive('main', 1)}">
+                <li  class="nav-item dropdown" >
                     <a class="nav-link dropdown-toggle" href="javascript:void(0);" [routerLink]="['/store']" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Stores
@@ -78,14 +78,14 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <ul class="nav d-flex justify-content-start nav-subhover">
-                                    <li class="nav-item" (click)="select('main', 1);">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="javascript:void(0);" (click)="goTo('deals')">Deals</a>
                                     </li>
-                                    <li class="nav-item" (click)="select('main', 1);">
-                                        <a class="nav-link" [routerLink]="['/coupon']">Cupon</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:void(0);" (click)="goToPage('coupon')" [routerLink]="['/coupon']">Cupon</a>
                                     </li>
-                                    <li class="nav-item" (click)="select('main', 1);">
-                                        <a class="nav-link" [routerLink]="['/cashback']">Cash Back</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:void(0);" (click)="goToPage('cashback')" >Cash Back</a>
                                     </li>
                                 </ul>
                             </div>
@@ -130,11 +130,11 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <ul class="nav d-inline-flex nav-subhover">
-                                    <li class="nav-item" *ngFor="let bank_cat of banks_category_list" [ngClass]="{'nav-subdropdown': bank_cat.sub_sub_category_details.length > 0}">
+                                    <li  class="nav-item" *ngFor="let bank_cat of banks_category_list" [ngClass]="{'nav-subdropdown': bank_cat.sub_sub_category_details.length > 0}">
                                         <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug]">{{bank_cat.category_name}}</a>
                 
                                         <ul *ngIf="bank_cat.sub_sub_category_details.length > 0">
-                                            <li *ngFor="let bank_sub_cat of bank_cat.sub_sub_category_details">
+                                            <li  *ngFor="let bank_sub_cat of bank_cat.sub_sub_category_details">
                                                 <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug, bank_sub_cat.category_slug]">{{bank_sub_cat.category_name}}</a>
                                             </li>
                                         </ul>
