@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   categoryList: any = [];
   user_pic_letter: string;
   cards_category_list: any = [];
+  stroes_category_list: any = []
   banks_category_list: any =[];
   searchKey:any;
   userId:any;
@@ -88,20 +89,19 @@ export class HeaderComponent implements OnInit {
   getCategoryList() {
     this.blogService.getCategoryList().subscribe(
       res => {
-        console.log("Cat List==>",res);
         this.categoryList = res['result']
         var cards_category = this.categoryList.filter(x => x.category_slug == "cards")
-        console.log(cards_category);
         if(cards_category != undefined){
           this.cards_category_list = cards_category[0]['sub_category_details'];
-          console.log("Card Category List==>",this.cards_category_list);
         }
-
         var banks_category = this.categoryList.filter(x => x.category_slug == "banking")
-        console.log(banks_category);
         if(banks_category != undefined){
           this.banks_category_list = banks_category[0]['sub_category_details'];
-          console.log("Bank Category List==>",this.banks_category_list);
+        }
+
+        var stores_category = this.categoryList.filter(x => x.category_slug == "stores")
+        if(stores_category != undefined){
+          this.stroes_category_list = stores_category[0]['sub_category_details'];
         }
       },
       error => {
@@ -145,6 +145,18 @@ export class HeaderComponent implements OnInit {
 
   goToPage(url_slug) {
       this.router.navigate(['/' + url_slug]);
+  }
+
+  goToStorePage(url_slug,cat_id) {
+    if(url_slug=='coupons' || cat_id==32) {
+      this.router.navigate(['/store/' + url_slug]);
+    }
+    else if(url_slug=='cashback' || cat_id==31) {
+      this.router.navigate(['/store/' + url_slug]);
+    }
+    else {
+      this.router.navigate(['/stores/' + url_slug]);
+    }
   }
 
   searchBlog() {

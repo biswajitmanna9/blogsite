@@ -58,6 +58,7 @@ export class BlogComponent implements OnInit {
   getCategorySlugInfo(slug) {
     this.blogService.getSlugInfo(slug).subscribe(
       res => {
+        
         this.blogCategoryId = res['result']['id']
         this.categoryName = res['result']['title']
         var parent_Slug;
@@ -85,6 +86,7 @@ export class BlogComponent implements OnInit {
         this.isVisible = true;
       },
       error => {
+
         this.router.navigateByUrl('/404');
       }
     )

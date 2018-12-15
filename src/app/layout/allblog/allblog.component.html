@@ -49,7 +49,7 @@
 
                 <div class="row bg-white-blog" *ngFor="let blog of blogList; let i = index">
                     <div class="col-md-2">
-                            <p *ngIf="blog.category_slug =='deals'">Sale Ends : {{blog.deals_end_datetime | date:'mediumDate'}}</p>
+                            <!-- <p *ngIf="blog.category_slug =='deals'">Sale Ends : {{blog.deals_end_datetime | date:'mediumDate'}}</p> -->
                         <a>
                             <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image"
                                 alt="">
@@ -73,6 +73,9 @@
                             <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price | currency}}</del></p>
                             <p class="main-price"> {{blog.sale_price | currency}}</p>
                         </div>
+                        <p *ngIf="blog.daysPending >0 && blog.category_slug =='deals'" class="deals-start"><i class="fa fa-clock-o" aria-hidden="true"></i> {{blog.daysPending}} Days Left</p>
+                        <p *ngIf="blog.daysPending < 0 && blog.category_slug =='deals'" class="deals-end"><i class="fa fa-clock-o" aria-hidden="true"></i> Expired</p>
+                        
                         <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.category_slug,blog.blog_url)">View</a>
                     </div>
                 </div>

@@ -11,7 +11,6 @@ export class BlogService {
   ) { }
 
   getCategoryList(): Observable<any> {
-    console.log(environment.apiEndpoint + 'categorylist/');
     return this.http.get(environment.apiEndpoint + 'categorylist/')
   }
 

@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LoginComponent } from '../../core/components/login/login.component';
 import { BlogService } from '../../core/services/blog.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-allblog',
   templateUrl: './allblog.component.html',
@@ -30,6 +30,11 @@ export class AllblogComponent implements OnInit {
   blogLinks:string;
   isSearch:number;
   itemName:any;
+  now :any;
+  daysLeft:any;
+  endDate:any;
+  today:any;
+  daysPending:any;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -69,6 +74,31 @@ export class AllblogComponent implements OnInit {
       res => {
         console.log(res);
         this.blogList = res['result']['bloglist'];
+        // for(var i = 0; i < this.blogList.length; i++) {
+        //   this.daysPending =0;
+        //   this.today = moment(new Date()).format("DD/MM/YYYY");
+        //   this.endDate = moment(new Date(this.blogList[i].deals_end_datetime), 'DD/MM/YYYY');
+        //   this.daysPending = this.endDate.diff(this.today, 'days');
+        //   this.blogList[i].daysPending = this.daysPending;
+        //   this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
+        //   this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
+        // }
+        for(var i = 0; i < this.blogList.length; i++) {
+          this.daysPending =0;
+           var today = moment(new Date()).format("YYYY-MM-DD");
+           var endDealsDate =  moment(new Date(this.blogList[i].deals_end_datetime)).format("YYYY-MM-DD");
+          
+          // var endDate = moment(new Date(this.blogList[i].deals_end_datetime), 'DD/MM/YYYY');
+         // this.daysPending = endDate.diff(today, 'days');
+         //var today = moment("2018-12-14", "YYYY-MM-DD");
+         var endDate = moment(endDealsDate, "YYYY-MM-DD");
+         this.daysPending = moment.duration(endDate.diff(today)).asDays()
+          console.log(this.daysPending);
+          this.blogList[i].daysPending = this.daysPending;
+         this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
+         this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
+        }
+        console.log(this.blogList);
         this.blogListCount =  res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
         this.lower_count = this.itemNo + 1;

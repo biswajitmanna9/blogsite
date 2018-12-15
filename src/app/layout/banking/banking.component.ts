@@ -9,14 +9,14 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { AlertPromise } from 'selenium-webdriver';
 import { OwlCarousel } from 'ngx-owl-carousel';
-
+import * as Globals from '../../core/globals';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-banking',
+  templateUrl: './banking.component.html',
+  styleUrls: ['./banking.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class BankingComponent implements OnInit {
   @ViewChild('owlElement') owlElement: OwlCarousel
   mostRecentBlogList: any = [];
   imageBaseUrl: string;
@@ -26,11 +26,23 @@ export class HomeComponent implements OnInit {
   subCategoryList: any = [];
   topCatList:any =[];
   isCard:boolean;
+
+  categoryDetails: any;
+  visibleKey: boolean;
+  blogLinks:string;
+  paginationMaxSize: number;
+  itemPerPage: number;
+  defaultPagination: number;
+  itemNo: number;
+  lower_count: number;
+  upper_count: number;
+  blogListCount:any;
   now :any;
   daysLeft:any;
   endDate:any;
   today:any;
   daysPending:any;
+  blogList: any=[];
   constructor(
     private blogService: BlogService,
     private _sanitizer: DomSanitizer,
@@ -46,28 +58,22 @@ export class HomeComponent implements OnInit {
     else {
       this.userId ="";
     }
+
     this.imageBaseUrl = environment.imageBaseUrl;
+    this.itemNo = 0;
+    this.defaultPagination = 1;
+    this.paginationMaxSize = Globals.paginationMaxSize;
+    this.itemPerPage = Globals.itemPerPage;
     this.getMostRecentBlogList(this.userId);
     this.getHomeBannerContentList();
-    this.getCategorySlugInfo("cards");
+    this.getCategorySlugInfo("banking");
     this.topCategoryList();
   }
 
   getMostRecentBlogList(data) {
     this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
-        this.mostRecentBlogList = res['result'];
-        for (var i = 0; i < this.mostRecentBlogList.length; i++) {
-          this.daysPending = 0;
-          var today = moment(new Date()).format("YYYY-MM-DD");
-          var endDealsDate = moment(new Date(this.mostRecentBlogList[i].deals_end_datetime)).format("YYYY-MM-DD");
-          var endDate = moment(endDealsDate, "YYYY-MM-DD");
-          this.daysPending = moment.duration(endDate.diff(today)).asDays()
-          console.log(this.daysPending);
-          this.mostRecentBlogList[i].daysPending = this.daysPending;
-          this.mostRecentBlogList[i].max_price = parseInt(this.mostRecentBlogList[i].max_price);
-          this.mostRecentBlogList[i].sale_price = parseInt(this.mostRecentBlogList[i].sale_price);
-        }
+        this.mostRecentBlogList = res['result']
         console.log("Most Recent Deals==>",this.mostRecentBlogList);
       },
       error => {
@@ -100,23 +106,26 @@ export class HomeComponent implements OnInit {
       return moment(blog_date).format('ll');
     }
   }
-
   getBlogCount(blog) {
-    if (blog.comments.approved == undefined) {
+    if (blog.comments ==null) {
       return "0 Comment"
     }
-    else if (blog.comments.approved < 2) {
-      return blog.comments.approved + " Comment"
-    }
     else {
-      return blog.comments.approved + " Comments"
+      if (blog.comments.approved == undefined) {
+        return "0 Comment"
+      }
+      else if (blog.comments.approved < 2) {
+        return blog.comments.approved + " Comment"
+      }
+      else {
+        return blog.comments.approved + " Comments"
+      }
     }
+   
   }
-
-  goToDetails(blog) {
-    console.log(blog.parent_category_slug);
-    console.log(blog.blog_url);
-    this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
+  goToDetails(blog_url) {
+    console.log(blog_url);
+    this.router.navigateByUrl('/banking/details/' + blog_url);
   }
 
   addLike(id, is_like,user_id) {
@@ -185,7 +194,7 @@ export class HomeComponent implements OnInit {
           //       id: y.id
           //     }
           //     this.subCategoryList.push(Sub_data)
-          //     console.log(this.subCategoryList);
+               console.log(this.subCategoryList);
           //   })
           // }
         })
@@ -199,7 +208,8 @@ export class HomeComponent implements OnInit {
   getCategorySlugInfo(slug) {
     this.blogService.getSlugInfo(slug).subscribe(
       res => {
-        this.mainCardCategoryId = res['result']['id']
+        this.mainCardCategoryId = res['result']['id'];
+        this.getBlogListByCategory(this.mainCardCategoryId,this.userId);
         this.getSubCategoryByCategory();
       },
       error => {
@@ -211,8 +221,8 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('cards/' + slug);
   }
 
-  goToTopCategoryPage(parent_url,slug) {
-    this.router.navigateByUrl(parent_url + '/' + slug);
+  goToTopCategoryPage(slug) {
+    this.router.navigateByUrl('banking' + '/' + slug);
   }
 
   topCategoryList() {
@@ -226,6 +236,39 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  
+  getBlogListByCategory(mainCardCategoryId,user_id) {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', this.defaultPagination.toString());
+    this.blogService.getBlogListByCategory(mainCardCategoryId,user_id,params).subscribe(
+      res => {
+        console.log(res);
+        this.categoryDetails = res['result']['category_details'];
+       this.blogList = res['result']['bloglist'];
+      for(var i = 0; i < this.blogList.length; i++) {
+        this.daysPending =0;
+        
+       this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
+       this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
+      }
+      console.log("Card Post ==> ",this.blogList);
+       
+        this.blogListCount =  res['result']['total_count'];
+        this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+        this.lower_count = this.itemNo + 1;
+        
+        if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
+          this.upper_count = this.itemPerPage * this.defaultPagination
+        }
+        else {
+          this.upper_count = this.blogListCount;
+        }
+        this.blogLinks = res['result']['links'];
+        this.visibleKey = true;
+      },
+      error => {
+      }
+    )
+  }
+
 
 }

@@ -1,52 +1,61 @@
-<!-- <header *ngIf="blogList.length > 0">
+<header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}"></li>
+        </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active" style="background-image: url('assets/images/blog-banner.jpg')">
-                <div class="container headline-blog pt-4">
-                    <h1>Recent {{categoryName}}</h1>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " *ngFor="let blog of blogList | slice:0:2; let i = index">
-                            <div class="hovereffect">
-                                <img class="img-responsive" [src]="imageBaseUrl + blog.blog_large_image" alt="">
-                                <div class="overlay">
-                                    <h2>{{blog.blog_title}}</h2>
-                                    <p>
-                                        <a (click)="goToDetails(blog.blog_url)">View</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}" [style.background-image]="getBackground(banner.slider_img)">
+                <div class="carousel-caption-bnr d-none  d-flex justify-content-center">
+
+                    <div class="bnr-text text-center" *ngFor="let banner of homeBannerContentList; let i = index">
+                        <h3>{{banner.title}}</h3>
+                        <p>{{banner.description}}</p>
+                        <a [href]="banner.btn_link" target="_blank">Read More</a>
                     </div>
+                    <!-- <div class="bnr-text text-center">
+                        <h3>{{banner.title}}</h3>
+                        <p>{{banner.description}}</p>
+                        <a [href]="banner.btn_link" target="_blank">Read More</a>
+                    </div>
+                    <div class="bnr-text text-center">
+                        <h3>{{banner.title}}</h3>
+                        <p>{{banner.description}}</p>
+                        <a [href]="banner.btn_link" target="_blank">Read More</a>
+                    </div> -->
+
+
+
                 </div>
             </div>
         </div>
     </div>
-</header> -->
+</header>
 
+<div class="card-listing pt-3 pb-3">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of subCategoryList">
+                <div class="card-item credit-card-item" (click)="goToTopCategoryPage(category.category_slug)">
+                    <a class="ng-tns-c8-0">
+                        <!-- <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'" alt=""> -->
+                        <h2 class="ng-tns-c8-0">{{category.category_name}}</h2>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <!-- Page Content -->
 <section class="full-bg-grey">
-    <div class="container" *ngIf="visibleKey">
-        <h2 class="head-line-line float-left mb-3 mt-3">{{categoryDetails.category_name}} List</h2>
-
-        <!-- <div class="Show-item float-right d-inline-flex">
-            <span>Show Items</span>
-            <form class="woocommerce-ordering" method="post">
-                <label>
-                    <select name="order" class="orderby" (change)="onChange($event)">
-                        <option value="all" selected="selected">All</option>
-                        <option value="recent">Recent Posts</option>
-                        <option value="popular">Popularity</option>
-                    </select>
-                </label>
-            </form>
-        </div> -->
-
+    <div class="container">
+        <h2 class="head-line-line mb-3 mt-3">Recent Posts</h2>
         <div class="clearfix"></div>
         <div class="list-sec" *ngIf="blogList.length > 0">
 
             <div class="row bg-white-blog  d-flex align-items-center" *ngFor="let blog of blogList; let i = index">
                 <div class="col-md-2">
-                    <a href="javascript:void(0)">
+                    <a href="#">
                         <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
                     </a>
                 </div>
@@ -93,8 +102,6 @@
                 </div>
             </div>
         </div>
-        <div class="list-sec" *ngIf="blogList.length == 0">
-            <h3 class="no-records-found">Post Not Found Under {{categoryDetails.category_name}}</h3>
-        </div>
     </div>
 </section>
+<app-newsletter></app-newsletter>

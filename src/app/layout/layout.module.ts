@@ -21,6 +21,8 @@ import { AllstoreComponent } from './allstore/allstore.component';
 import { CoupondetailsComponent } from './coupondetails/coupondetails.component';
 import { CashbackComponent } from './cashback/cashback.component';
 import { CashbackdetailsComponent } from './cashbackdetails/cashbackdetails.component';
+import { CreditcardComponent } from './creditcard/creditcard.component';
+import { BankingComponent } from './banking/banking.component';
 
 
 
@@ -30,6 +32,6 @@ import { CashbackdetailsComponent } from './cashbackdetails/cashbackdetails.comp
     LayoutRoutingModule,
     CoreModule
   ],
-  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent, StoreComponent, AllstoreComponent, CoupondetailsComponent, CashbackComponent, CashbackdetailsComponent]
+  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent, StoreComponent, AllstoreComponent, CoupondetailsComponent, CashbackComponent, CashbackdetailsComponent, CreditcardComponent, BankingComponent]
 })
 export class LayoutModule { }

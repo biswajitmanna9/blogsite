@@ -69,7 +69,7 @@
                 <!-- <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/allblog']">Blog</a>
                 </li> -->
-                <li  class="nav-item dropdown" >
+                <!-- <li  class="nav-item dropdown" >
                     <a class="nav-link dropdown-toggle" href="javascript:void(0);" [routerLink]="['/store']" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Stores
@@ -91,45 +91,63 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Credit cards
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="cards_category_list.length > 0">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <!-- <ul class="nav d-inline-flex nav-subhover">
-                                        <li class="nav-item" *ngFor="let card_cat of cards_category_list"  [ngClass]="{'nav-subdropdown': card_cat.sub_sub_category_details.length > 0}">
-                                            <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug]">{{card_cat.category_name}}</a>
-                        
-                                            <ul *ngIf="card_cat.sub_sub_category_details.length > 0">
-                                                <li *ngFor="let card_sub_cat of card_cat.sub_sub_category_details">
-                                                    <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug, card_sub_cat.category_slug]">{{card_sub_cat.category_name}}</a>
-                                                </li>                                           
-                                            </ul>
-                                        </li>
-                                    </ul> -->
-                                    <ul class="nav d-inline-flex nav-subhover">
-                                            <li class="nav-item" *ngFor="let card_cat of cards_category_list">
-                                                <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug]">{{card_cat.category_name}}</a>
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" [routerLink]="['/store']" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Stores
+                    </a>
+                    <div class="dropdown-menu dropdown-single" aria-labelledby="navbarDropdown" *ngIf="stroes_category_list.length > 0">
+                        <div class="col-md-12">
+                            <div class="row">
+                            <ul class="nav d-inline-flex nav-subhover">
+                                <li class="nav-item store-item" *ngFor="let store_cat of stroes_category_list">
+                                    <a class="nav-link" (click)="goToStorePage(store_cat.category_slug,store_cat.id)">{{store_cat.category_name}}</a>
                             
-                                            </li>
-                                        </ul>
-                                </div>
+                                </li>
+                            </ul>
                             </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" [routerLink]="['/creditcard']" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Credit cards
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="cards_category_list.length > 0">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <!-- <ul class="nav d-inline-flex nav-subhover">
+                                                        <li class="nav-item" *ngFor="let card_cat of cards_category_list"  [ngClass]="{'nav-subdropdown': card_cat.sub_sub_category_details.length > 0}">
+                                                            <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug]">{{card_cat.category_name}}</a>
+                                        
+                                                            <ul *ngIf="card_cat.sub_sub_category_details.length > 0">
+                                                                <li *ngFor="let card_sub_cat of card_cat.sub_sub_category_details">
+                                                                    <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug, card_sub_cat.category_slug]">{{card_sub_cat.category_name}}</a>
+                                                                </li>                                           
+                                                            </ul>
+                                                        </li>
+                                                    </ul> -->
+                                <ul class="nav d-inline-flex nav-subhover">
+                                    <li class="nav-item" *ngFor="let card_cat of cards_category_list">
+                                        <a class="nav-link" [routerLink]="['/cards', card_cat.category_slug]">{{card_cat.category_name}}</a>
+                
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" [routerLink]="['/banking']" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Banking
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="banks_category_list.length > 0">
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdown" *ngIf="banks_category_list.length > 0">
                         <div class="col-md-12">
                             <div class="row">
-                                <ul class="nav d-inline-flex nav-subhover">
+                                <!-- <ul class="nav d-inline-flex nav-subhover">
                                     <li  class="nav-item" *ngFor="let bank_cat of banks_category_list" [ngClass]="{'nav-subdropdown': bank_cat.sub_sub_category_details.length > 0}">
                                         <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug]">{{bank_cat.category_name}}</a>
                 
@@ -138,6 +156,11 @@
                                                 <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug, bank_sub_cat.category_slug]">{{bank_sub_cat.category_name}}</a>
                                             </li>
                                         </ul>
+                                    </li>
+                                </ul> -->
+                                <ul class="nav d-inline-flex nav-subhover">
+                                    <li  class="nav-item" *ngFor="let bank_cat of banks_category_list">
+                                        <a class="nav-link" [routerLink]="['/banking', bank_cat.category_slug]">{{bank_cat.category_name}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -164,7 +187,7 @@
                         aria-haspopup="true" aria-expanded="false">
                         {{user_pic_letter}}
                     </a>
-                    <div class="dropdown-menu dropdown-single" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-single log-panel" aria-labelledby="navbarDropdown">
                         <div class="col-md-12">
                             <div class="row">
                                 <ul class="nav d-flex justify-content-start nav-subhover">

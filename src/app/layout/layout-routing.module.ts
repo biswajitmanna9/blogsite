@@ -15,6 +15,8 @@ import { AllstoreComponent } from './allstore/allstore.component';
 import { CoupondetailsComponent } from './coupondetails/coupondetails.component';
 import { CashbackComponent } from './cashback/cashback.component';
 import { CashbackdetailsComponent } from './cashbackdetails/cashbackdetails.component';
+import { CreditcardComponent } from './creditcard/creditcard.component';
+import { BankingComponent } from './banking/banking.component';
 import { AuthGuard } from '../core/guard/auth.guard';
 
 const routes: Routes = [
@@ -26,10 +28,12 @@ const routes: Routes = [
       { path: '/', redirectTo: 'home', pathMatch: "full" },
       { path: 'home', component: HomeComponent },
       { path: 'about-us', component: AboutUsComponent },
-      { path: 'coupon', component: CouponComponent },
-      { path: 'coupondetails/:id', component: CoupondetailsComponent },
-      { path: 'cashback', component: CashbackComponent },
-      { path: 'cashbackdetails/:id', component: CashbackdetailsComponent },
+      { path: 'store/coupons', component: CouponComponent },
+      { path: 'store/coupondetails/:id', component: CoupondetailsComponent },
+      { path: 'store/cashback', component: CashbackComponent },
+      { path: 'store/cashbackdetails/:id', component: CashbackdetailsComponent },
+      { path: 'creditcard', component: CreditcardComponent },
+      { path: 'banking', component: BankingComponent },
       { path: 'contact-us', component: ContactUsComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
       { path: 'allblog', component: AllblogComponent },
@@ -43,6 +47,8 @@ const routes: Routes = [
       { path: ':cat_slug/details/:blog_slug', component: BlogDetailsComponent },
       { path: ':cat_slug/:sub_cat_slug', component: BlogComponent },
       { path: ':cat_slug/:sub_cat_slug/:sub_child_cat_slug', component: BlogComponent },
+      
+     
     ]
   }
 ];

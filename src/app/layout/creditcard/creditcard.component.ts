@@ -1,24 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BlogService } from '../../services/blog.service';
-import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
-import * as moment from 'moment';
-import * as Globals from '../../../core/globals';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit,Input,ViewChild } from '@angular/core';
+import { BlogService } from '../../core/services/blog.service';
+import { environment } from '../../../environments/environment';
+import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { LoginComponent } from '../../../core/components/login/login.component';
+import { LoginComponent } from '../../core/components/login/login.component';
+import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
+import { Router } from '@angular/router';
+import { AlertPromise } from 'selenium-webdriver';
+import { OwlCarousel } from 'ngx-owl-carousel';
+import * as Globals from '../../core/globals';
+
 @Component({
-  selector: 'app-blog-list',
-  templateUrl: './blog-list.component.html',
-  styleUrls: ['./blog-list.component.scss']
+  selector: 'app-creditcard',
+  templateUrl: './creditcard.component.html',
+  styleUrls: ['./creditcard.component.scss']
 })
-export class BlogListComponent implements OnInit {
-  @Input('blogCategoryId') blogCategoryId;
-  @Input('categoryName') categoryName;
-  @Input('blogCategorySlug') blogCategorySlug;
-  blogList: any = [];
+export class CreditcardComponent implements OnInit {
+  @ViewChild('owlElement') owlElement: OwlCarousel
+  mostRecentBlogList: any = [];
   imageBaseUrl: string;
-  pageHeading: string;
+  homeBannerContentList: any = [];
+  userId:string;
+  mainCardCategoryId: any;
+  subCategoryList: any = [];
+  topCatList:any =[];
+  isCard:boolean;
   categoryDetails: any;
   visibleKey: boolean;
   blogLinks:string;
@@ -29,20 +36,19 @@ export class BlogListComponent implements OnInit {
   lower_count: number;
   upper_count: number;
   blogListCount:any;
-  userId:string;
   now :any;
   daysLeft:any;
   endDate:any;
   today:any;
   daysPending:any;
+  blogList: any=[];
   constructor(
     private blogService: BlogService,
+    private _sanitizer: DomSanitizer,
+    public dialog: MatDialog,
     private router: Router,
     private toastr: ToastrService,
-    public dialog: MatDialog,
-  ) {
-    this.now = Date.now();
-   }
+  ) { }
 
   ngOnInit() {
     if(localStorage.getItem('userId')) {
@@ -56,38 +62,25 @@ export class BlogListComponent implements OnInit {
     this.defaultPagination = 1;
     this.paginationMaxSize = Globals.paginationMaxSize;
     this.itemPerPage = Globals.itemPerPage;
-    this.getBlogListByCategory();
-
+    this.getHomeBannerContentList();
+    this.getCategorySlugInfo("cards");
   }
 
-  pagination() {
-    this.getBlogListByCategory();
-  };
 
-
-  getBlogListByCategory() {
+  getBlogListByCategory(mainCardCategoryId,user_id) {
     let params: URLSearchParams = new URLSearchParams();
-    params.set('page', this.defaultPagination.toString());
-    this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
+    params.set('page', '');
+    this.blogService.getBlogListByCategory(mainCardCategoryId,user_id,params).subscribe(
       res => {
         this.categoryDetails = res['result']['category_details'];
        this.blogList = res['result']['bloglist'];
       for(var i = 0; i < this.blogList.length; i++) {
         this.daysPending =0;
-         var today = moment(new Date()).format("YYYY-MM-DD");
-         var endDealsDate =  moment(new Date(this.blogList[i].deals_end_datetime)).format("YYYY-MM-DD");
         
-        // var endDate = moment(new Date(this.blogList[i].deals_end_datetime), 'DD/MM/YYYY');
-       // this.daysPending = endDate.diff(today, 'days');
-       //var today = moment("2018-12-14", "YYYY-MM-DD");
-       var endDate = moment(endDealsDate, "YYYY-MM-DD");
-       this.daysPending = moment.duration(endDate.diff(today)).asDays()
-        console.log(this.daysPending);
-        this.blogList[i].daysPending = this.daysPending;
        this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
        this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
       }
-      console.log("Deals List ==> ",this.blogList);
+      console.log("Card Post ==> ",this.blogList);
        
         this.blogListCount =  res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
@@ -106,8 +99,19 @@ export class BlogListComponent implements OnInit {
     )
   }
 
-  goToDetails(blog_url) {
-    this.router.navigateByUrl('/' + this.blogCategorySlug + '/details/' + blog_url);
+  getHomeBannerContentList() {
+    this.blogService.getHomeBannerContentList().subscribe(
+      res => {
+        this.homeBannerContentList = res['result']
+        console.log("Banner List ==>",this.homeBannerContentList);
+      },
+      error => {
+      }
+    )
+  }
+
+  getBackground(image) {
+    return this._sanitizer.bypassSecurityTrustStyle(`url(${this.imageBaseUrl + image})`);
   }
 
   transformDate(date) {
@@ -139,9 +143,12 @@ export class BlogListComponent implements OnInit {
    
   }
 
-  addLike(id, is_like, user_id) {
-    console.log(is_like);
-    if (user_id) {
+  goToDetails(blog) {
+    this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
+  }
+
+  addLike(id, is_like,user_id) {
+    if (localStorage.getItem('userId')) {
       if (is_like == 0) {
         is_like = "1";
       }
@@ -155,7 +162,7 @@ export class BlogListComponent implements OnInit {
       }
       this.blogService.userAddLike(data).subscribe(
         res => {
-          this.getBlogListByCategory();
+          this.getBlogListByCategory(this.mainCardCategoryId,localStorage.getItem('userId'));
           if (res['result']['is_like'] == 1) {
             this.toastr.success('Liked Succesfully', '', {
               timeOut: 3000,
@@ -178,10 +185,52 @@ export class BlogListComponent implements OnInit {
         data: {}
       });
       dialogRef.afterClosed().subscribe(result => {
-        // console.log(result)
       })
     }
 
+  }
+
+  getSubCategoryByCategory() {
+    //this.mainCardCategoryId =2;
+    this.blogService.getSubCategoryByCategory(this.mainCardCategoryId).subscribe(
+      res => {
+        res['result'].forEach(x => {
+          var data = {
+            category_name: x.category_name,
+            category_slug: x.category_slug,
+            category_image: x.image,
+            id: x.id
+          }
+         
+          this.subCategoryList.push(data);
+        
+        })
+      },
+      error => {
+        // console.log(error)
+      }
+    )
+  }
+
+  getCategorySlugInfo(slug) {
+    this.blogService.getSlugInfo(slug).subscribe(
+      res => {
+        this.mainCardCategoryId = res['result']['id']
+        this.getBlogListByCategory(this.mainCardCategoryId,this.userId);
+        this.getSubCategoryByCategory();
+
+      },
+      error => {
+      }
+    )
+  }
+
+  goToCategoryPage(slug: string) {
+    this.router.navigateByUrl('cards/' + slug);
+  }
+
+  goToTopCategoryPage(slug) {
+    this.router.navigateByUrl('cards' + '/' + slug);
   }
 
 

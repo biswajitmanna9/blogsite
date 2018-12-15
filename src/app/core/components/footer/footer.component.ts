@@ -26,8 +26,8 @@ export class FooterComponent implements OnInit {
   getMostRecentBlogList(data) {
     this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
-        this.mostRecentBlogListFooter = res['result']
-        console.log("Most Recent Deals==>",this.mostRecentBlogListFooter);
+        this.mostRecentBlogListFooter = res['result'];
+        console.log("Footer Most Recent Deals==>",this.mostRecentBlogListFooter);
       },
       error => {
       }

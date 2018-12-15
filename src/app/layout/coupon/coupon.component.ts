@@ -135,6 +135,9 @@ export class CouponComponent implements OnInit {
   goToCouponDetails(id) {
     this.router.navigate(['/coupondetails',id]);
   }
+  onNavigate(url){
+    window.open("http://www."+ url, "_blank");
+  }
 
 
 }
