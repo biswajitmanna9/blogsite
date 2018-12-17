@@ -9,6 +9,7 @@
             <th>Link</th>
             <!-- <th>Description</th> -->
             <th>Company</th>
+            <th>Product</th>
             <th>Program</th>
             <th>Created Date</th>
             <th>Status</th>
@@ -19,6 +20,7 @@
             <td><a [href]="referral.referral_link" target="_blank">{{referral.referral_link}}</a></td>
             <!-- <td>{{referral.description}}</td> -->
             <td>{{referral.company_name}}</td>
+            <td>{{referral.product_name}}</td>
             <td>{{referral.program_name}}</td>
             <td>{{transformDate(referral.date_created)}}</td>
             <td>{{referral.is_active}}</td>

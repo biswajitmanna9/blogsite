@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   getMostRecentBlogList(data) {
     this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
+        console.log( res['result']);
         this.mostRecentBlogList = res['result'];
         for (var i = 0; i < this.mostRecentBlogList.length; i++) {
           this.daysPending = 0;

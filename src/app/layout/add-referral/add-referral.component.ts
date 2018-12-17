@@ -15,6 +15,7 @@ export class AddReferralComponent implements OnInit {
   currentLong: number;
   companylist: any = [];
   programList: any = [];
+  productList: any =[];
   form: FormGroup;
   userId: number;
   zipCode:string;
@@ -34,6 +35,7 @@ export class AddReferralComponent implements OnInit {
       referral_link: ["", Validators.required],
       user_id: [this.userId, Validators.required],
       company_id: ["", Validators.required],
+      product_id: ["", Validators.required],
       program_id: ["", Validators.required],
       description: [""],
       lattitude: [""],
@@ -74,7 +76,29 @@ export class AddReferralComponent implements OnInit {
 
   companyChange(id) {
     if (id != "") {
-      this.getProgrammeList(id)
+      //this.getProgrammeList(id);
+      this.getProductList(id);
+    }
+    else {
+      this.productList = [];
+    }
+  }
+
+  getProductList(id) {
+    this.referralService.getProductListByCompany(id).subscribe(
+      res => {
+        console.log(res);
+        this.productList = res['result'];
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  productChange(id) {
+    if (id != "") {
+      this.getProgrammeList(id);
     }
     else {
       this.programList = [];

@@ -49,38 +49,40 @@
                 </div>
         </div> -->
         <div class="row">
-                <div class="col-md-12">
-                    <h2 class="parent-cat-name">{{parentCategoryName}}</h2>
-                </div>
+            <div class="col-md-12">
+                <h2 class="parent-cat-name">{{parentCategoryName}}</h2>
             </div>
+        </div>
         <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
                 '480': { items: 1,  margin: 5 },
     '640': { items: subItemsNumber, margin: 5 }
            }  }"
-                    [items]="subSubCatList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
+            [items]="subSubCatList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
 
-                    <div (click)="goToCategoryPage(category.category_slug)" class="item" *ngFor="let category of subSubCatList ; let i = index" [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
-                        <a href="JavaScript:Void(0);" >
-                            <div class="category-icon-item">
-                                <div class="icon-box card-item" >
-                                    <div class="icon ">
-                                        <!-- <img [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/img/no-image.png'"
+            <div (click)="goToCategoryPage(category.category_slug)" class="item" *ngFor="let category of subSubCatList ; let i = index"
+                [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
+                <a href="JavaScript:Void(0);">
+                    <div class="category-icon-item">
+                        <div class="icon-box card-item">
+                            <div class="icon ">
+                                <!-- <img [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/img/no-image.png'"
                                             alt=""> -->
-                                            <!-- <img class="img-fluid" [src]="category.image != '' && imageBaseUrl+ category.image || 'assets/images/information.png'"
+                                <!-- <img class="img-fluid" [src]="category.image != '' && imageBaseUrl+ category.image || 'assets/images/information.png'"
                                             alt=""> -->
 
-                                    </div>
-                                    <h2>{{category.category_name}}</h2>
-                                </div>
                             </div>
-                        </a>
+                            <h2>{{category.category_name}}</h2>
+                        </div>
                     </div>
-                </owl-carousel>
+                </a>
+            </div>
+        </owl-carousel>
     </div>
 </div>
 
 <section class="full-bg-grey">
     <div class="container">
+
         <div class="row">
             <!-- <div class="col-md-3" *ngIf="subCategoryList.length > 0">
                 <div id="MainMenu">
@@ -94,18 +96,35 @@
                 </div>
             </div> -->
             <div class="col-md-12">
-                <h2  class="head-line-line mb-3 mt-3">{{categoryDetails?.category_name}}</h2>
+                <h2 class="head-line-line mb-3 mt-3">{{categoryDetails?.category_name}}</h2>
                 <p>{{categoryDetails?.description}}</p>
                 <div class="row">
+                    <div class="col-md-8">
+                        <ul class="d-flex flex-row bd-highlight tag_list ">
+                            <li *ngFor="let tag of tagList" (click)="tagFilterList(tag.name)" [ngClass]="{'active': tag.name == selectTagName}">
+                                <a href="javascript:void(0);">
+                                    {{tag.name}}
+                                </a>
+                            </li>
 
-                    <ul class="d-flex flex-row bd-highlight tag_list ">
-                        <li *ngFor="let tag of tagList" (click)="tagFilterList(tag.name)" [ngClass]="{'active': tag.name == selectTagName}">
-                            <a href="javascript:void(0);">
-                                {{tag.name}}
-                            </a>
-                        </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
 
-                    </ul>
+                        <div class="Show-item float-right d-inline-flex">
+                            <span>Sort By</span>
+                            <form class="woocommerce-ordering" method="post">
+                                <label>
+                                    <select name="order" class="orderby" (change)="onChange($event)">
+                                        <!-- <option value="all" >All</option> -->
+                                        <option value="new" selected="selected">Newest</option>
+                                        <option value="name">Name</option>
+                                        
+                                    </select>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
 
                 </div>
 

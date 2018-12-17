@@ -84,5 +84,11 @@ export class BlogService {
     return this.http.get(environment.apiEndpoint + 'topcategorylistbypostcount/')
   }
 
+  getFilterDeals(id,user_id,order_column,order_by): Observable<any> {
+    console.log(environment.apiEndpoint + 'bloglistbycatid/' + id + '/'+ user_id + '/?order_column='+order_column+'&order_by='+order_by);
+    return this.http.get(environment.apiEndpoint + 'bloglistbycatid/' + id + '/'+ user_id + '/?order_column='+order_column+'&order_by='+order_by)
+  }
+
+
 
 }

@@ -49,6 +49,9 @@ export class CardListComponent implements OnInit {
   subSubCatList : any = [];
   parentCategoryName:string;
   subItemsNumber:number;
+  itemName:any;
+  blogLinks: string;
+
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -348,6 +351,37 @@ export class CardListComponent implements OnInit {
         // console.log(error)
       }
     )
+  }
+
+  onChange(event: any) {
+    this.blogList = [];
+    this.blogListCount = "";
+    this.itemName = event.target.value;
+    if (this.itemName == 'name') {
+      this.filterDeals('blog_title','asc');
+    }
+    else if (this.itemName == 'pricelow') {
+      this.filterDeals('sale_price','asc');
+    }
+    else if (this.itemName == 'pricehigh') {
+      this.filterDeals('sale_price','desc');
+    }
+    else {
+      this.getBlogListByCategory();
+    }
+
+  }
+
+  filterDeals(order_column,order_by) {
+    this.blogService.getFilterDeals(this.blogCategoryId, this.userId,order_column,order_by).subscribe(
+        res => {
+          this.blogList = res['result']['bloglist'];
+          this.blogLinks = res['result']['links'];
+          this.visibleKey = true
+        },
+        error => {
+        }
+      )
   }
 
 }

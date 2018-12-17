@@ -27,6 +27,7 @@ export class BlogComponent implements OnInit {
       }
       if (val['sub_cat_slug']) {
         this.blogSubCategorySlug = val['sub_cat_slug'];
+        //alert(this.blogSubCategorySlug);
       }
       if (val['cat_slug']) {
         this.blogCategorySlug = val['cat_slug'];

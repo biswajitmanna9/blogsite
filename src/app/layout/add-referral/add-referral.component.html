@@ -37,6 +37,16 @@
                     </div>
                   </div>
                   <div class="form-group col-md-6">
+                    <label>Product:</label>
+                    <select class="form-control" formControlName="product_id" [ngClass]="displayFieldCss('product_id')" (change)="productChange($event.target.value)">
+                      <option value="">Select Product</option>
+                      <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
+                    </select>
+                    <div class="invalid-feedback text-left" *ngIf="isFieldValid('product_id')">
+                      Please select Product
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
                     <label>Program:</label>
                     <select class="form-control" formControlName="program_id" [ngClass]="displayFieldCss('program_id')">
                       <option value="">Select Program</option>

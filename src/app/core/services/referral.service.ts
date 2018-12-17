@@ -15,8 +15,14 @@ export class ReferralService {
     return this.http.get(environment.apiEndpoint + 'companylist/')
   }
 
+  getProductListByCompany(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'productlistbycomid/' + id)
+  }
+
   getProgramListByCompany(id): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'programlistbycomid/' + id)
+    //return this.http.get(environment.apiEndpoint + 'programlistbycomid/' + id)
+    return this.http.get(environment.apiEndpoint + 'programlistbypid/' + id)
+    
   }
 
   addReferral(data) {
@@ -32,7 +38,7 @@ export class ReferralService {
   }
 
   getZipCode(data) {
-    return this.http.post(environment.apiEndpoint + 'userZipcodeGetOrUpdate/', data)
+    return this.http.post(environment.apiEndpoint + 'zipcodegetorupdate/', data)
   }
  
 }

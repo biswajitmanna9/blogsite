@@ -16,25 +16,28 @@ export class BlogListComponent implements OnInit {
   @Input('blogCategoryId') blogCategoryId;
   @Input('categoryName') categoryName;
   @Input('blogCategorySlug') blogCategorySlug;
+  @Input('blogSubCategorySlug') blogSubCategorySlug;
   blogList: any = [];
   imageBaseUrl: string;
   pageHeading: string;
   categoryDetails: any;
   visibleKey: boolean;
-  blogLinks:string;
+  blogLinks: string;
   paginationMaxSize: number;
   itemPerPage: number;
   defaultPagination: number;
   itemNo: number;
   lower_count: number;
   upper_count: number;
-  blogListCount:any;
-  userId:string;
-  now :any;
-  daysLeft:any;
-  endDate:any;
-  today:any;
-  daysPending:any;
+  blogListCount: any;
+  userId: string;
+  now: any;
+  daysLeft: any;
+  endDate: any;
+  today: any;
+  daysPending: any;
+  itemName:any;
+  parentCatSlug:any;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -42,14 +45,15 @@ export class BlogListComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.now = Date.now();
-   }
+    
+  }
 
   ngOnInit() {
-    if(localStorage.getItem('userId')) {
+    if (localStorage.getItem('userId')) {
       this.userId = localStorage.getItem('userId');
     }
     else {
-      this.userId ="";
+      this.userId = "";
     }
     this.imageBaseUrl = environment.imageBaseUrl;
     this.itemNo = 0;
@@ -57,6 +61,7 @@ export class BlogListComponent implements OnInit {
     this.paginationMaxSize = Globals.paginationMaxSize;
     this.itemPerPage = Globals.itemPerPage;
     this.getBlogListByCategory();
+    this.parentCatSlug = this.blogCategorySlug;
 
   }
 
@@ -68,28 +73,27 @@ export class BlogListComponent implements OnInit {
   getBlogListByCategory() {
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
-    this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
+    this.blogService.getBlogListByCategory(this.blogCategoryId, this.userId, params).subscribe(
       res => {
         this.categoryDetails = res['result']['category_details'];
-       this.blogList = res['result']['bloglist'];
-      for(var i = 0; i < this.blogList.length; i++) {
-        this.daysPending =0;
-         var today = moment(new Date()).format("YYYY-MM-DD");
-         var endDealsDate =  moment(new Date(this.blogList[i].deals_end_datetime)).format("YYYY-MM-DD");
-        
-        // var endDate = moment(new Date(this.blogList[i].deals_end_datetime), 'DD/MM/YYYY');
-       // this.daysPending = endDate.diff(today, 'days');
-       //var today = moment("2018-12-14", "YYYY-MM-DD");
-       var endDate = moment(endDealsDate, "YYYY-MM-DD");
-       this.daysPending = moment.duration(endDate.diff(today)).asDays()
-        console.log(this.daysPending);
-        this.blogList[i].daysPending = this.daysPending;
-       this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
-       this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
-      }
-      console.log("Deals List ==> ",this.blogList);
-       
-        this.blogListCount =  res['result']['total_count'];
+        this.blogList = res['result']['bloglist'];
+        for (var i = 0; i < this.blogList.length; i++) {
+          this.daysPending = 0;
+          var today = moment(new Date()).format("YYYY-MM-DD");
+          var endDealsDate = moment(new Date(this.blogList[i].deals_end_datetime)).format("YYYY-MM-DD");
+          // var endDate = moment(new Date(this.blogList[i].deals_end_datetime), 'DD/MM/YYYY');
+          // this.daysPending = endDate.diff(today, 'days');
+          //var today = moment("2018-12-14", "YYYY-MM-DD");
+          var endDate = moment(endDealsDate, "YYYY-MM-DD");
+          this.daysPending = moment.duration(endDate.diff(today)).asDays()
+          console.log(this.daysPending);
+          this.blogList[i].daysPending = this.daysPending;
+          this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
+          this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
+        }
+        console.log("Deals List ==> ", this.blogList);
+
+        this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
         this.lower_count = this.itemNo + 1;
         if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
@@ -122,7 +126,7 @@ export class BlogListComponent implements OnInit {
   }
 
   getBlogCount(blog) {
-    if (blog.comments ==null) {
+    if (blog.comments == null) {
       return "0 Comment"
     }
     else {
@@ -136,7 +140,7 @@ export class BlogListComponent implements OnInit {
         return blog.comments.approved + " Comments"
       }
     }
-   
+
   }
 
   addLike(id, is_like, user_id) {
@@ -184,5 +188,35 @@ export class BlogListComponent implements OnInit {
 
   }
 
+  onChange(event: any) {
+    this.blogList = [];
+    this.blogListCount = "";
+    this.itemName = event.target.value;
+    if (this.itemName == 'name') {
+      this.filterDeals('blog_title','asc');
+    }
+    else if (this.itemName == 'pricelow') {
+      this.filterDeals('sale_price','asc');
+    }
+    else if (this.itemName == 'pricehigh') {
+      this.filterDeals('sale_price','desc');
+    }
+    else {
+      this.getBlogListByCategory();
+    }
+
+  }
+
+  filterDeals(order_column,order_by) {
+    this.blogService.getFilterDeals(this.blogCategoryId, this.userId,order_column,order_by).subscribe(
+        res => {
+          this.blogList = res['result']['bloglist'];
+          this.blogLinks = res['result']['links'];
+          this.visibleKey = true
+        },
+        error => {
+        }
+      )
+  }
 
 }
