@@ -7,6 +7,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../../services/login.service';
 import * as Globals from '../../../core/globals';
+import { TagContentType } from '@angular/compiler';
+import { AdvertiseComponent } from '../advertise/advertise.component'
+
 
 @Component({
   selector: 'app-card-list',
@@ -115,7 +118,6 @@ export class CardListComponent implements OnInit {
     params.set('page', this.defaultPagination.toString());
     this.blogService.getBlogListByCategory(this.blogCategoryId, this.userId, params).subscribe(
       res => {
-        console.log("===Kalyan===");
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
@@ -147,7 +149,6 @@ export class CardListComponent implements OnInit {
   getTagListByCategory() {
     this.blogService.getTagListByCategory(this.blogCategoryId).subscribe(
       res => {
-         console.log(res)
         this.tagList = res['result']
       },
       error => {
@@ -242,14 +243,11 @@ export class CardListComponent implements OnInit {
     this.selectTagName ="";
     this.blogService.getSlugInfo(slug).subscribe(
       res => {
-        console.log("=========",res);
         this.blogCategoryId = res['result']['id'];
-        console.log(this.blogCategoryId);
         var parent_Slug;
         var grand_parent_slug;
         if (res['result']['parent'] != undefined) {
           parent_Slug = res['result']['parent'][0]['slug'];
-          console.log(res['result']['parent'][0]);
           this.parentCategoryName = res['result']['parent'][0]['title'];
           if (res['result']['parent'][0]['grand_parent'] != undefined) {
             grand_parent_slug = res['result']['parent'][0]['grand_parent'][0]['slug'];
@@ -293,7 +291,6 @@ export class CardListComponent implements OnInit {
     this.selectTagName = tag_name;
     this.blogService.getBlogListByTag(this.blogCategoryId, tag_name).subscribe(
       res => {
-        console.log("Tag Filter Result==>",res);
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
@@ -319,7 +316,6 @@ export class CardListComponent implements OnInit {
     params.set('page', this.defaultPagination.toString());
     this.blogService.getBlogListByCategory(this.blogCategoryId, this.userId, params).subscribe(
       res => {
-        console.log("Category Details",res);
         this.categoryDetails = res['result']['category_details'];
       },
       error => {
@@ -333,7 +329,6 @@ export class CardListComponent implements OnInit {
     params.set('page', this.defaultPagination.toString());
     this.blogService.getBlogListByCategory(id, this.userId, params).subscribe(
       res => {
-        console.log("===Kalyan===");
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
@@ -382,6 +377,20 @@ export class CardListComponent implements OnInit {
         error => {
         }
       )
+  }
+
+  openAdvertise() {
+    let dialogRef = this.dialog.open(AdvertiseComponent, {
+      width: '750px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+
+  tagFilterAll(all) {
+    
+    this.getBlogListByCategory();
   }
 
 }

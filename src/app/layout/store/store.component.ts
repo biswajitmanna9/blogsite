@@ -21,6 +21,15 @@ export class StoreComponent implements OnInit {
   blogCategoryId:number;
   defaultPagination:number;
   userId:string;
+  allStoreListCount:any;
+  allStoreLength:number;
+  filterAlphabets: any = [];
+  allStore:any =[];
+  selectedItem:any;
+  itemNo: number;
+  lower_count: number;
+  upper_count: number;
+  itemPerPage: number;
   constructor(
     private storeService: StoreService,
     private router: Router,
@@ -43,13 +52,15 @@ export class StoreComponent implements OnInit {
     this.storeByCashback();
     this.getBlogListByCategory();
     this.maxDiscountList();
+    this.getAlphabet();
+    this.allStoreListing();
   }
   getAlphabet() {
     let alphabets = [];
-    for (let i = 65; i <= 90;i++) {
-        alphabets.push(String.fromCharCode(i));
+    for (let i = 65; i <= 90; i++) {
+      alphabets.push(String.fromCharCode(i));
+      this.filterAlphabets = alphabets;
     }
-    console.log(alphabets);
   }
 
   popularstore() {
@@ -66,7 +77,7 @@ export class StoreComponent implements OnInit {
   storeByCashback() {
     this.storeService.storeCashBack().subscribe(
       res => {
-        console.log("Store List By Cashback==>",res);
+        console.log("Todays store==>",res);
         this.storebyCashback = res['result'];
       },
       error => {
@@ -105,13 +116,58 @@ export class StoreComponent implements OnInit {
   }
 
   goToCashBackDetails(id) {
-    this.router.navigate(['/cashbackdetails',id]);
+    this.router.navigate(['store/cashbackdetails',id]);
   }
   goToDealsDetails(url) {
     this.router.navigate(['/deals','details',url]);
   }
   goToCouponDetails(id) {
-    this.router.navigate(['/coupondetails',id]);
+    this.router.navigate(['store/coupondetails',id]);
+  }
+
+
+  allStoreListing() {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', this.defaultPagination.toString());
+    this.storeService.allStore(params).subscribe(
+      res => {
+        console.log("All Store List==>",res);
+        this.allStore = res['result']['storelist'];
+        this.allStoreLength = res['result'].length;
+        this.allStoreListCount =  res['result']['total_count'];
+        this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+        this.lower_count = this.itemNo + 1;
+        if (this.allStoreListCount > this.itemPerPage * this.defaultPagination) {
+          this.upper_count = this.itemPerPage * this.defaultPagination
+        }
+        else {
+          this.upper_count = this.allStoreListCount;
+        }
+
+      },
+      error => {
+      }
+    )
+  }
+
+  pagination() {
+    window.scroll(0,500);
+    this.allStoreListing();
+  };
+
+
+  filterSearch(alphabet) {
+    this.selectedItem = alphabet;
+    this.storeService.searchStore(alphabet).subscribe(
+      res => {
+        console.log("All Store List==>",res);
+        this.allStore = res['result'];
+        this.allStoreLength = res['result'].length;
+        this.allStoreListCount ='';
+      },
+      error => {
+      }
+    )
   }
 
 

@@ -1,12 +1,10 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
     <div class="col-md-2 side-ad">
 
       <ul class="goto-store">
         <li *ngFor="let popularStore of popularstoree; let i = index">
-          <!-- {{popularStore.name}} -->
-          <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
           <span (click)="onNavigate(popularStore.url)" href="javascript:void(0)" *ngIf="popularStore.image ==''">{{popularStore.name}}</span>
           <img (click)="onNavigate(popularStore.url)" *ngIf="popularStore.image !=''" class="img-fluid store-img" [src]="imageBaseUrl+ popularStore.image"
             alt="">
@@ -15,7 +13,7 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
 <section class="full-bg-grey">
   <div class="container">
     <div class="cuppon-sec">
@@ -42,7 +40,7 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <ul>
+                  <ul class="alphabet-filter alphabet-filter">
                     <li class="text-light bg-dark" (click)="allStoreListing()">All</li>
                     <li class="letter-filter text-muted filterSearch" [ngClass]="{'active': selectedItem == alphabet}"
                       (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>

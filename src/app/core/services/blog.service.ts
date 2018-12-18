@@ -56,7 +56,6 @@ export class BlogService {
   }
 
   getAllBlogList(user_id,params): Observable<any> {
-    //return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + user_id +'/?'+params )
     return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcatuser/' + user_id +'/?'+params )
   }
 
@@ -67,7 +66,6 @@ export class BlogService {
     else {
       return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + search_key+'/'+user_id)
     }
-   // return this.http.get(environment.apiEndpoint + 'bloglistwithoutcardcat/' + search_key+'/'+user_id)
   }
 
   getPopularSearch(user_id): Observable<any> {

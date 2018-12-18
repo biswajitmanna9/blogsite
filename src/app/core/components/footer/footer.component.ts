@@ -27,14 +27,12 @@ export class FooterComponent implements OnInit {
     this.blogService.getMostRecentBlogList(data).subscribe(
       res => {
         this.mostRecentBlogListFooter = res['result'];
-        console.log("Footer Most Recent Deals==>",this.mostRecentBlogListFooter);
       },
       error => {
       }
     )
   }
   goToDetails(blog) {
-    console.log('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
     this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
 
