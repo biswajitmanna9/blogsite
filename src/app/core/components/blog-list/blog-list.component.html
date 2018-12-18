@@ -57,6 +57,8 @@
                     <!-- <span>{{blog.category_name}}</span> -->
                     <h3>{{blog.blog_title}}</h3>
                     <small>{{blog.date_created | date:'mediumDate'}}</small>
+                    <img [src]="blog.store_logo != '' && imageBaseUrl+ blog.store_logo || 'assets/images/noimage.png'"
+                                            alt="">
                     <p>{{blog.blog_excerpt | slice:0:100}}<span *ngIf="blog.blog_excerpt.length > 100">...</span></p>
                     <ul *ngIf="blog.tags.length > 0" class="tags">
                         <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>

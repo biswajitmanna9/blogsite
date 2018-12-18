@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
     <div class="col-md-2 side-ad">
@@ -11,16 +11,18 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
 <section class="full-bg-grey">
   <div class="container">
-    <h2 class="head-line-line mb-3 mt-3">Most Recent Stores - <a [routerLink]="['/allstore']" href="javascript:void(0)">See
+    <h2 class="head-line-line mb-3 mt-3">Today’s Recommended Stores - <a [routerLink]="['/allstore']" href="javascript:void(0)">See
         All Stores</a></h2>
     <div class="cuppon-sec">
       <div class="row">
-        <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback; let i = index" (click)=goToCashBackDetails(storeCashBack.id)>
+        <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback| slice:0:6;  let i = index" (click)=goToCashBackDetails(storeCashBack.id)>
           <div class="cuppon">
             <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+            <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'"
+                                            alt="">
             <span>{{storeCashBack.name}}</span>
             <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
             <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
@@ -29,7 +31,8 @@
 
       </div>
     </div>
-    <h2 class="head-line-line mb-3 mt-3">Most Recent Deals </h2>
+    <h2 class="head-line-line mb-3 mt-3">Featured Daily Deals- <a [routerLink]="['/stores/deals']" href="javascript:void(0)">See
+        All Deals</a> </h2>
     <div class="deal">
       <div class="row">
 
@@ -56,80 +59,16 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-md-3">
-          <div class="deal-sec">
-            <div class="deal-img">
-              <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-              <span>
-                Up to<br>
-                80% Off</span>
-            </div>
-            <div class="deal-provider">
-              <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-            </div>
-            <div class="deal-detail">
-              <h3>3.0% Cash Back</h3>
-              <h4>Extra 20% off
-                <span> fall fashion and home</span></h4>
-              <small>Expires 9/30/2018</small>
-              <a href="#">
-                Available
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="deal-sec">
-            <div class="deal-img">
-              <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-              <span>
-                Up to<br>
-                80% Off</span>
-            </div>
-            <div class="deal-provider">
-              <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-            </div>
-            <div class="deal-detail">
-              <h3>3.0% Cash Back</h3>
-              <h4>Extra 20% off
-                <span> fall fashion and home</span></h4>
-              <small>Expires 9/30/2018</small>
-              <a href="#">
-                Available
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="deal-sec">
-            <div class="deal-img">
-              <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-              <span>
-                Up to<br>
-                80% Off</span>
-            </div>
-            <div class="deal-provider">
-              <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
-            </div>
-            <div class="deal-detail">
-              <h3>3.0% Cash Back</h3>
-              <h4>Extra 20% off
-                <span> fall fashion and home</span></h4>
-              <small>Expires 9/30/2018</small>
-              <a href="#">
-                Available
-              </a>
-            </div>
-          </div>
-        </div> -->
+        
       </div>
     </div>
     <div class="hot-deal-sec">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="white-board">
             <div class="hot-deal-headline">
-              <h2 class="head-line-line mb-3 mt-3">Featured Coupons </h2>
+              <h2 class="head-line-line mb-3 mt-3">Featured Coupons- <a [routerLink]="['/store/coupons']" href="javascript:void(0)">See
+                  All Coupons</a> </h2>
             </div>
             <div class="hot-deal">
               <div class="col-md-12">
@@ -201,20 +140,125 @@
           </div>
         </div>
 
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <div class="white-board">
             <div class="hot-deal-headline">
               <h2 class="head-line-line mb-3 mt-3 font-size-20">Cash Back Offers</h2>
             </div>
             <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
-              <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:4; let i = index" class="cuppon">
-                <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+              <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:4; let i = index"
+                class="cuppon">
                 <span class="coupon-name">{{storeCashBack.cashback_portal_name}}</span>
-                <span class="coupon-discount" >{{storeCashBack.raw_rate_data}} Cash Back</span>
+                <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
                 <span>{{storeCashBack.name}}</span>
 
               </li>
             </ul>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+           <div class="white-board">
+            <div class="hot-deal-headline">
+              <h2 class="head-line-line mb-3 mt-3 font-size-20">Featured Cash Back Offers</h2>
+            </div>
+            <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
+              <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:6; let i = index"
+                class="cuppon">
+               
+                <span class="coupon-name">{{storeCashBack.cashback_portal_name}}</span>
+                <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+                <span>{{storeCashBack.name}}</span>
+
+              </li>
+            </ul>
+          </div> 
+          <!-- <h2 class="head-line-line mb-3 mt-3">Featured Cashback Offers- <a [routerLink]="['/store/cashback']" href="javascript:void(0)">See
+            All Cashback</a></h2>
+        <div class="cuppon-sec">
+          <div class="row">
+            <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback| slice:0:6;  let i = index" (click)=goToCashBackDetails(storeCashBack.id)>
+              <div class="cuppon">
+            
+                <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'"
+                                                alt="">
+                <span>{{storeCashBack.name}}</span>
+                <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+                <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
+              </div>
+            </div>
+    
+          </div>
+        </div> -->
+        </div>
+      </div>
+
+      <div class="hot-deal-sec">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="white-board">
+              <div class="hot-deal-headline">
+                <h2 class="head-line-line mb-3 mt-3">All Stores </h2>
+              </div>
+              <div class="hot-deal">
+  
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="alphabet-filter">
+                      <li class="text-light bg-dark" (click)="allStoreListing()">All</li>
+                      <li class="letter-filter text-muted filterSearch" [ngClass]="{'active': selectedItem == alphabet}"
+                        (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
+                      <li class="text-light bg-dark" (click)="filterSearch('numberfilter')">0-9</li>
+                    </ul>
+                  </div>
+                </div>
+  
+                <div class="col-md-12">
+                  <div class="row border-top">
+                    <div class="col-md-12" *ngFor="let store of allStore; let i = index">
+                      <div class="table-box d-flex justify-content-around store-list" [routerLink]="['/store/coupondetails',store.id]">
+                        <a href="javascript:void(0)">{{store.name}}</a>
+                        <a href="javascript:void(0)">
+                          <span *ngIf="store.coupon_count==0">No Coupon</span>
+                          <span *ngIf="store.coupon_count > 0">{{store.coupon_count}} Coupons</span>
+                        </a>
+  
+                        <a class="text-danger" href="javascript:void(0)">
+                          <span *ngIf="store.highest_cashback == '0%'">No Cash Back</span>
+                          <span *ngIf="store.highest_cashback != '0%'">{{store.highest_cashback}} Cash Back</span>
+                        </a>
+                        <a class="text-danger" href="javascript:void(0)">
+                          <span *ngIf="store.lowest_cashback== '0%' && store.highest_cashback=='0%'">No Cash Back</span>
+                          <span *ngIf="store.lowest_cashback != '0%' && store.highest_cashback !='0%'">{{store.lowest_cashback}} -
+                              {{store.highest_cashback}}Cash Back</span>
+                          
+                        </a>
+                        <button>shop Now</button>
+  
+                      </div>
+  
+                    </div>
+                    <div class="no-records-found" *ngIf="allStoreLength < 1">No Records found</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="pagination-msg" *ngIf="allStoreListCount > 0">
+                        <p>Showing {{lower_count}} to {{upper_count}} of {{allStoreListCount}} entries</p>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="card-body pull-right" *ngIf="allStoreListCount > itemPerPage">
+                        <ngb-pagination [collectionSize]="allStoreListCount" [pageSize]="itemPerPage" [maxSize]="paginationMaxSize"
+                          [(page)]="defaultPagination" (pageChange)="pagination()" size="sm"></ngb-pagination>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
           </div>
         </div>
       </div>

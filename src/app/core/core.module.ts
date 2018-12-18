@@ -62,6 +62,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { LoadingComponent } from './components/loading/loading.component';
+import { AdvertiseComponent } from './components/advertise/advertise.component';
 
 @NgModule({
   imports: [
@@ -99,7 +100,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     CardListComponent,
     ReplyTreeComponent,
     SideNavComponent,
-    LoadingComponent
+    LoadingComponent,
+    AdvertiseComponent
   ],
   exports: [
     NgbModule,
@@ -129,7 +131,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     LoadingComponent
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,
+    AdvertiseComponent
   ]
 })
 export class CoreModule {

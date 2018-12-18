@@ -1896,16 +1896,31 @@ ul ul .cmmnt {
     display: block;
 }
 
+// .active-card::before {
+//     content: "\f0d8";
+//     position: absolute;
+//     bottom: -102%;  // previous 62%
+//     left: 50%; //31% -previous
+//     color: #f2f2f2;
+//     font-size: 30px;
+//     font-family: FontAwesome;
+// }
 .active-card::before {
-    content: "\f0d8";
-    position: absolute;
-    bottom: -65%;
-    left: 50%; //31% -previous
-    color: #f2f2f2;
-    font-size: 30px;
-    font-family: FontAwesome;
+content: "\f0d8";
+position: absolute;
+color: #f2f2f2;
+font-family: FontAwesome;
+height: 0;
+width: 0;
+border-top: .75rem solid transparent;
+border-right: .75rem solid transparent;
+border-bottom: .75rem solid #fff;
+border-left: .75rem solid transparent;
+bottom: -1.3125rem;
+margin: 0 auto;
+right: 0;
+left: 0;
 }
-
 .tags {
     list-style: none;
     margin: 0;
@@ -2381,6 +2396,26 @@ ul ul .cmmnt {
 }
 
 
+<<<<<<< HEAD
+=======
+// Sdvertise disclouser Start 
+.category__advertiser-disclosure-link {
+    font-family: sofiaproBold,Arial,sans-serif;
+    color: #02266c;
+    text-decoration: underline;
+    font-size: .6875rem;
+    margin: 0 0 .625rem 0;
+    float: right;
+    cursor: pointer;
+}
+
+// Advertise discloouser end 
+
+.alphabet-filter li {
+    padding:3px 10px 3px 10px !important; 
+}
+
+>>>>>>> 086a7af071e18c770090c15e9aec128550b5282d
 /** =====================
  * Responsive
  ========================*/

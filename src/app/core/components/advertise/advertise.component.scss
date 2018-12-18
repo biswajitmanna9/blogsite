@@ -1,0 +1,26 @@
+.modal__inner__title {
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 1.17;
+    color: #1542f8;
+    font-family: sofiaproBold,Arial,sans-serif;
+    letter-spacing: -.05rem;
+    margin: 1.25rem 0;
+    display: block;
+}
+
+.modal__inner p {
+    margin: 0 0 1.875rem 0;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #000;
+    font-family: sofiaproRegular,Arial,sans-serif;
+}
+
+.modal__ok-button:hover {
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+    background: #fff;
+    color: #1542f8;
+}

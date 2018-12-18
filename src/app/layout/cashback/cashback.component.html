@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-10"> <img class="img-fluid" src="assets/images/card-banner.jpg" alt=""></div>
         <div class="col-md-2 side-ad">
@@ -12,7 +12,7 @@
             </ul>
         </div>
     </div>
-</div>
+</div> -->
 <section class="full-bg-grey">
     <div class="container">
         <div class="cuppon-sec">
@@ -39,7 +39,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <ul>
+                                    <ul class="alphabet-filter">
                                         <li class="text-light bg-dark" (click)="allStoreListing()">All</li>
                                         <li class="letter-filter text-muted filterSearch" (click)="filterSearch(alphabet)"
                                             [ngClass]="{'active': selectedItem == alphabet}" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
