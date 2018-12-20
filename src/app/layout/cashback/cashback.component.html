@@ -20,13 +20,15 @@
                 <div class="col-md-2" *ngFor="let storeCashBack of cashBackList; let i = index">
                     <div class="cuppon" (click)=goToCashBackDetails(storeCashBack.id)>
                         <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
-                        <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'"
-                        alt="">
+                        <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'" alt="">
                         <span>{{storeCashBack.cashback_portal_name}}</span>
                         <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
-                        <span>{{storeCashBack.coupon_count}} Coupons</span>
-                        <span>{{storeCashBack.deals_count}} Deals</span>
-                        <small>{{storeCashBack.name}}</small>
+                        <!-- <span>{{storeCashBack.coupon_count}} Coupons</span>
+                        <span>{{storeCashBack.deals_count}} Deals</span> -->
+                        <ul class="cupponstatus d-flex justify-content-between">
+                            <li> <a>{{storeCashBack.coupon_count}} Coupons</a> </li>
+                            <li><a>{{storeCashBack.deals_count}} Deals</a></li>
+                        </ul><small>{{storeCashBack.name}}</small>
                     </div>
                 </div>
 
@@ -45,8 +47,7 @@
                                 <div class="col-md-12">
                                     <ul class="alphabet-filter">
                                         <li class="text-light bg-dark" (click)="allStoreListing()">All</li>
-                                        <li class="letter-filter text-muted filterSearch" (click)="filterSearch(alphabet)"
-                                            [ngClass]="{'active': selectedItem == alphabet}" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
+                                        <li class="letter-filter text-muted filterSearch" (click)="filterSearch(alphabet)" [ngClass]="{'active': selectedItem == alphabet}" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
                                         <li class="text-light bg-dark" (click)="filterSearch('numberfilter')">0-9</li>
                                     </ul>
                                 </div>
@@ -94,15 +95,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="pagination-msg" *ngIf="allStoreListCount > 0">
-                                            <p>Showing {{lower_count}} to {{upper_count}} of {{allStoreListCount}}
-                                                entries</p>
+                                            <p>Showing {{lower_count}} to {{upper_count}} of {{allStoreListCount}} entries
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="card-body pull-right" *ngIf="allStoreListCount > itemPerPage">
-                                            <ngb-pagination [collectionSize]="allStoreListCount" [pageSize]="itemPerPage"
-                                                [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()"
-                                                size="sm"></ngb-pagination>
+                                            <ngb-pagination [collectionSize]="allStoreListCount" [pageSize]="itemPerPage" [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()" size="sm"></ngb-pagination>
                                         </div>
                                     </div>
                                 </div>

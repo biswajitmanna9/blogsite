@@ -1,10 +1,12 @@
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}"></li>
+            <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" *ngFor="let banner of homeBannerContentList; let i = index"
+                [ngClass]="{'active': i == 0}"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}" [style.background-image]="getBackground(banner.slider_img)">
+            <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}"
+                [style.background-image]="getBackground(banner.slider_img)">
                 <div class="carousel-caption-bnr d-none  d-flex justify-content-center">
 
                     <div class="bnr-text text-center bnr-text-box" *ngFor="let banner of homeBannerContentList; let i = index">
@@ -156,19 +158,21 @@
                         <li *ngFor="let tag of blog.tags" class="tag"><a href="javascript:void(0);">{{tag.name}}</a></li>
                     </ul>
                     <small class="comment-count">{{getBlogCount(blog)}}</small>
-                    <span class="like-btn" (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"  class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                    <span class="like-btn" (click)="addLike(blog.id,blog.is_like,userId)"><i [ngClass]="{'active': blog.is_like == 1}"
+                            class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                     <small>{{blog.likes}} Likes</small>
                 </div>
                 <div class="col-md-2 price-container">
                     <div *ngIf="blog.category_slug =='deals'">
-                        <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price | currency}}</del></p>
+                        <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price |
+                                currency}}</del></p>
                         <p class="main-price"> {{blog.sale_price | currency}}<span *ngIf="blog.highest_cashback !=null">+
                                 {{blog.highest_cashback}} % cashback</span></p>
                     </div>
                     <p *ngIf="blog.daysPending >0 && blog.category_slug =='deals'" class="deals-start"><i class="fa fa-clock-o"
-                        aria-hidden="true"></i> {{blog.daysPending}} Days Left</p>
-                <p *ngIf="blog.daysPending < 0 && blog.category_slug =='deals'" class="deals-end"><i class="fa fa-clock-o"
-                        aria-hidden="true"></i> Expired</p>
+                            aria-hidden="true"></i> {{blog.daysPending}} Days Left</p>
+                    <p *ngIf="blog.daysPending < 0 && blog.category_slug =='deals'" class="deals-end"><i class="fa fa-clock-o"
+                            aria-hidden="true"></i> Expired</p>
                     <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog)">View</a>
                 </div>
             </div>

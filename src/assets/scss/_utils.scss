@@ -97,7 +97,7 @@ a:hover {
 }
 
 .bnr-text-box {
-    width:33%;
+    width: 33%;
 }
 
 .carousel-indicators li {
@@ -747,10 +747,11 @@ footer p {
     width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size:10px;
+    font-size: 10px;
 }
+
 .limited-text {
-    font-size:10px;
+    font-size: 10px;
 }
 
 
@@ -1030,11 +1031,10 @@ h4 {
     border: 1px solid #cccccc;
     text-align: center;
     padding: 10px;
-    height: 230px;
     overflow: hidden;
     margin-top: 15px;
     margin-bottom: 15px;
-    border-radius: 2px;
+    border-radius: 3px;
     cursor: pointer;
 }
 
@@ -1045,13 +1045,13 @@ h4 {
 }
 
 .cuppon-sec .cuppon span {
-    color: red;
     display: block;
     line-height: 56px;
     white-space: nowrap;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 12px;
 }
 
 .cuppon-sec .cuppon small {
@@ -1200,7 +1200,7 @@ h4 {
 
 .hot-deal .deal-sec .deal-detail {
     padding-top: 7px;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
 .hot-deal .deal-sec .deal-detail h4 {
@@ -1226,15 +1226,11 @@ h4 {
 }
 
 .flex-width li {
-    width: 126px;
+    width: 170px;
+    padding: 9px;
 }
 
 // comment-sec
-.comments-container {
-    margin-top: 25px;
-    width: 768px;
-}
-
 .comments-container h1 {
     font-size: 18px;
     color: #283035;
@@ -1909,21 +1905,22 @@ ul ul .cmmnt {
 //     font-family: FontAwesome;
 // }
 .active-card::before {
-content: "\f0d8";
-position: absolute;
-color: #f2f2f2;
-font-family: FontAwesome;
-height: 0;
-width: 0;
-border-top: .75rem solid transparent;
-border-right: .75rem solid transparent;
-border-bottom: .75rem solid #fff;
-border-left: .75rem solid transparent;
-bottom: -1.75rem;
-margin: 0 auto;
-right: 0;
-left: 0;
+    content: "\f0d8";
+    position: absolute;
+    color: #f2f2f2;
+    font-family: FontAwesome;
+    height: 0;
+    width: 0;
+    border-top: .75rem solid transparent;
+    border-right: .75rem solid transparent;
+    border-bottom: .75rem solid #fff;
+    border-left: .75rem solid transparent;
+    bottom: -1.75rem;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
 }
+
 .tags {
     list-style: none;
     margin: 0;
@@ -2024,8 +2021,12 @@ left: 0;
     border-bottom: 3px solid #fff;
 }
 
+.price-container {
+    text-align: center;
+}
+
 .price-container .cut-price {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 500;
     color: #b5b5b5;
     padding: 0;
@@ -2136,7 +2137,7 @@ left: 0;
 .navbar .dropdown-menu {
     border: none;
     position: absolute !important;
-    background-color: #1d428e !important;
+    background-color: #1538c5 !important;
     width: 530px !important;
 }
 
@@ -2205,7 +2206,10 @@ left: 0;
 .nav-subhover li a {
     padding-left: 37px !important;
 }
+
+
 /* Comment to close the icon in sub menu */
+
 // .nav-subhover li::before {
 //     content: "\f28e";
 //     color: #fff;
@@ -2215,7 +2219,6 @@ left: 0;
 //     font-size: 18px;
 //     left: 12px;
 // }
-
 // search
 #demo-2 input[type=text] {
     background: #ededed url(../images/search.png) no-repeat 6px center;
@@ -2287,7 +2290,6 @@ left: 0;
     color: #fff !important;
     line-height: 33px !important;
     border-radius: 4px;
-    margin-bottom: 25px;
 }
 
 .cuppon-double-sec .cuppon span {
@@ -2326,7 +2328,7 @@ left: 0;
 /* store right side bar start */
 
 .side-ad {
-    padding-top: 12px;
+    padding: 12px;
 }
 
 .goto-store li {
@@ -2379,20 +2381,22 @@ left: 0;
     left: 14px;
     text-align: left;
 }
+
 .comment-count {
     margin-right: 10px;
 }
+
 .deals-end {
-   color:#f55; 
-}
-.deals-start {
-    color:#0c217a;
+    color: #f55;
 }
 
+.deals-start {
+    color: #0c217a;
+}
 
 // Sdvertise disclouser Start 
 .category__advertiser-disclosure-link {
-    font-family: sofiaproBold,Arial,sans-serif;
+    font-family: sofiaproBold, Arial, sans-serif;
     color: #02266c;
     text-decoration: underline;
     font-size: .6875rem;
@@ -2402,10 +2406,90 @@ left: 0;
 }
 
 // Advertise discloouser end 
-
 .alphabet-filter li {
-    padding:3px 10px 3px 10px !important; 
+    padding: 3px 10px 3px 10px !important;
 }
+
+.product-store {
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    position: relative;
+}
+
+.product-store p {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 14px;
+    color: #a29e9e;
+}
+
+.product-store .pricc-product del {
+    color: #b9b8b8;
+    font-size: 12px;
+}
+
+.product-store .product-like {
+    color: #006913;
+}
+
+.product-store a {
+    font-size: 13px;
+    background: #afafb1;
+    color: #fff !important;
+    border-radius: 4px;
+    display: block;
+    text-align: center;
+    padding: 7px;
+    margin-top: 11px;
+    transition: all .40s ease-out;
+}
+
+.product-store:hover a {
+    background: #1538c5;
+    transition: all .40s ease;
+}
+
+.product-store:hover {
+    box-shadow: -4px 3px 49px -5px rgba(0, 0, 0, 0.34);
+    transition: all .40s ease;
+}
+
+.cupponstatus li {
+    display: inline;
+    background: #006913;
+    color: #fff;
+    font-size: 9px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.cupponstatus {
+    margin: 8px 0;
+}
+
+.deal {
+    margin-bottom: 30px;
+}
+
+.product-store .img-overly {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #fff;
+    padding: 7px;
+}
+
+.white-board-form {
+    background: #fff;
+    border: 1px solid #cccccc;
+    padding: 16px;
+    border-radius: 3px;
+}
+
 
 /** =====================
  * Responsive
@@ -2420,7 +2504,7 @@ left: 0;
     /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
     .navbar .nav-item {
         //padding: .5rem .5rem;
-        padding: .5rem 1rem; 
+        padding: .5rem 1rem;
         margin: 0 .25rem;
     }
     /* makes the dropdown full width  */
@@ -2450,9 +2534,6 @@ left: 0;
 }
 
 @media only screen and (max-width: 766px) {
-    .comments-container {
-        width: 480px;
-    }
     .comments-list .comment-box {
         width: 390px;
     }
