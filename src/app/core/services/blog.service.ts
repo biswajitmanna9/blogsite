@@ -47,6 +47,7 @@ export class BlogService {
   }
 
   getApplyLink(blsug, lat, long) {
+    console.log(environment.apiEndpoint + 'reflinkbybsluglatlong/' + blsug + '/' + lat + '/' + long + '/');
     return this.http.get(environment.apiEndpoint + 'reflinkbybsluglatlong/' + blsug + '/' + lat + '/' + long + '/')
   }
 
@@ -85,6 +86,10 @@ export class BlogService {
   getFilterDeals(id,user_id,order_column,order_by): Observable<any> {
     console.log(environment.apiEndpoint + 'bloglistbycatid/' + id + '/'+ user_id + '/?order_column='+order_column+'&order_by='+order_by);
     return this.http.get(environment.apiEndpoint + 'bloglistbycatid/' + id + '/'+ user_id + '/?order_column='+order_column+'&order_by='+order_by)
+  }
+
+  getBlogListByCategoryIdChild(id,user_id,params): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'bloglistbycatidandchild/' + id + '/'+ user_id + '/?'+params)
   }
 
 

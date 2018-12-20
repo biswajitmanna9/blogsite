@@ -20,8 +20,12 @@
                 <div class="col-md-2" *ngFor="let storeCashBack of cashBackList; let i = index">
                     <div class="cuppon" (click)=goToCashBackDetails(storeCashBack.id)>
                         <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+                        <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'"
+                        alt="">
                         <span>{{storeCashBack.cashback_portal_name}}</span>
                         <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+                        <span>{{storeCashBack.coupon_count}} Coupons</span>
+                        <span>{{storeCashBack.deals_count}} Deals</span>
                         <small>{{storeCashBack.name}}</small>
                     </div>
                 </div>

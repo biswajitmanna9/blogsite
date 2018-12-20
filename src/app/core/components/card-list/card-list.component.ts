@@ -54,6 +54,7 @@ export class CardListComponent implements OnInit {
   subItemsNumber:number;
   itemName:any;
   blogLinks: string;
+  tag:any;
 
   constructor(
     private blogService: BlogService,
@@ -113,11 +114,41 @@ export class CardListComponent implements OnInit {
     item.opened = !item.opened;
   }
 
+  getAllBlog() {
+    this.bloglistByCatidandChild();
+  }
+
+  bloglistByCatidandChild() {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', this.defaultPagination.toString());
+    this.blogService.getBlogListByCategoryIdChild(this.blogCategoryId, this.userId, params).subscribe(
+      res => {
+        console.log("kkk==>",res);
+        this.categoryDetails = res['result']['category_details'];
+        this.blogList = res['result']['bloglist'];
+        this.blogListCount = res['result']['total_count'];
+        this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+        this.lower_count = this.itemNo + 1;
+        if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
+          this.upper_count = this.itemPerPage * this.defaultPagination
+        }
+        else {
+          this.upper_count = this.blogListCount;
+        }
+        this.visibleKey = true
+      },
+      error => {
+        // console.log(error)
+      }
+    )
+  }
+
   getBlogListByCategory() {
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
     this.blogService.getBlogListByCategory(this.blogCategoryId, this.userId, params).subscribe(
       res => {
+        console.log("kkk==>",res);
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
@@ -197,14 +228,13 @@ export class CardListComponent implements OnInit {
           
           if(x.category_slug == this.subCatSlug) {
             this.subSubCatList = x.sub_category_details;
+           // console.log("Sub Sub Cat List==>",this.subSubCatList);
             if(this.subSubCatList.length > 10) {
-              this.subItemsNumber=10;
+              this.subItemsNumber =10;
             }
             else {
               this.subItemsNumber =this.subSubCatList.length;
             }
-            
-            
 
           }
           // var data = {
@@ -292,6 +322,8 @@ export class CardListComponent implements OnInit {
     this.blogService.getBlogListByTag(this.blogCategoryId, tag_name).subscribe(
       res => {
         this.categoryDetails = res['result']['category_details'];
+
+        console.log("Cat Details ==>",this.categoryDetails);
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
@@ -389,7 +421,10 @@ export class CardListComponent implements OnInit {
   }
 
   tagFilterAll(all) {
-    
+    // alert(2);
+    // this.tag= [];
+     //this.tag.name ='all';
+     this.selectTagName ='all';
     this.getBlogListByCategory();
   }
 

@@ -30,7 +30,9 @@ export class ReferralService {
   }
 
   updateReferral(data) {
+    //return this.http.post(environment.apiEndpoint + 'reflinkcountupdate/', data)
     return this.http.post(environment.apiEndpoint + 'reflinkcountupdate/', data)
+    
   }
 
   getUserReferralList(id) {
@@ -38,6 +40,10 @@ export class ReferralService {
   }
 
   getZipCode(data) {
+    return this.http.post(environment.apiEndpoint + 'zipcodegetorupdate/', data)
+  }
+
+  getProfile(data) {
     return this.http.post(environment.apiEndpoint + 'zipcodegetorupdate/', data)
   }
  

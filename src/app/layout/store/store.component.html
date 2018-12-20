@@ -25,6 +25,8 @@
                                             alt="">
             <span>{{storeCashBack.name}}</span>
             <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
+            <span>{{storeCashBack.coupon_count}} Coupons</span>
+            <span>{{storeCashBack.deals_count}} Deals</span>
             <small>See All {{storeCashBack.cashback_portal_name}} Coupons</small>
           </div>
         </div>
@@ -162,7 +164,8 @@
         <div class="col-md-12">
            <div class="white-board">
             <div class="hot-deal-headline">
-              <h2 class="head-line-line mb-3 mt-3 font-size-20">Featured Cash Back Offers</h2>
+              <h2 class="head-line-line mb-3 mt-3 font-size-20">Featured Cash Back Offers<a [routerLink]="['/stores/cashback']" href="javascript:void(0)">See
+                All Cashback</a></h2>
             </div>
             <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
               <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:6; let i = index"

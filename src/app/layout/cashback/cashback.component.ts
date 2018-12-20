@@ -46,7 +46,7 @@ export class CashbackComponent implements OnInit {
     this.defaultPagination = 1;
     this.paginationMaxSize = Globals.paginationMaxSize;
     //this.itemPerPage = Globals.itemPerPage;
-    this.itemPerPage = 30;
+    this.itemPerPage = 10;
     this.popularstore();
    // this.storeByCashback();
     this.maxDiscountCashBack();
@@ -140,7 +140,7 @@ export class CashbackComponent implements OnInit {
   }
 
   goToCashBackDetails(id) {
-    this.router.navigate(['/cashbackdetails',id]);
+    this.router.navigate(['/store/cashbackdetails',id]);
   }
 
   onNavigate(url){

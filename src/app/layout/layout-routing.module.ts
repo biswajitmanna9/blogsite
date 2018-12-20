@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { BlogComponent } from './blog/blog.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { ErrorComponent } from './error/error.component';
@@ -28,6 +30,8 @@ const routes: Routes = [
       { path: '/', redirectTo: 'home', pathMatch: "full" },
       { path: 'home', component: HomeComponent },
       { path: 'about-us', component: AboutUsComponent },
+      { path: 'my-profile', component: MyprofileComponent },
+      { path: 'changepassword', component: ChangepasswordComponent },
       { path: 'store/coupons', component: CouponComponent },
       { path: 'store/coupondetails/:id', component: CoupondetailsComponent },
       { path: 'store/cashback', component: CashbackComponent },

@@ -1,0 +1,62 @@
+.sidebar-box {
+    width: 100%;
+    display: inline-block;
+    -webkit-box-shadow: 0 0 10px rgba(175,175,175,.23);
+    box-shadow: 0 0 10px rgba(175,175,175,.23);
+    margin-bottom: 30px;
+}
+
+.bg-light {
+    background: #f8f8f8;
+}
+
+.sidebar-box .user {
+    text-align: center;
+    width: 100%;
+    padding: 15px 20px;
+    position: relative;
+    margin-bottom: 5px;
+    background: #192b4f;
+}
+
+.sidebar-box .user .usercontent {
+    padding: 15px 0 0;
+}
+
+.sidebar-box .user .usercontent h3 {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 16px;
+    margin-bottom: 8px;
+}
+.sidebar-box .navdashboard ul {
+    width: 100%;
+}
+.sidebar-box .navdashboard ul li {
+    margin: 0;
+    width: 100%;
+    float: left;
+    position: relative;
+    line-height: 48px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.sidebar-box .navdashboard ul li a {
+    color: #192b4f;
+    width: 100%;
+    float: left;
+    line-height: inherit;
+}
+.sidebar-box .navdashboard ul li a i {
+    width: 58px;
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+.sidebar-box .user figure img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    width:25%;
+}

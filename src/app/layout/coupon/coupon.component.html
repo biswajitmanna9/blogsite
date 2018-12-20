@@ -21,9 +21,16 @@
         <div class="col-md-2" *ngFor="let couponList of discountCouponList; let i = index">
           <div class="cuppon" (click)="goToCouponDetails(couponList.id)">
             <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
+            <img [src]="couponList.store_image != '' && imageBaseUrl+ couponList.store_image || 'assets/images/noimage.png'"
+            alt="">
+           
             <span>{{couponList.coupon_description}}</span>
+            <span class="coupon-discount">{{couponList.coupon_code}}</span>
             <!-- <span class="coupon-discount">{{couponList.discount}}% Cash Back</span> -->
+            <!-- <span>{{couponList.coupon_count}} Coupons</span> -->
+           
             <small>See All {{couponList.store_name}} Coupons</small>
+         
           </div>
         </div>
 

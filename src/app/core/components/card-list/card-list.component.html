@@ -53,22 +53,20 @@
                 <h2 class="parent-cat-name">{{parentCategoryName}}</h2>
             </div>
         </div>
-        <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
+        <!-- <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
                 '480': { items: 1,  margin: 5 },
     '640': { items: subItemsNumber, margin: 5 }
            }  }"
             [items]="subSubCatList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
-
             <div (click)="goToCategoryPage(category.category_slug)" class="item" *ngFor="let category of subSubCatList ; let i = index"
                 [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
                 <a href="JavaScript:Void(0);">
                     <div class="category-icon-item">
                         <div class="icon-box card-item">
                             <div class="icon ">
-                                <!-- <img [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/img/no-image.png'"
-                                            alt=""> -->
-                                <!-- <img class="img-fluid" [src]="category.image != '' && imageBaseUrl+ category.image || 'assets/images/information.png'"
-                                            alt=""> -->
+                                 <img [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/img/no-image.png'"
+                                            alt="">
+                               
 
                             </div>
                             <h2>{{category.category_name}}</h2>
@@ -76,7 +74,29 @@
                     </div>
                 </a>
             </div>
-        </owl-carousel>
+        </owl-carousel> -->
+        <div class="card-listing-cardpage pt-3 pb-3">
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <div class="card-item" (click)="getAllBlog()">
+                            <a class="ng-tns-c8-0"> 
+                                <h2 class="ng-tns-c8-0">All</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ng-tns-c8-0 ng-star-inserted" *ngFor="let category of subSubCatList | slice:0:7">
+                        <div class="card-item" (click)="goToCategoryPage(category.category_slug)">
+                            <a class="ng-tns-c8-0" [ngClass]="{'active-card': category.category_slug == categoryDetails?.category_url}">
+                                <!-- <img class="img-fluid" [src]="category.category_image != '' && imageBaseUrl+ category.category_image || 'assets/images/information.png'" alt=""> -->
+                                <h2 class="ng-tns-c8-0">{{category.category_name}}</h2>
+                            </a>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

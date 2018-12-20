@@ -39,7 +39,9 @@ export class CashbackdetailsComponent implements OnInit {
     )
   }
   onNavigate(url){
-    window.open("http://www."+ url, "_blank");
+    //alert(url);
+    //window.open("http://www."+ url, "_blank");
+    window.open(url, "_blank");
   }
 
 }

@@ -1,0 +1,53 @@
+<aside>
+    <div class="sidebar-box bg-light">
+        <div class="user">
+            <figure>
+                <!-- <a><img class="img-fluid sidebar-profile-image" [src]="profileDetails.profile_image != '' && imageBaseUrl+ profileDetails.profile_image || 'assets/img/no-img.png'"
+                        alt=""></a> -->
+                <a><img class="img-fluid sidebar-profile-image"  src="assets/images/no-image.png"
+                        alt=""></a>
+            </figure>
+            <div class="usercontent">
+                <!-- <h3>{{profileDetails.name}}</h3> -->
+                <h3>Kalyan</h3>
+               
+            </div>
+        </div>
+        <nav class="navdashboard">
+            <ul>
+                <li>
+                    <a [routerLink]="['/my-profile']">
+                        <i class="fa fa-cog"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/add-referral']">
+                        <i class="fa fa-cog"></i>
+                        <span>Add Referral</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/dashboard']">
+                        <i class="fa fa-cog"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+               
+                <li>
+                    <a [routerLink]="['/changepassword']">
+                        <i class="fa fa-cart-plus"></i>
+                        <span>Change Password</span>
+                    </a>
+                </li>
+                
+                <!-- <li>
+                    <a (click)="logout()">
+                        <i class="fa fa-power-off"></i>
+                        <span>Log Out</span>
+                    </a>
+                </li> -->
+            </ul>
+        </nav>
+    </div>
+</aside>

@@ -1,0 +1,118 @@
+<section class="full-bg-grey">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-3">
+        <app-profile-sidebar></app-profile-sidebar>
+      </div>
+      <div class="col-md-9">
+
+        <h2 class="head-line-line mb-3 mt-3">My Profile</h2>
+
+
+        <div class="list-sec">
+
+          <div class="dashboard-wrapper">
+            <form role="form" [formGroup]="editForm" novalidate (submit)="updateProfile()">
+              <div class="row">
+
+                <div class="form-group mb-3 col-md-6">
+                  <label class="control-label">Name:</label>
+
+                  <input type="text" name="name" class="form-control input-md" placeholder="Name" formControlName="name"
+                    [(ngModel)]="profileDetails.name" [ngClass]="displayFieldCss(editForm,'name')">
+                  <div class="invalid-feedback text-left" *ngIf="isFieldValid(editForm,'name')">
+                    Please enter name
+                  </div>
+                </div>
+
+                <div class="form-group mb-3 col-md-6">
+                  <label class="control-label">Phone Nunber:</label>
+                  <input type="text" [(ngModel)]="profileDetails.contact" name="contact" class="form-control input-md"
+                    placeholder="Contact Number" formControlName="contact" [ngClass]="displayFieldCss(editForm,'contact')">
+                  <div class="invalid-feedback text-left" *ngIf="isFieldValid(editForm,'contact')">
+                    Please enter Contact Number
+                  </div>
+
+                </div>
+
+                <div class="form-group mb-3 col-md-6">
+                  <label class="control-label">Email:</label>
+                  <input readonly type="email" [(ngModel)]="profileDetails.email" class="form-control input-md"
+                    placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss(editForm,'email')">
+                  <div class="invalid-feedback text-left" *ngIf="editForm.controls['email'].hasError('pattern') && !editForm.controls['email'].hasError('required')">
+                    Please enter a valid email address
+                  </div>
+                  <div class="invalid-feedback text-left" *ngIf="editForm.controls['email'].hasError('required')">
+                    Email is required
+                  </div>
+                </div>
+
+                <!-- <div class="form-group mb-3 col-md-6">
+                            <label class="control-label">Zip Code:</label>
+                            <input type="text" [(ngModel)]="profileDetails.zip" class="form-control input-md" placeholder="Enter your zip code"
+                              formControlName="zip" [ngClass]="displayFieldCss(editForm,'zip')">
+                            <div class="invalid-feedback text-left" *ngIf="editForm.controls['zip'].hasError('pattern') && !editForm.controls['zip'].hasError('required')">
+                              Please enter a valid zip code
+                            </div>
+                            <div class="invalid-feedback text-left" *ngIf="editForm.controls['zip'].hasError('required')">
+                              Zip code is required
+                            </div>
+                          </div> -->
+
+                <div class="form-group mb-3 col-md-4">
+                  <!-- <label class="tg-fileuploadlabel" for="tg-photogallery">
+                                                    <span>Drop files anywhere to upload</span>
+                            
+                                                    <span class="btn btn-common">Browse image</span>
+                    
+                                                    <input id="tg-photogallery" class="tg-fileinput" (change)="onFileChange($event)" type="file"
+                                                      name="profile_image" formControlName="profile_image">
+                                                  </label> -->
+
+                </div>
+                <div class="form-group mb-3 col-md-6">
+                  <input type="submit" class="btn btn-common" value="Update">
+
+                  <!-- <a href="#" class="btn btn-common">Submit</a> -->
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <div class="list-sec">
+
+          <div class="dashboard-wrapper">
+            <form role="form" [formGroup]="editZipForm" novalidate (submit)="updateUserZipCode()">
+              <div class="row">
+                <div class="form-group mb-3 col-md-6">
+                  <label class="control-label">Zip Code:</label>
+                  <input type="text" [(ngModel)]="zip" class="form-control input-md" placeholder="Enter your zip code"
+                    formControlName="zip" [ngClass]="displayFieldCss(editZipForm,'zip')">
+                  <div class="invalid-feedback text-left" *ngIf="editZipForm.controls['zip'].hasError('pattern') && !editZipForm.controls['zip'].hasError('required')">
+                    Please enter a valid zip code
+                  </div>
+                  <div class="invalid-feedback text-left" *ngIf="editZipForm.controls['zip'].hasError('required')">
+                    Zip code is required
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group mb-3 col-md-6">
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <input type="submit" class="btn btn-common" value="Update">
+
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
