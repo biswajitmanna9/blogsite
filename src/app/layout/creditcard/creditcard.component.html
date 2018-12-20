@@ -71,7 +71,13 @@
                             aria-hidden="true"></i> {{blog.daysPending}} Days Left</p>
                     <p *ngIf="blog.daysPending < 0 && blog.category_slug =='deals'" class="deals-end"><i class="fa fa-clock-o"
                             aria-hidden="true"></i> Expired</p>
-                    <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.blog_url)">View</a>
+                    <!-- <a class="btn derk-color text-white blog-btn" (click)="goToDetails(blog.blog_url)">View</a> -->
+                    <div class=" d-flex align-items-center col-md-2 text-decline">
+                        <a class="btn derk-color text-white" *ngIf="loggedIn" [routerLink]="['/apply']" [queryParams]="{ code: blog.blog_url}"
+                            target="_blank">Apply Now</a>
+                        <a class="btn derk-color text-white" *ngIf="!loggedIn" href="javascript:void(0);" (click)="openLoginModal()">Apply
+                            Now</a>
+                    </div>
                 </div>
             </div>
 

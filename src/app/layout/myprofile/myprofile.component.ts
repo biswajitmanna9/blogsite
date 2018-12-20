@@ -18,6 +18,8 @@ export class MyprofileComponent implements OnInit {
   profileDetails=[];
   user_id: string;
   editProfile: boolean;
+  profileImageToUpload: File = null;
+  profileImage: File = null;
   constructor(
     private formBuilder: FormBuilder,
     private profileService: ProfileService,
@@ -32,16 +34,22 @@ export class MyprofileComponent implements OnInit {
       name: ["", Validators.required],
       contact: ["", Validators.required],
       email: ["", Validators.required],
-      //zip:["",Validators.required],
+      zipcode:["",Validators.required],
+      profile_image: [""]
     });
 
-    this.editZipForm = this.formBuilder.group({
-      zip:["",Validators.required],
-    });
+    // this.editZipForm = this.formBuilder.group({
+    //   zip:["",Validators.required],
+    // });
 
     this.getProfileDetails(this.userId);
     this.getUserZipCode();
 
+  }
+
+  onFileChange(event) {
+    this.profileImage = event.target.files[0];
+    console.log(this.profileImage);
   }
 
   getProfileDetails(id) {
@@ -77,9 +85,12 @@ export class MyprofileComponent implements OnInit {
       this.editForm.value.profile_image = '';
       console.log(this.editForm.value);
 
-      this.profileService.updatemyProfile(this.userId, this.editForm.value).subscribe(
+      this.profileService.updatemyProfile(this.userId,this.profileImage, this.editForm.value).subscribe(
         res => {
           this.profileDetails = res['result'];
+          console.log(this.profileDetails);
+          localStorage.setItem('userName', res['result']['name']);
+          this.profileService.updateProfileStatus(true);
           // this.userName = res['result']['name'];
           this.toastr.success('Profile Update successfully', '', {
             timeOut: 3000,
@@ -98,23 +109,23 @@ export class MyprofileComponent implements OnInit {
     }
   }
 
-  updateUserZipCode() {
-    var data = {
-      user_id: this.userId,
-      zipcode: this.editZipForm.value.zip
-    }
-    this.referralService.getZipCode(data).subscribe(
-      res => {
-        console.log(res);
-        this.toastr.success('Zip Code Update successfully', '', {
-          timeOut: 3000,
-        });
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  }
+  // updateUserZipCode() {
+  //   var data = {
+  //     user_id: this.userId,
+  //     zipcode: this.editZipForm.value.zip
+  //   }
+  //   this.referralService.getZipCode(data).subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.toastr.success('Zip Code Update successfully', '', {
+  //         timeOut: 3000,
+  //       });
+  //     },
+  //     error => {
+  //       console.log(error)
+  //     }
+  //   )
+  // }
 
 
   markFormGroupTouched(formGroup: FormGroup) {

@@ -64,12 +64,14 @@ export class HomeComponent implements OnInit {
           var endDealsDate = moment(new Date(this.mostRecentBlogList[i].deals_end_datetime)).format("YYYY-MM-DD");
           var endDate = moment(endDealsDate, "YYYY-MM-DD");
           this.daysPending = moment.duration(endDate.diff(today)).asDays()
-          console.log(this.daysPending);
+         // console.log(this.daysPending);
           this.mostRecentBlogList[i].daysPending = this.daysPending;
           this.mostRecentBlogList[i].max_price = parseInt(this.mostRecentBlogList[i].max_price);
           this.mostRecentBlogList[i].sale_price = parseInt(this.mostRecentBlogList[i].sale_price);
+
+          this.mostRecentBlogList[i].highest_cashback = Math.round(this.mostRecentBlogList[i].highest_cashback);
         }
-        console.log("Most Recent Deals==>",this.mostRecentBlogList);
+       // console.log("Most Recent Deals==>",this.mostRecentBlogList);
       },
       error => {
       }
@@ -115,8 +117,8 @@ export class HomeComponent implements OnInit {
   }
 
   goToDetails(blog) {
-    console.log(blog.parent_category_slug);
-    console.log(blog.blog_url);
+   // console.log(blog.parent_category_slug);
+   // console.log(blog.blog_url);
     this.router.navigateByUrl('/' + blog.parent_category_slug + '/details/' + blog.blog_url);
   }
 
@@ -167,7 +169,7 @@ export class HomeComponent implements OnInit {
     //this.mainCardCategoryId =2;
     this.blogService.getSubCategoryByCategory(this.mainCardCategoryId).subscribe(
       res => {
-        console.log(res);
+       // console.log(res);
         res['result'].forEach(x => {
           var data = {
             category_name: x.category_name,
@@ -220,7 +222,7 @@ export class HomeComponent implements OnInit {
     this.blogService.getTopCategory().subscribe(
       res => {
         this.topCatList = res['result'];
-        console.log("Top Cat List==>",this.topCatList);
+       // console.log("Top Cat List==>",this.topCatList);
       },
       error => {
       }

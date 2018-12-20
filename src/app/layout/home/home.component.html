@@ -162,7 +162,8 @@
                 <div class="col-md-2 price-container">
                     <div *ngIf="blog.category_slug =='deals'">
                         <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price | currency}}</del></p>
-                        <p class="main-price"> {{blog.sale_price | currency}}</p>
+                        <p class="main-price"> {{blog.sale_price | currency}}<span *ngIf="blog.highest_cashback !=null">+
+                                {{blog.highest_cashback}} % cashback</span></p>
                     </div>
                     <p *ngIf="blog.daysPending >0 && blog.category_slug =='deals'" class="deals-start"><i class="fa fa-clock-o"
                         aria-hidden="true"></i> {{blog.daysPending}} Days Left</p>

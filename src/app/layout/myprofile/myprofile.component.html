@@ -49,42 +49,45 @@
                   </div>
                 </div>
 
-                <!-- <div class="form-group mb-3 col-md-6">
-                            <label class="control-label">Zip Code:</label>
-                            <input type="text" [(ngModel)]="profileDetails.zip" class="form-control input-md" placeholder="Enter your zip code"
-                              formControlName="zip" [ngClass]="displayFieldCss(editForm,'zip')">
-                            <div class="invalid-feedback text-left" *ngIf="editForm.controls['zip'].hasError('pattern') && !editForm.controls['zip'].hasError('required')">
-                              Please enter a valid zip code
-                            </div>
-                            <div class="invalid-feedback text-left" *ngIf="editForm.controls['zip'].hasError('required')">
-                              Zip code is required
-                            </div>
-                          </div> -->
+                <div class="form-group mb-3 col-md-6">
+                  <label class="control-label">Zip Code:</label>
+                  <input type="text" [(ngModel)]="zip" class="form-control input-md" placeholder="Enter your zip code"
+                    formControlName="zipcode" [ngClass]="displayFieldCss(editForm,'zipcode')">
+                  <div class="invalid-feedback text-left" *ngIf="editForm.controls['zipcode'].hasError('pattern') && !editForm.controls['zipcode'].hasError('required')">
+                    Please enter a valid zip code
+                  </div>
+                  <div class="invalid-feedback text-left" *ngIf="editForm.controls['zipcode'].hasError('required')">
+                    Zip code is required
+                  </div>
+                </div>
 
                 <div class="form-group mb-3 col-md-4">
-                  <!-- <label class="tg-fileuploadlabel" for="tg-photogallery">
-                                                    <span>Drop files anywhere to upload</span>
-                            
-                                                    <span class="btn btn-common">Browse image</span>
-                    
-                                                    <input id="tg-photogallery" class="tg-fileinput" (change)="onFileChange($event)" type="file"
-                                                      name="profile_image" formControlName="profile_image">
-                                                  </label> -->
+                    <label class="tg-fileuploadlabel" for="tg-photogallery">
+                      <span>Drop files anywhere to upload</span>
 
-                </div>
+                      <span class="btn btn-common">Browse image</span>
+
+                      <!-- <input id="tg-photogallery" class="tg-fileinput"  type="file" name="profile_image" formControlName="profile_image" (change)="profileImageChange($event.target.files)"> -->
+                      <input id="tg-photogallery" class="tg-fileinput" (change)="onFileChange($event)" type="file"
+                        name="profile_image" formControlName="profile_image">
+                    </label>
+
+                  </div>
                 <div class="form-group mb-3 col-md-6">
-                  <input type="submit" class="btn btn-common" value="Update">
+                  <!-- <input type="submit" class="btn btn-common" value="Update"> -->
+                </div> 
+                <div class="form-group mb-3 col-md-4">
+                    <input type="submit" class="btn btn-common" value="Update">
 
-                  <!-- <a href="#" class="btn btn-common">Submit</a> -->
-                </div>
+                    <!-- <a href="#" class="btn btn-common">Submit</a> -->
+                  </div>
               </div>
 
             </form>
           </div>
         </div>
 
-        <div class="list-sec">
-
+        <!-- <div class="list-sec">
           <div class="dashboard-wrapper">
             <form role="form" [formGroup]="editZipForm" novalidate (submit)="updateUserZipCode()">
               <div class="row">
@@ -110,7 +113,7 @@
 
             </form>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

@@ -55,6 +55,8 @@ export class CardListComponent implements OnInit {
   itemName:any;
   blogLinks: string;
   tag:any;
+  activeAll:boolean;
+  blogParentCategoryId:any;
 
   constructor(
     private blogService: BlogService,
@@ -81,16 +83,21 @@ export class CardListComponent implements OnInit {
     this.paginationMaxSize = Globals.paginationMaxSize;
     this.itemPerPage = Globals.itemPerPage;
     this.loadUserInfo();
-    this.getBlogListByCategory();
-    this.getTagListByCategory();
+    //this.getBlogListByCategory();
+    
+   // this.getTagListByCategory();
     this.getCategorySlugInfo(this.blogCategorySlug);
+    this.activeAll = true;
+
+    this.blogParentCategoryId = this.blogCategoryId;
+    this.blogListByCatIdAndChild(this.blogParentCategoryId);
     
   }
 
   getCategorySlugInfo(slug) {
     this.blogService.getSlugInfo(slug).subscribe(
       res => {
-        this.mainCardCategoryId = res['result']['id']
+        this.mainCardCategoryId = res['result']['id'];
         this.getSubCategoryByCategory();
       },
       error => {
@@ -114,14 +121,16 @@ export class CardListComponent implements OnInit {
     item.opened = !item.opened;
   }
 
-  getAllBlog() {
-    this.bloglistByCatidandChild();
+  getAllBlog(id) {
+    this.activeAll = true;
+    this.blogListByCatIdAndChild(id);
   }
 
-  bloglistByCatidandChild() {
+  blogListByCatIdAndChild(id) {
+   // this.blogParentCategoryId = this.blogCategoryId;
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
-    this.blogService.getBlogListByCategoryIdChild(this.blogCategoryId, this.userId, params).subscribe(
+    this.blogService.getBlogListByCategoryIdChild(id, this.userId, params).subscribe(
       res => {
         console.log("kkk==>",res);
         this.categoryDetails = res['result']['category_details'];
@@ -136,6 +145,7 @@ export class CardListComponent implements OnInit {
           this.upper_count = this.blogListCount;
         }
         this.visibleKey = true
+        this.getTagListByParentCategory(this.blogParentCategoryId);
       },
       error => {
         // console.log(error)
@@ -150,6 +160,7 @@ export class CardListComponent implements OnInit {
       res => {
         console.log("kkk==>",res);
         this.categoryDetails = res['result']['category_details'];
+        this.blogCategoryId = res['result']['category_details']['id'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
@@ -177,10 +188,37 @@ export class CardListComponent implements OnInit {
     this.router.navigateByUrl('/' + this.blogCategorySlug + '/details/' + blog_url);
   }
 
-  getTagListByCategory() {
-    this.blogService.getTagListByCategory(this.blogCategoryId).subscribe(
+  // getTagListByCategory() {
+  //   this.blogService.getTagListByCategory(this.blogCategoryId).subscribe(
+  //     res => {
+  //       this.tagList = res['result']
+  //     },
+  //     error => {
+  //       // console.log(error)
+  //     }
+  //   )
+  // }
+
+  getTagListByCategory(id) {
+    this.blogService.getTagListByCategory(id).subscribe(
       res => {
-        this.tagList = res['result']
+        console.log("Tag List==>",res);
+        this.tagList = res['result'];
+      },
+      error => {
+        // console.log(error)
+      }
+    )
+  }
+
+  getTagListByParentCategory(id) {
+    this.blogService.getTagListByParentCategory(id).subscribe(
+      res => {
+        console.log("Parent Tag List==>",res);
+        this.tagList = res['result'];
+        let uniqIds = {};
+        this.tagList = this.tagList.filter(obj => !uniqIds[obj.id] && (uniqIds[obj.id] = true));
+      console.log(this.tagList);
       },
       error => {
         // console.log(error)
@@ -318,12 +356,13 @@ export class CardListComponent implements OnInit {
   }
 
   tagFilterList(tag_name) {
+    this.blogList =[];
     this.selectTagName = tag_name;
     this.blogService.getBlogListByTag(this.blogCategoryId, tag_name).subscribe(
       res => {
-        this.categoryDetails = res['result']['category_details'];
 
-        console.log("Cat Details ==>",this.categoryDetails);
+        console.log(res);
+        //this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
@@ -357,11 +396,16 @@ export class CardListComponent implements OnInit {
   }
 
   getSubSubCatList(id){
+  
+    this.activeAll = false;
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
     this.blogService.getBlogListByCategory(id, this.userId, params).subscribe(
       res => {
+        console.log("Kalyan==>",res);
         this.categoryDetails = res['result']['category_details'];
+       // this.blogCategoryId = res['result']['category_details']['parent_id'];
+       this.blogParentCategoryId = res['result']['category_details']['parent_id'];
         this.blogList = res['result']['bloglist'];
         this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
@@ -373,6 +417,8 @@ export class CardListComponent implements OnInit {
           this.upper_count = this.blogListCount;
         }
         this.visibleKey = true
+
+        this.getTagListByCategory(id);
       },
       error => {
         // console.log(error)
@@ -421,7 +467,6 @@ export class CardListComponent implements OnInit {
   }
 
   tagFilterAll(all) {
-    // alert(2);
     // this.tag= [];
      //this.tag.name ='all';
      this.selectTagName ='all';

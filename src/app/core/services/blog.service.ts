@@ -75,10 +75,10 @@ export class BlogService {
   }
   
   getBlogListByTag(cat_id,tag_name): Observable<any> {
+    console.log(environment.apiEndpoint + 'postListByTagName/' + cat_id + '/'+ tag_name);
     return this.http.get(environment.apiEndpoint + 'postListByTagName/' + cat_id + '/'+ tag_name)
   }
 
-  
   getTopCategory(): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'topcategorylistbypostcount/')
   }
@@ -90,6 +90,10 @@ export class BlogService {
 
   getBlogListByCategoryIdChild(id,user_id,params): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'bloglistbycatidandchild/' + id + '/'+ user_id + '/?'+params)
+  }
+
+  getTagListByParentCategory(id): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'taglistbycatidandchild/' + id + '/')
   }
 
 

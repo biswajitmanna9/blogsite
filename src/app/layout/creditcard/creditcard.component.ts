@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { AlertPromise } from 'selenium-webdriver';
 import { OwlCarousel } from 'ngx-owl-carousel';
 import * as Globals from '../../core/globals';
+import { LoginService } from '../../core/services/login.service';
 
 @Component({
   selector: 'app-creditcard',
@@ -42,13 +43,17 @@ export class CreditcardComponent implements OnInit {
   today:any;
   daysPending:any;
   blogList: any=[];
+  private loggedIn: boolean;
   constructor(
     private blogService: BlogService,
     private _sanitizer: DomSanitizer,
     public dialog: MatDialog,
     private router: Router,
     private toastr: ToastrService,
-  ) { }
+    private loginService: LoginService
+  ) {
+    loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
+   }
 
   ngOnInit() {
     if(localStorage.getItem('userId')) {
@@ -64,7 +69,21 @@ export class CreditcardComponent implements OnInit {
     this.itemPerPage = Globals.itemPerPage;
     this.getHomeBannerContentList();
     this.getCategorySlugInfo("cards");
+    this.loadUserInfo();
   }
+
+  private changeStatus(status: boolean) {
+    if (status) {
+      this.loadUserInfo();
+    }
+  }
+
+  loadUserInfo() {
+    if (localStorage.getItem('isLoggedin')) {
+      this.loggedIn = true;
+    }
+  }
+
 
 
   getBlogListByCategory(mainCardCategoryId,user_id) {
@@ -188,6 +207,15 @@ export class CreditcardComponent implements OnInit {
       })
     }
 
+  }
+
+  openLoginModal() {
+    let dialogRef = this.dialog.open(LoginComponent, {
+      width: '525px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
   }
 
   getSubCategoryByCategory() {
