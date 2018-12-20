@@ -48,7 +48,7 @@ export class CouponComponent implements OnInit {
   popularstore() {
     this.storeService.store().subscribe(
       res => {
-        console.log("Store List==>",res);
+        //console.log("Store List==>",res);
         this.popularstoree = res['result'];
       },
       error => {
@@ -58,9 +58,9 @@ export class CouponComponent implements OnInit {
   maxDiscountList() {
     this.couponService.maxDiscountCouponList().subscribe(
       res => {
-        console.log("Coupon List==>", res);
+        //console.log("Coupon List==>", res);
         this.discountCouponList = res['result'];
-        console.log(this.discountCouponList);
+       // console.log(this.discountCouponList);
       },
       error => {
       }
@@ -72,7 +72,7 @@ export class CouponComponent implements OnInit {
     params.set('page', this.defaultPagination.toString());
     this.storeService.allStore(params).subscribe(
       res => {
-        console.log("All Store List==>",res);
+       // console.log("All Store List==>",res);
         this.allStore = res['result']['storelist'];
         this.allStoreLength = res['result'].length;
         this.allStoreListCount =  res['result']['total_count'];
@@ -115,14 +115,14 @@ export class CouponComponent implements OnInit {
       alphabets.push(String.fromCharCode(i));
       this.filterAlphabets = alphabets;
     }
-    console.log(alphabets);
+    //console.log(alphabets);
   }
 
   filterSearch(alphabet) {
     this.selectedItem = alphabet;
     this.storeService.searchStore(alphabet).subscribe(
       res => {
-        console.log("All Store List==>",res);
+       // console.log("All Store List==>",res);
         this.allStore = res['result'];
         this.allStoreLength = res['result'].length;
         this.allStoreListCount ='';
@@ -133,7 +133,7 @@ export class CouponComponent implements OnInit {
   }
 
   goToCouponDetails(id) {
-    this.router.navigate(['/coupondetails',id]);
+    this.router.navigate(['/store/coupondetails',id]);
   }
   onNavigate(url){
     window.open("http://www."+ url, "_blank");

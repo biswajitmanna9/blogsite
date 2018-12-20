@@ -109,7 +109,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loginService.userLogin(this.loginForm.value).subscribe(
         res => {
-          // console.log(res)
           localStorage.setItem('isLoggedin', 'true');
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);

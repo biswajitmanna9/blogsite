@@ -12,6 +12,7 @@
             <th>Product</th>
             <th>Program</th>
             <th>Created Date</th>
+            <th>Total Click</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -23,6 +24,7 @@
             <td>{{referral.product_name}}</td>
             <td>{{referral.program_name}}</td>
             <td>{{transformDate(referral.date_created)}}</td>
+            <td>{{referral.count}}</td>
             <td>{{referral.is_active}}</td>
           </tr>
         </tbody>

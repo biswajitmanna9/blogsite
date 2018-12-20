@@ -7,7 +7,7 @@
             <div class="carousel-item" *ngFor="let banner of homeBannerContentList; let i = index" [ngClass]="{'active': i == 0}" [style.background-image]="getBackground(banner.slider_img)">
                 <div class="carousel-caption-bnr d-none  d-flex justify-content-center">
 
-                    <div class="bnr-text text-center" *ngFor="let banner of homeBannerContentList; let i = index">
+                    <div class="bnr-text text-center bnr-text-box" *ngFor="let banner of homeBannerContentList; let i = index">
                         <h3>{{banner.title}}</h3>
                         <p>{{banner.description}}</p>
                         <a [href]="banner.btn_link" target="_blank">Read More</a>

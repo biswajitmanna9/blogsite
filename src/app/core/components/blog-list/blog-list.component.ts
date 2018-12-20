@@ -36,8 +36,8 @@ export class BlogListComponent implements OnInit {
   endDate: any;
   today: any;
   daysPending: any;
-  itemName:any;
-  parentCatSlug:any;
+  itemName: any;
+  parentCatSlug: any;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -45,7 +45,7 @@ export class BlogListComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.now = Date.now();
-    
+
   }
 
   ngOnInit() {
@@ -75,25 +75,41 @@ export class BlogListComponent implements OnInit {
     params.set('page', this.defaultPagination.toString());
     this.blogService.getBlogListByCategory(this.blogCategoryId, this.userId, params).subscribe(
       res => {
+        console.log(res);
         this.categoryDetails = res['result']['category_details'];
         this.blogList = res['result']['bloglist'];
         for (var i = 0; i < this.blogList.length; i++) {
+
           this.daysPending = 0;
-          var today = moment(new Date()).format("YYYY-MM-DD");
-          var endDealsDate = moment(new Date(this.blogList[i].deals_end_datetime)).format("YYYY-MM-DD");
-          // var endDate = moment(new Date(this.blogList[i].deals_end_datetime), 'DD/MM/YYYY');
-          // this.daysPending = endDate.diff(today, 'days');
-          //var today = moment("2018-12-14", "YYYY-MM-DD");
-          var endDate = moment(endDealsDate, "YYYY-MM-DD");
-          this.daysPending = moment.duration(endDate.diff(today)).asDays()
-          console.log(this.daysPending);
-          this.blogList[i].daysPending = this.daysPending;
+          if (this.blogList[i].deals_end_datetime == '0000-00-00 00:00:00') {
+            this.blogList[i].daysPending = 0;
+          }
+          else {
+            var today = moment(new Date()).format("YYYY-MM-DD");
+            var endDealsDate = moment(new Date(this.blogList[i].deals_end_datetime)).format("YYYY-MM-DD");
+            var endDate = moment(endDealsDate, "YYYY-MM-DD");
+            this.daysPending = moment.duration(endDate.diff(today)).asDays()
+            console.log(this.daysPending);
+            this.blogList[i].daysPending = this.daysPending;
+
+          }
           this.blogList[i].max_price = parseInt(this.blogList[i].max_price);
           this.blogList[i].sale_price = parseInt(this.blogList[i].sale_price);
+
+          if (this.blogList[i].store_logo == null) {
+            this.blogList[i].store_logo = '';
+          }
+          if (this.blogList[i].store_logo == null) {
+            this.blogList[i].store_logo = '';
+          }
+
+          this.blogList[i].highest_cashback = Math.round(this.blogList[i].highest_cashback);
+
         }
         console.log("Deals List ==> ", this.blogList);
+        //this.blogListCount = res['result']['total_count'];
+        this.blogListCount = this.blogList.length;
 
-        this.blogListCount = res['result']['total_count'];
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
         this.lower_count = this.itemNo + 1;
         if (this.blogListCount > this.itemPerPage * this.defaultPagination) {
@@ -193,13 +209,13 @@ export class BlogListComponent implements OnInit {
     this.blogListCount = "";
     this.itemName = event.target.value;
     if (this.itemName == 'name') {
-      this.filterDeals('blog_title','asc');
+      this.filterDeals('blog_title', 'asc');
     }
     else if (this.itemName == 'pricelow') {
-      this.filterDeals('sale_price','asc');
+      this.filterDeals('sale_price', 'asc');
     }
     else if (this.itemName == 'pricehigh') {
-      this.filterDeals('sale_price','desc');
+      this.filterDeals('sale_price', 'desc');
     }
     else {
       this.getBlogListByCategory();
@@ -207,16 +223,16 @@ export class BlogListComponent implements OnInit {
 
   }
 
-  filterDeals(order_column,order_by) {
-    this.blogService.getFilterDeals(this.blogCategoryId, this.userId,order_column,order_by).subscribe(
-        res => {
-          this.blogList = res['result']['bloglist'];
-          this.blogLinks = res['result']['links'];
-          this.visibleKey = true
-        },
-        error => {
-        }
-      )
+  filterDeals(order_column, order_by) {
+    this.blogService.getFilterDeals(this.blogCategoryId, this.userId, order_column, order_by).subscribe(
+      res => {
+        this.blogList = res['result']['bloglist'];
+        this.blogLinks = res['result']['links'];
+        this.visibleKey = true
+      },
+      error => {
+      }
+    )
   }
 
 }

@@ -12,6 +12,8 @@ import { BlogComponent } from './blog/blog.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { ErrorComponent } from './error/error.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -26,12 +28,13 @@ import { BankingComponent } from './banking/banking.component';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
     LayoutRoutingModule,
     CoreModule
   ],
-  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent, StoreComponent, AllstoreComponent, CoupondetailsComponent, CashbackComponent, CashbackdetailsComponent, CreditcardComponent, BankingComponent]
+  declarations: [LayoutComponent, HomeComponent, BlogComponent, CouponComponent, AboutUsComponent, ContactUsComponent, BlogDetailsComponent, ErrorComponent, ResetPasswordComponent, AllblogComponent, StoreComponent, AllstoreComponent, CoupondetailsComponent, CashbackComponent, CashbackdetailsComponent, CreditcardComponent, BankingComponent, MyprofileComponent, ChangepasswordComponent]
 })
 export class LayoutModule { }

@@ -35,6 +35,7 @@ import { ResetpasswordService } from './services/resetpassword.service';
 import { CouponService } from './services/coupon.service';
 import { StoreService } from './services/store.service';
 import { CashbackService } from './services/cashback.service';
+import { ProfileService } from './services/profile.service';
 
 // guard
 import { AuthGuard } from './guard/auth.guard';
@@ -59,10 +60,12 @@ import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { CardListComponent } from './components/card-list/card-list.component';
 import { ReplyTreeComponent } from './components/reply-tree/reply-tree.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { ProfileSidebarComponent } from './components/profile-sidebar/profile-sidebar.component';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { LoadingComponent } from './components/loading/loading.component';
 import { AdvertiseComponent } from './components/advertise/advertise.component';
+
 
 @NgModule({
   imports: [
@@ -101,7 +104,8 @@ import { AdvertiseComponent } from './components/advertise/advertise.component';
     ReplyTreeComponent,
     SideNavComponent,
     LoadingComponent,
-    AdvertiseComponent
+    AdvertiseComponent,
+    ProfileSidebarComponent
   ],
   exports: [
     NgbModule,
@@ -128,7 +132,8 @@ import { AdvertiseComponent } from './components/advertise/advertise.component';
     ReplyTreeComponent,
     SideNavComponent,
     OwlModule,
-    LoadingComponent
+    LoadingComponent,
+    ProfileSidebarComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -152,7 +157,8 @@ export class CoreModule {
         ResetpasswordService,
         CouponService,
         StoreService,
-        CashbackService
+        CashbackService,
+        ProfileService
       ]
     };
   }

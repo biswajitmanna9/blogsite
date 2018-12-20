@@ -49,7 +49,7 @@ export class AllstoreComponent implements OnInit {
     params.set('page', this.defaultPagination.toString());
     this.storeService.allStore(params).subscribe(
       res => {
-        alert(1);
+   
         console.log("All Store List==>",res);
         
         this.allStore = res['result']['storelist'];

@@ -30,6 +30,8 @@ export class StoreComponent implements OnInit {
   lower_count: number;
   upper_count: number;
   itemPerPage: number;
+  paginationMaxSize: number;
+  
   constructor(
     private storeService: StoreService,
     private router: Router,
@@ -46,7 +48,10 @@ export class StoreComponent implements OnInit {
     else {
       this.userId ="";
     }
+    this.itemNo = 0;
     this.defaultPagination = 1;
+    this.itemPerPage = 10;
+    this.paginationMaxSize = Globals.paginationMaxSize;
     this.getAlphabet();
     this.popularstore();
     this.storeByCashback();
@@ -125,7 +130,6 @@ export class StoreComponent implements OnInit {
     this.router.navigate(['store/coupondetails',id]);
   }
 
-
   allStoreListing() {
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', this.defaultPagination.toString());
@@ -134,16 +138,22 @@ export class StoreComponent implements OnInit {
         console.log("All Store List==>",res);
         this.allStore = res['result']['storelist'];
         this.allStoreLength = res['result'].length;
+       // alert(res['result']['total_count']);
         this.allStoreListCount =  res['result']['total_count'];
+
+        console.log( "Total Count==>",this.allStoreListCount);
         this.itemNo = (this.defaultPagination - 1) * this.itemPerPage;
+        console.log("defaultPagination no==>",this.defaultPagination);
+        console.log("Item per Page ==>",this.itemPerPage);
         this.lower_count = this.itemNo + 1;
+        console.log("Lower Count==>",this.lower_count);
         if (this.allStoreListCount > this.itemPerPage * this.defaultPagination) {
           this.upper_count = this.itemPerPage * this.defaultPagination
         }
         else {
           this.upper_count = this.allStoreListCount;
         }
-
+        console.log("Upper Count==>",this.upper_count);
       },
       error => {
       }
@@ -154,7 +164,6 @@ export class StoreComponent implements OnInit {
     window.scroll(0,500);
     this.allStoreListing();
   };
-
 
   filterSearch(alphabet) {
     this.selectedItem = alphabet;
@@ -169,6 +178,5 @@ export class StoreComponent implements OnInit {
       }
     )
   }
-
 
 }
