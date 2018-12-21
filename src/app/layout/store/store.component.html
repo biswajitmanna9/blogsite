@@ -15,13 +15,14 @@
 <section class="full-bg-grey">
     <div class="container">
         <h2 class="head-line-line mb-3 mt-3">Today’s Recommended Stores - <a [routerLink]="['/allstore']" href="javascript:void(0)">See
-        All Stores</a></h2>
+                All Stores</a></h2>
         <div class="cuppon-sec">
             <div class="row">
                 <div class="col-md-2" *ngFor="let storeCashBack of storebyCashback| slice:0:6;  let i = index" (click)=goToCashBackDetails(storeCashBack.id)>
                     <div class="cuppon">
                         <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
-                        <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'" alt="">
+                        <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'"
+                            alt="">
                         <span>{{storeCashBack.name}}</span>
                         <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
 
@@ -43,8 +44,8 @@
 
             </div>
         </div>
-        <h2 class="head-line-line mb-3 mt-3">Featured Daily Deals- <a [routerLink]="['/stores/deals']" href="javascript:void(0)">See
-        All Deals</a> </h2>
+        <h2 class="head-line-line mb-3 mt-3">Featured Daily Deals - <a [routerLink]="['/stores/deals']" href="javascript:void(0)">See
+                All Deals</a> </h2>
         <div class="deal">
             <div class="row">
 
@@ -58,7 +59,25 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="col-md-3">
+                <div class="col-md-3" *ngFor="let blog of blogList | slice:0:4; let i = index">
+                    <div class="product-store">
+                        <img class="img-overly" [src]="blog.store_logo != '' && imageBaseUrl+ blog.store_logo || 'assets/images/noimage.png'"
+                            alt="">
+
+                        <img class="img-fluid product-item-image" [src]="blog.blog_small_image != '' && imageBaseUrl+ blog.blog_small_image || 'assets/images/noimage.png'"
+                            alt="">
+
+                        <p>{{blog.blog_title}}</p>
+                        <div class="row">
+                            <div class="col-md-8 pricc-product"><del> {{blog.max_price |
+                                    currency}}</del> {{blog.sale_price | currency}}</div>
+                            <div class="col-md-4 product-like text-right"><i class="fa fa-thumbs-up" aria-hidden="true"></i><small>12</small></div>
+
+                        </div>
+                        <a href="javascript:void(0)" (click)="goToDealsDetails(blog.blog_url)">View Details</a>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
                     <div class="product-store">
                         <img class="img-overly" src="assets/images/master-card.png" alt="">
                         <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
@@ -96,20 +115,7 @@
                         </div>
                         <a href="#">View Details</a>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="product-store">
-                        <img class="img-overly" src="assets/images/master-card.png" alt="">
-                        <img class="img-fluid" src="assets/images/deal-image.jpg" alt="">
-                        <p>$50 App Store & iTunes Gift Card (Email Delivery)</p>
-                        <div class="row">
-                            <div class="col-md-6 pricc-product"><del>$40</del> $40</div>
-                            <div class="col-md-6 product-like text-right"><i class="fa fa-thumbs-up" aria-hidden="true"></i><small>12</small></div>
-
-                        </div>
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="hot-deal-sec">
@@ -117,8 +123,9 @@
                 <div class="col-md-12">
                     <div class="white-board">
                         <div class="hot-deal-headline">
-                            <h2 class="head-line-line mb-3 mt-3">Featured Coupons - <a [routerLink]="['/store/coupons']" href="javascript:void(0)">See
-                  All Coupons</a> </h2>
+                            <h2 class="head-line-line mb-3 mt-3">Featured Coupons - <a [routerLink]="['/store/coupons']"
+                                    href="javascript:void(0)">See
+                                    All Coupons</a> </h2>
                         </div>
                         <div class="hot-deal">
                             <div class="col-md-12">
@@ -142,8 +149,9 @@
                     </div> -->
                                         <div class="deal-sec " (click)="goToCouponDetails(coupon.id)">
                                             <div class="deal-detail">
-
-                                                <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt="">
+                                                    
+                                                    <img class="img-fluid" [src]="coupon.store_image != '' && imageBaseUrl+ coupon.store_image || 'assets/images/noimage.png'" alt="">
+                                                    <!-- <img class="img-fluid" src="assets/images/flipkart-sidescroll.jpg" alt=""> -->
                                                 <p>{{coupon.coupon_description}}</p>
                                                 <small>{{coupon.store_name}}</small>
 
@@ -215,12 +223,15 @@
                 <div class="col-md-12">
                     <div class="white-board">
                         <div class="hot-deal-headline">
-                            <h2 class="head-line-line mb-3 mt-3 font-size-20">Featured Cash Back Offers <a [routerLink]="['/stores/cashback']" href="javascript:void(0)">See
-                 All Cashback</a></h2>
+                            <h2 class="head-line-line mb-3 mt-3 font-size-20">Featured Cash Back Offers <a [routerLink]="['/stores/cashback']"
+                                    href="javascript:void(0)">See
+                                    All Cashback</a></h2>
                         </div>
                         <ul class="side-ad d-flex justify-content-between flex-wrap flex-width cuppon-double-sec">
-                            <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:6; let i = index" class="cuppon">
-                                <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'" alt="">
+                            <li (click)="onNavigate(storeCashBack.url)" *ngFor="let storeCashBack of storebyCashback | slice:0:6; let i = index"
+                                class="cuppon">
+                                <img [src]="storeCashBack.image != '' && imageBaseUrl+ storeCashBack.image || 'assets/images/noimage.png'"
+                                    alt="">
                                 <span class="coupon-name">{{storeCashBack.cashback_portal_name}}</span>
                                 <span class="coupon-discount">{{storeCashBack.raw_rate_data}} Cash Back</span>
                                 <small>{{storeCashBack.name}}</small>
@@ -261,7 +272,8 @@
                                     <div class="col-md-12">
                                         <ul class="alphabet-filter">
                                             <li class="text-light bg-dark" (click)="allStoreListing()">All</li>
-                                            <li class="letter-filter text-muted filterSearch" [ngClass]="{'active': selectedItem == alphabet}" (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
+                                            <li class="letter-filter text-muted filterSearch" [ngClass]="{'active': selectedItem == alphabet}"
+                                                (click)="filterSearch(alphabet)" *ngFor="let alphabet of filterAlphabets; let i = index">{{alphabet}}</li>
                                             <li class="text-light bg-dark" (click)="filterSearch('numberfilter')">0-9</li>
                                         </ul>
                                     </div>
@@ -270,7 +282,8 @@
                                 <div class="col-md-12">
                                     <div class="row border-top">
                                         <div class="col-md-12" *ngFor="let store of allStore; let i = index">
-                                            <div class="table-box d-flex justify-content-around store-list" [routerLink]="['/store/coupondetails',store.id]">
+                                            <div class="table-box d-flex justify-content-around store-list"
+                                                [routerLink]="['/store/coupondetails',store.id]">
                                                 <a href="javascript:void(0)">{{store.name}}</a>
                                                 <a href="javascript:void(0)">
                                                     <span *ngIf="store.coupon_count==0">No Coupon</span>
@@ -279,12 +292,15 @@
 
                                                 <a class="text-danger" href="javascript:void(0)">
                                                     <span *ngIf="store.highest_cashback == '0%'">No Cash Back</span>
-                                                    <span *ngIf="store.highest_cashback != '0%'">{{store.highest_cashback}} Cash Back</span>
+                                                    <span *ngIf="store.highest_cashback != '0%'">{{store.highest_cashback}}
+                                                        Cash Back</span>
                                                 </a>
                                                 <a class="text-danger" href="javascript:void(0)">
-                                                    <span *ngIf="store.lowest_cashback== '0%' && store.highest_cashback=='0%'">No Cash Back</span>
-                                                    <span *ngIf="store.lowest_cashback != '0%' && store.highest_cashback !='0%'">{{store.lowest_cashback}} -
-                              {{store.highest_cashback}}Cash Back</span>
+                                                    <span *ngIf="store.lowest_cashback== '0%' && store.highest_cashback=='0%'">No
+                                                        Cash Back</span>
+                                                    <span *ngIf="store.lowest_cashback != '0%' && store.highest_cashback !='0%'">{{store.lowest_cashback}}
+                                                        -
+                                                        {{store.highest_cashback}}Cash Back</span>
 
                                                 </a>
                                                 <button>shop Now</button>
@@ -297,12 +313,15 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="pagination-msg" *ngIf="allStoreListCount > 0">
-                                                <p>Showing {{lower_count}} to {{upper_count}} of {{allStoreListCount}} entries</p>
+                                                <p>Showing {{lower_count}} to {{upper_count}} of {{allStoreListCount}}
+                                                    entries</p>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="card-body pull-right" *ngIf="allStoreListCount > itemPerPage">
-                                                <ngb-pagination [collectionSize]="allStoreListCount" [pageSize]="itemPerPage" [maxSize]="paginationMaxSize" [(page)]="defaultPagination" (pageChange)="pagination()" size="sm"></ngb-pagination>
+                                                <ngb-pagination [collectionSize]="allStoreListCount" [pageSize]="itemPerPage"
+                                                    [maxSize]="paginationMaxSize" [(page)]="defaultPagination"
+                                                    (pageChange)="pagination()" size="sm"></ngb-pagination>
                                             </div>
                                         </div>
                                     </div>

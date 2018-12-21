@@ -96,7 +96,7 @@ export class StoreComponent implements OnInit {
     this.blogCategoryId =3; // For Deals 
     this.blogService.getBlogListByCategory(this.blogCategoryId,this.userId,params).subscribe(
       res => {
-        console.log("Deals Listing",res);
+        console.log("Featured Deals Listing",res);
         this.blogList = res['result']['bloglist'];
       },
       error => {
@@ -117,7 +117,8 @@ export class StoreComponent implements OnInit {
   }
 
   onNavigate(url){
-    window.open("http://www."+ url, "_blank");
+    //window.open("http://www."+ url, "_blank");
+    window.open(url, "_blank");
   }
 
   goToCashBackDetails(id) {

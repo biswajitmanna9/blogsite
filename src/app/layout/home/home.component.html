@@ -149,7 +149,7 @@
                         <img class="img-fluid rounded mb-3 mb-md-0" [src]="imageBaseUrl + blog.blog_small_image" alt="">
                     </a>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <span>{{blog.category_name}}</span>
                     <h3>{{blog.blog_title}}</h3>
                     <small>{{transformDate(blog.date_created)}}</small>
@@ -162,7 +162,7 @@
                             class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                     <small>{{blog.likes}} Likes</small>
                 </div>
-                <div class="col-md-2 price-container">
+                <div class="col-md-3 price-container">
                     <div *ngIf="blog.category_slug =='deals'">
                         <p class="cut-price" *ngIf="blog.max_price > blog.sale_price"><del> {{blog.max_price |
                                 currency}}</del></p>

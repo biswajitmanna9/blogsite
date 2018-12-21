@@ -15,7 +15,7 @@ export class MyprofileComponent implements OnInit {
   editZipForm: FormGroup;
   userId: number;
   zip:string;
-  profileDetails=[];
+  profileDetails:any;
   user_id: string;
   editProfile: boolean;
   profileImageToUpload: File = null;

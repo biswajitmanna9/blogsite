@@ -2424,7 +2424,7 @@ ul ul .cmmnt {
     padding-top: 14px;
     color: #a29e9e;
 }
-
+.product-store .pricc-product {     font-size: 13px;  }
 .product-store .pricc-product del {
     color: #b9b8b8;
     font-size: 12px;
@@ -2474,7 +2474,7 @@ ul ul .cmmnt {
 }
 
 .product-store .img-overly {
-    width: 50px;
+    width: 80px;
     height: 50px;
     position: absolute;
     right: 0;
@@ -2482,7 +2482,10 @@ ul ul .cmmnt {
     background: #fff;
     padding: 7px;
 }
-
+.product-store .product-item-image {     width: auto;
+    height: 130px;
+    margin: 0 auto;
+    display: block;}
 .white-board-form {
     background: #fff;
     border: 1px solid #cccccc;
